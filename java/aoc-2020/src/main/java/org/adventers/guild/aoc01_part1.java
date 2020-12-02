@@ -30,9 +30,8 @@ public class aoc01_part1 {
             list.add(scanner.nextInt());
         }
 
+        int position = 1;
         for (int x: list) {
-            // System.out.println(x);
-            int position = 1;
             List<Integer> y_list = list.subList(position, list.size());
             for (int y: y_list) {
                 System.out.println(x + "+" + y + "=" + (x + y));
@@ -41,7 +40,7 @@ public class aoc01_part1 {
                     System.exit(0);
                 }
             }
+            position++;
         }
-        // System.out.println( list );
     }
 }
