@@ -9,7 +9,7 @@
 import os
 
 
-class Aoc02:
+class Aoc03:
     def __init__(self):
         self.open = '.'
         self.tree = '#'
@@ -53,5 +53,5 @@ class Aoc02:
 
 
 if __name__ == "__main__":
-    solve_it = Aoc02()
+    solve_it = Aoc03()
     solve_it.run_it()
