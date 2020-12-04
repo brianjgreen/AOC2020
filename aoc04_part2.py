@@ -3,13 +3,14 @@
 # 4 Dec 2020 Brian Green
 #
 # Problem:
-# Determine the number of trees you would encounter if, for each of the following slopes,
-# you start at the top-left corner and traverse the map all the way to the bottom:
+# Count the number of valid passports - those that have all required fields and valid values
+# Continue to treat cid as optional. In your batch file, how many passports are valid?
 #
 import os
 import re
 
 
+# NOTE: These functions outside the class are static (can be called without creating an object from the class).
 def check_year(year, min_year, max_year):
     year = year.strip()
     if re.match(r"\d{4}", year) and min_year <= int(year) <= max_year:
@@ -45,14 +46,14 @@ def check_hair_color(hcl):
 
 
 def check_eye_color(ecl):
+    # The rules say this field can only have ONE of the following.  Not sure how to do that in regex.
     if re.match(r"amb|blu|brn|gry|grn|hzl|oth", ecl):
         return True
     return False
 
 
 def check_passport_id(pid):
-    pid = pid.strip()
-    if len(pid) == 9 and re.match(r"\d{9}", pid):
+    if re.match(r"^\d{9}$", pid):
         return True
     return False
 
@@ -73,13 +74,15 @@ class Aoc04:
         passport = {}
         for i in self.data:
             if len(i) == 1:
-                # print('NEW RECORD')
-                print(passport)
+                # print(passport)
+                # Finished with the previous record, save it on the list and start a new record.
                 records.append(passport)
                 passport = {}
                 # print(records)
             else:
+                # Parse the string to create a dictionary (key/value pair)
                 new_fields = dict(field.split(':') for field in i.split(' '))
+                # Add the new key/value pairs to the dictionary
                 passport.update(new_fields)
                 # print(passport)
 
@@ -87,6 +90,7 @@ class Aoc04:
         for i in records:
             valid = 1
             # print(i)
+            # Check to see if required key is present in record
             for j in self.req_fields:
                 # print(j)
                 if j not in i:
@@ -94,13 +98,17 @@ class Aoc04:
                     valid = 0
                     break
 
-            if valid == 1:
-                if check_birth_year(i['byr']) and check_issue_year(i['iyr']) and check_expiration_year(i['eyr']) and \
-                        check_height(i['hgt']) and check_hair_color(i['hcl']) and check_eye_color(i['ecl']) and \
-                        check_passport_id(i['pid']):
-                    pass
-                else:
-                    valid = 0
+            if valid == 1 and \
+                    check_birth_year(i['byr']) and \
+                    check_issue_year(i['iyr']) and \
+                    check_expiration_year(i['eyr']) and \
+                    check_height(i['hgt']) and \
+                    check_hair_color(i['hcl']) and \
+                    check_eye_color(i['ecl']) and \
+                    check_passport_id(i['pid']):
+                pass
+            else:
+                valid = 0
             total_valid += valid
 
         print(f"Total Valid: {total_valid}")
