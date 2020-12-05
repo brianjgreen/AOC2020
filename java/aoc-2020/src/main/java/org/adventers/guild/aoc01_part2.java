@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class aoc01_part1 {
+public class aoc01_part2 {
     public static void main( String[] args )
     {
         Path filePath = Paths.get("data", "brian_aoc01.dat");
@@ -33,11 +33,14 @@ public class aoc01_part1 {
         int position = 1;
         for (int x: list) {
             List<Integer> y_list = list.subList(position, list.size());
+            List<Integer> z_list = list.subList(position + 1, list.size());
             for (int y: y_list) {
-                // System.out.println(x + "+" + y + "=" + (x + y));
-                if ((x + y) == 2020) {
-                    System.out.println("Found it! " + (x * y));
-                    System.exit(0);
+                for (int z: z_list) {
+                    // System.out.println(x + "+" + y + "+" + z + "=" + (x + y));
+                    if ((x + y + z) == 2020) {
+                        System.out.println("Found it! " + (x * y * z));
+                        System.exit(0);
+                    }
                 }
             }
             position++;
