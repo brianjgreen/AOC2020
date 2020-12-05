@@ -3,12 +3,12 @@
 # 5 Dec 2020 Brian Green
 #
 # Problem:
-#
+# As a sanity check, look through your list of boarding passes. What is the highest seat ID on a boarding pass?
 #
 import os
 
 
-class Aoc04:
+class Aoc05:
     def __init__(self):
         # test_data = ["FBFBBFFRLR", "BFFFBBFRRR", "FFFBBBFRRR", "BBFFBBFRLL"]
         file_name = "data" + os.sep + "brian_aoc05.dat"
@@ -23,29 +23,31 @@ class Aoc04:
         column = 0
         highest_seat = 0
         for i in self.data:
+            # Find the row
             low = 0
             high = 127
             for j in range(7):
                 if i[j] == 'F':
-                    # print("Front")
+                    # Front
                     high -= (high - low + 1) / 2
                 else:
-                    # print("Back")
+                    # Back
                     low += (high - low + 1) / 2
-                # print(i[j])
-                # print(f"{high} - {low}")
             if high == low:
                 row = int(low)
                 print(f"ROW {row}")
             else:
                 print("ERROR")
 
+            # Find the column
             low = 0
             high = 7
             for j in range(7, 10):
                 if i[j] == 'L':
+                    # Left
                     high -= (high - low + 1) / 2
                 else:
+                    # Right
                     low += (high - low + 1) / 2
             if high == low:
                 column = int(low)
@@ -62,5 +64,5 @@ class Aoc04:
 
 
 if __name__ == "__main__":
-    solve_it = Aoc04()
+    solve_it = Aoc05()
     solve_it.run_it()
