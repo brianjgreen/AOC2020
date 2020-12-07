@@ -27,33 +27,22 @@ class Aoc07:
         # self.data = self.test_data
         self.data = data_set
 
-    def get_num_bags(self, bag, spaces=0):
+    def get_num_bags(self, bag):
         count = 0
-        print(f"{bag} {self.bag_rules[bag]}")
-        # print()
         if self.bag_rules[bag] is None:
             return 1
 
         for i in self.bag_rules[bag]:
-            got_num = self.get_num_bags(i[1], spaces=spaces+2)
+            got_num = self.get_num_bags(i[1])
             count += i[0] * got_num
-            # print(f"i={i[0]} {i[1]} {got_num}")
-            if spaces > 0:
-                print(spaces)
-                for j in range(spaces):
-                    print(" ", end="")
-            print(f"For bag type {i[1]} got {got_num} bags, have {i[0]} of these for total of {i[0] * got_num}.")
-        print(f"{bag} count={count}")
 
         return count + 1
 
     def run_it(self):
         for rule in self.data:
             parts = rule.split(',')
-            # print(parts)
             parse = parts[0].split()
             bag_type = parse[0] + " " + parse[1]
-            # print(bag_type)
             if bag_type in self.bag_rules:
                 print(f"ERROR, bag rule {bag_type} exists!")
                 break
@@ -68,12 +57,7 @@ class Aoc07:
                     sub_parse = inner_bag.strip().split()
                     self.bag_rules[bag_type].append((int(sub_parse[0]), sub_parse[1] + " " + sub_parse[2]))
 
-        print(self.bag_rules)
-
         bags_inside = self.get_num_bags('shiny gold') - 1
-        # for i in self.bag_rules['shiny gold']:
-        #     bags_inside += i[0]
-
         print(f"Total bags = {bags_inside}")
 
 
