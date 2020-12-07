@@ -3,6 +3,7 @@
 # 7 Dec 2020 Brian Green
 #
 # Problem:
+# How many bag colors can eventually contain at least one shiny gold bag?
 #
 import os
 
@@ -27,28 +28,19 @@ class Aoc07:
         self.data = data_set
 
     def get_num_shiny_gold_bags(self, bag):
-        shiny_gold_bags_found = 0
-        print(f"Search {bag}")
         if bag == 'shiny gold':
-            # shiny_gold_bags_found += 1
-            print("*** Found one! ***")
             return 1
         elif self.bag_rules[bag] is not None:
-            # shiny_gold_bags_found += self.get_num_shiny_gold_bags([x[1] for x in self.bag_rules[bag]])
             for i in self.bag_rules[bag]:
                 if self.get_num_shiny_gold_bags(i[1]) == 1:
-                    # if self.get_num_shiny_gold_bags([x[1] for x in self.bag_rules[bag]]) == 1:
                     return 1
-
-        return shiny_gold_bags_found
+        return 0
 
     def run_it(self):
         for rule in self.data:
             parts = rule.split(',')
-            # print(parts)
             parse = parts[0].split()
             bag_type = parse[0] + " " + parse[1]
-            # print(bag_type)
             if bag_type in self.bag_rules:
                 print(f"ERROR, bag rule {bag_type} exists!")
                 break
@@ -63,12 +55,9 @@ class Aoc07:
                     sub_parse = inner_bag.strip().split()
                     self.bag_rules[bag_type].append((int(sub_parse[0]), sub_parse[1] + " " + sub_parse[2]))
 
-        print(self.bag_rules)
-        # print(self.get_num_shiny_gold_bags([x for x in self.bag_rules]))
         count = 0
         for i in self.bag_rules:
             if i != 'shiny gold':
-                print(f"CHECKING {i}")
                 count += self.get_num_shiny_gold_bags(i)
         print(count)
 

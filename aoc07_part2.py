@@ -3,6 +3,7 @@
 # 7 Dec 2020 Brian Green
 #
 # Problem:
+# How many individual bags are required inside your single shiny gold bag?
 #
 import os
 
