@@ -28,46 +28,42 @@ class Aoc01:
         self.data = data_set
 
     @staticmethod
-    def run_prog(prog):
+    def run_program(program):
         acc = 0
         ip = 0
         usage = {}
         while ip not in usage:
             usage[ip] = 0
-            instr = prog[ip][0]
+            instr = program[ip][0]
             if instr == 'acc':
-                acc += int(prog[ip][1])
+                acc += int(program[ip][1])
                 ip += 1
             elif instr == 'nop':
                 ip += 1
             elif instr == 'jmp':
-                ip += int(prog[ip][1])
+                ip += int(program[ip][1])
 
-            if ip >= len(prog):
+            if ip >= len(program):
                 print("FOUND IT!")
                 print(acc)
                 sys.exit()
 
-        return acc
-
     def run_it(self):
-        prog = []
+        program = []
         for instr in self.data:
-            prog.append(instr.split())
-        print(prog)
+            program.append(instr.split())
+        print(program)
 
-        for i in range(len(prog)):
-            curr = prog[i][0]
+        for i in range(len(program)):
+            curr = program[i][0]
             if curr == 'nop':
-                prog[i][0] = 'jmp'
-                self.run_prog(prog)
-                prog[i][0] = 'nop'
+                program[i][0] = 'jmp'
+                self.run_program(program)
+                program[i][0] = 'nop'
             elif curr == 'jmp':
-                prog[i][0] = 'nop'
-                self.run_prog(prog)
-                prog[i][0] = 'jmp'
-
-        # print(self.run_prog(prog))
+                program[i][0] = 'nop'
+                self.run_program(program)
+                program[i][0] = 'jmp'
 
 
 if __name__ == "__main__":

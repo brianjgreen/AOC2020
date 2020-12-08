@@ -27,23 +27,23 @@ class Aoc01:
         self.data = data_set
 
     def run_it(self):
-        prog = []
+        program = []
         usage = {}
         for instr in self.data:
-            prog.append(instr.split())
-        print(prog)
+            program.append(instr.split())
+        print(program)
         acc = 0
         ip = 0
         while ip not in usage:
             usage[ip] = 0
-            instr = prog[ip][0]
+            instr = program[ip][0]
             if instr == 'acc':
-                acc += int(prog[ip][1])
+                acc += int(program[ip][1])
                 ip += 1
             elif instr == 'nop':
                 ip += 1
             elif instr == 'jmp':
-                ip += int(prog[ip][1])
+                ip += int(program[ip][1])
 
         print(acc)
 
