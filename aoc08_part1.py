@@ -3,7 +3,8 @@
 # 8 Dec 2020 Brian Green
 #
 # Problem:
-#
+# Run your copy of the boot code. Immediately before any instruction is executed a second time,
+# what value is in the accumulator?
 #
 import os
 
@@ -30,12 +31,12 @@ class Aoc01:
         program = []
         usage = {}
         for instr in self.data:
+            # Split the lines into instruction and data
             program.append(instr.split())
-        print(program)
-        acc = 0
-        ip = 0
-        while ip not in usage:
-            usage[ip] = 0
+        acc = 0  # accumulator
+        ip = 0  # instruction pointer
+        while ip not in usage:  # Stop when we attempt to run an instruction a second time
+            usage[ip] = 0  # Track the instructions used
             instr = program[ip][0]
             if instr == 'acc':
                 acc += int(program[ip][1])

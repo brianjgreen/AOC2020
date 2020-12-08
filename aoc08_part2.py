@@ -3,7 +3,8 @@
 # 8 Dec 2020 Brian Green
 #
 # Problem:
-#
+# Fix the program so that it terminates normally by changing exactly one jmp (to nop) or nop (to jmp).
+# What is the value of the accumulator after the program terminates?
 #
 import os
 import sys
@@ -43,6 +44,7 @@ class Aoc01:
             elif instr == 'jmp':
                 ip += int(program[ip][1])
 
+            # Stop when the ip (instruction pointer) attempts to go beyond the end of the list
             if ip >= len(program):
                 print("FOUND IT!")
                 print(acc)
@@ -51,10 +53,11 @@ class Aoc01:
     def run_it(self):
         program = []
         for instr in self.data:
+            # Split each line into instruction and data
             program.append(instr.split())
-        print(program)
 
         for i in range(len(program)):
+            # Crawl down the list and change one nop/jmp at a time, execute, and then restore the instruction
             curr = program[i][0]
             if curr == 'nop':
                 program[i][0] = 'jmp'
