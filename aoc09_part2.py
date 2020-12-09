@@ -3,10 +3,8 @@
 # 1 Dec 2020 Brian Green
 #
 # Problem:
-# The Elves in accounting just need you to fix your expense report (your puzzle input);
-# apparently, something isn't quite adding up.
-# Specifically, they need you to find the two entries that sum to 2020 and then multiply those two numbers together.
-#
+# To find the encryption weakness, add together the smallest and largest number in this contiguous range.
+# What is the encryption weakness in your XMAS-encrypted list of numbers?
 #
 import os
 import sys
@@ -47,11 +45,9 @@ class Aoc01:
         bad = 0
         for i in range(self.preamble, len(self.data)):
             valid = False
-            print(f"{i} {self.data[i]}")
             for j in range(i - self.preamble, i):
-                # print(j)
                 for k in range(j + 1, i):
-                    print(f"{self.data[i]}: {self.data[j]}+{self.data[k]}={self.data[j]+self.data[k]}")
+                    # print(f"{self.data[i]}: {self.data[j]}+{self.data[k]}={self.data[j]+self.data[k]}")
                     if self.data[j] != self.data[k] and self.data[j] + self.data[k] == self.data[i]:
                         print("GOOD")
                         valid = True
@@ -62,20 +58,19 @@ class Aoc01:
 
     def run_it(self):
         bad = self.run_get_bad()
+        print("Thinking...")
         for i in range(len(self.data)):
-            print(f"{i} {self.data[i]}")
             for j in range(i + 1, len(self.data)):
                 total = 0
                 for k in range(i, j):
                     total += self.data[k]
                     if total == bad:
-                        print(f"{i} {j} {k}")
                         checksum = []
                         for hack in range(i, j):
                             checksum.append(self.data[hack])
                             print(self.data[hack])
                         print(checksum.sort())
-                        print(f"{checksum[0]} {checksum[-1]} {checksum[0] + checksum[-1]}")
+                        print(f"low:{checksum[0]} high:{checksum[-1]} sum:{checksum[0] + checksum[-1]}")
                         sys.exit()
 
 

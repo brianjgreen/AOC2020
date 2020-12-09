@@ -3,10 +3,9 @@
 # 1 Dec 2020 Brian Green
 #
 # Problem:
-# The Elves in accounting just need you to fix your expense report (your puzzle input);
-# apparently, something isn't quite adding up.
-# Specifically, they need you to find the two entries that sum to 2020 and then multiply those two numbers together.
-#
+# The first step of attacking the weakness in the XMAS data is to find the first number in the list
+# (after the preamble) which is not the sum of two of the 25 numbers before it.
+# What is the first number that does not have this property?
 #
 import os
 import sys
@@ -46,13 +45,11 @@ class Aoc01:
     def run_it(self):
         for i in range(self.preamble, len(self.data)):
             valid = False
-            print(f"{i} {self.data[i]}")
             for j in range(i - self.preamble, i):
-                # print(j)
                 for k in range(j + 1, i):
-                    print(f"{self.data[i]}: {self.data[j]}+{self.data[k]}={self.data[j]+self.data[k]}")
+                    # print(f"{self.data[i]}: {self.data[j]}+{self.data[k]}={self.data[j]+self.data[k]}")
                     if self.data[j] != self.data[k] and self.data[j] + self.data[k] == self.data[i]:
-                        print("GOOD")
+                        # print("GOOD")
                         valid = True
             if valid is False:
                 print(f"{self.data[i]} is bad")
