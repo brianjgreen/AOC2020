@@ -11,7 +11,7 @@ import os
 import sys
 
 
-class Aoc01:
+class Aoc09:
     def __init__(self):
         self.test_data = [35,
                           20,
@@ -37,10 +37,10 @@ class Aoc01:
         with open(file_name) as data_file:
             data_set = [int(x) for x in data_file.readlines()]
 
-        self.data = self.test_data
-        self.preamble = 5
-        # self.data = data_set
-        # self.preamble = 25
+        # self.data = self.test_data
+        # self.preamble = 5
+        self.data = data_set
+        self.preamble = 25
 
     def run_it(self):
         for i in range(self.preamble, len(self.data)):
@@ -57,5 +57,5 @@ class Aoc01:
 
 
 if __name__ == "__main__":
-    solve_it = Aoc01()
+    solve_it = Aoc09()
     solve_it.run_it()

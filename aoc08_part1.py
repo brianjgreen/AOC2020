@@ -9,7 +9,7 @@
 import os
 
 
-class Aoc01:
+class Aoc08:
     def __init__(self):
         self.test_data = ["nop +0",
                           "acc +1",
@@ -50,5 +50,5 @@ class Aoc01:
 
 
 if __name__ == "__main__":
-    solve_it = Aoc01()
+    solve_it = Aoc08()
     solve_it.run_it()

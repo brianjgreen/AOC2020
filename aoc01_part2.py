@@ -31,7 +31,7 @@ class Aoc01:
                     y = int(y)
                     z = int(z)
 
-                    print(f"{x}+{y}+{z}={x + y + z}")
+                    # print(f"{x}+{y}+{z}={x + y + z}")
                     if (x + y + z) == 2020:
                         print(f"FOUND IT {x * y * z}")
                         sys.exit()
