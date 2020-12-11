@@ -33,11 +33,14 @@ class Aoc11:
 
         # self.data = [list(x) for x in self.test_data]
         self.data = data_set
+
+        # Whats tricky is that the seat map is not real time.
+        # You must create a new seat map while applying the rules to the old seat map.
         self.cur_set = [row[:] for row in self.data]
         self.new_set = [row[:] for row in self.data]
 
-    # If a seat is empty (L) and there are no occupied seats adjacent to it, the seat becomes occupied.
-    # If a seat is occupied (#) and four or more seats adjacent to it are also occupied, the seat becomes empty.
+    # If a seat is empty (L) and there are no occupied seats in view of it, the seat becomes occupied.
+    # If a seat is occupied (#) and four or more seats in view of it are also occupied, the seat becomes empty.
     # Otherwise, the seat's state does not change.
     def apply_seat_rules(self):
         num_changed_seats = 0
@@ -65,7 +68,7 @@ class Aoc11:
                     self.new_set[x][y] = self.occupied
                     num_changed_seats += 1
                     # print("e -> o")
-                elif self.cur_set[x][y] == self.occupied and occupied_count >= 5:  # *** PART 2 CHNGED THIS TO 5 (from 4) ***
+                elif self.cur_set[x][y] == self.occupied and occupied_count >= 5:  # *** PART 2 CHANGED THIS TO 5 (from 4) ***
                     self.new_set[x][y] = self.empty
                     num_changed_seats += 1
                     # print("o -> e")

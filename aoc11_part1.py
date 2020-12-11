@@ -33,6 +33,9 @@ class Aoc11:
 
         # self.data = [list(x) for x in self.test_data]
         self.data = data_set
+
+        # Whats tricky is that the seat map is not real time.
+        # You must create a new seat map while applying the rules to the old seat map.
         self.cur_set = [row[:] for row in self.data]
         self.new_set = [row[:] for row in self.data]
 
