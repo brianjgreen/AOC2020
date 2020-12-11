@@ -3,6 +3,8 @@
 # 11 Dec 2020 Brian Green
 #
 # Problem:
+# Given the new visibility method and the rule change for occupied seats becoming empty,
+# once equilibrium is reached, how many seats end up occupied?
 #
 import os
 

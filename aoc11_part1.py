@@ -3,6 +3,8 @@
 # 11 Dec 2020 Brian Green
 #
 # Problem:
+# Simulate your seating area by applying the seating rules repeatedly until no seats change state.
+# How many seats end up occupied?
 #
 import os
 

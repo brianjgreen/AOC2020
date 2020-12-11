@@ -22,6 +22,7 @@ class Aoc10:
         # self.data = self.test_data_2
         self.data = data_set
 
+    """
     def validate_adaptors(self, adaptors):
         valid_gaps = (1, 2, 3)
         adaptors.append(0)
@@ -33,8 +34,35 @@ class Aoc10:
             if gap not in valid_gaps:
                 return False
         return True
+    """
 
     def run_it(self):
+        self.data.append(0)
+        self.data.sort()
+        self.data.append(self.data[-1] + 3)
+        position = len(self.data) - 1
+        print(position)
+        tabulate = [0 for _ in range(len(self.data))]
+        tabulate[-1] = 1
+        print(tabulate)
+
+        while position >= 0:
+            for i in range(1, 4):
+                if position + i >= len(self.data):
+                    # print("BREAK")
+                    break
+
+                if self.data[position] + 1 == self.data[position + i] or \
+                        self.data[position] + 2 == self.data[position + i] or \
+                        self.data[position] + 3 == self.data[position + i]:
+                    tabulate[position] += tabulate[position + i]
+                # print(f"i:{i} pos:{position} {tabulate}")
+
+            position -= 1
+        print(tabulate)
+        print(tabulate[0])
+
+        """
         valid_configs = 0
         optional = []
         self.data.sort()
@@ -74,7 +102,8 @@ class Aoc10:
                 valid_configs += 1
 
         print(valid_configs)
-            
+        """
+
 
 if __name__ == "__main__":
     solve_it = Aoc10()
