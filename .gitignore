@@ -21,3 +21,12 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+.vscode/settings.json
+java/aoc-2020/.classpath
+java/aoc-2020/.project
+java/aoc-2020/.settings/org.eclipse.core.resources.prefs
+.gitignore
+java/aoc-2020/.settings/org.eclipse.m2e.core.prefs
+.gitignore
+java/aoc-2020/.settings/org.eclipse.jdt.apt.core.prefs
+java/aoc-2020/.settings/org.eclipse.jdt.core.prefs
