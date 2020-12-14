@@ -3,6 +3,7 @@
 # 14 Dec 2020 Brian Green
 #
 # Problem:
+# Execute the initialization program. What is the sum of all values left in memory after it completes?
 #
 import os
 import re
@@ -30,25 +31,21 @@ class Aoc14:
             if 'mask' in i:
                 mask = list(i.split(" = ")[1])
                 mask.reverse()
-                # print(mask)
             else:
                 m = re.match(pattern, i)
-                # print(m.groups())
                 addr, data = m.groups()
                 addr = int(addr)
                 data = int(data)
-                # print(f"{addr}: {data}")
                 value = 0
+
                 for j in range(len(mask)):
                     bit = mask[j]
-                    # print(bit)
                     if bit == 'X':
+                        # OR bit from data
                         value |= data & (1 << j)
-                        # print(f"X {data & (1 << j)}")
                     else:
+                        # OR bit from mask
                         value |= int(bit) << j
-                        # print(f"{int(bit) << j}")
-                    # print(f"val:{value}")
                 mem[addr] = value
 
         print(mem)
