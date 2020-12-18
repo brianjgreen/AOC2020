@@ -42,9 +42,9 @@ class Aoc17:
         print(max(space))
         min_z, min_y, min_x = min(space)
         max_z, max_y, max_x = max(space)
-        for z in range(-5, 6):
-            for y in range(-5, 6):
-                for x in range(-5, 6):
+        for z in range(-9, 10):
+            for y in range(-9, 10):
+                for x in range(-9, 10):
                     cube_on = False
                     total = 0
                     if (z, y, x) in space:
@@ -65,12 +65,31 @@ class Aoc17:
 
     def run_it(self):
         space = self.data
-        for _ in range(7):
+        for _ in range(6):
             space = self.activate_cubes(space)
             print(space)
             print(len(space))
         print(min(space))
         print(max(space))
+        min_z, min_y, min_x = min(space)
+        max_z, max_y, max_x = max(space)
+        num_min_z = num_max_z = num_min_y = num_max_y = num_min_x = num_max_x = 0
+        for cube in space:
+            if min_z == cube[0]:
+                num_min_z += 1
+            if max_z == cube[0]:
+                num_max_z += 1
+            if min_y == cube[1]:
+                num_min_y += 1
+            if max_y == cube[1]:
+                num_max_y += 1
+            if min_x == cube[2]:
+                num_min_x += 1
+            if max_x == cube[2]:
+                num_max_x += 1
+
+        print(
+            f"{num_min_z} {num_max_z} {num_min_y} {num_max_y} {num_min_x} {num_max_x}")
 
 
 if __name__ == "__main__":
