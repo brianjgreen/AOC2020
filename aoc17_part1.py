@@ -25,8 +25,8 @@ class Aoc17:
 
         self.data = []
         x = y = z = 0
-        space = test_data
-        # space = data_set
+        # space = test_data
+        space = data_set
 
         for row in space:
             x = 0
@@ -42,9 +42,9 @@ class Aoc17:
         print(max(space))
         min_z, min_y, min_x = min(space)
         max_z, max_y, max_x = max(space)
-        for z in range(-9, 10):
-            for y in range(-9, 10):
-                for x in range(-9, 10):
+        for z in range(-20, 20):
+            for y in range(-20, 20):
+                for x in range(-20, 20):
                     cube_on = False
                     total = 0
                     if (z, y, x) in space:
