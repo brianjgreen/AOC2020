@@ -3,7 +3,7 @@
 # 16 Dec 2020 Brian Green
 #
 # Problem:
-#
+# Consider the validity of the nearby tickets you scanned. What is your ticket scanning error rate?
 #
 import os
 import re
