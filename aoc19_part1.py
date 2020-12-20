@@ -31,10 +31,10 @@ class Aoc19:
         with open(file_name) as data_file:
             data_set_messages = [x.strip() for x in data_file.readlines()]
 
-        self.data_rules = test_rules
-        self.data_messages = test_message
-        # self.data_rules = data_set_rules
-        # self.data_messages = data_set_messages
+        # self.data_rules = test_rules
+        # self.data_messages = test_message
+        self.data_rules = data_set_rules
+        self.data_messages = data_set_messages
 
         self.rules = {}
         for rule in self.data_rules:
@@ -45,13 +45,15 @@ class Aoc19:
         for k, v in self.rules.items():
             for k1, v1 in letters.items():
                 b_list = v.split(' ')
-                v = self.rules[k] = ' '.join(
-                    [item.replace(str(k1), v1) for item in b_list])
-                print(b_list)
-                print(self.rules[k])
-        print(len(self.rules))
-        print(self.rules)
-        print(letters)
+                for b in range(len(b_list)):
+                    if str(k1) == b_list[b]:
+                        b_list[b] = v1
+                v = self.rules[k] = ' '.join(b_list)
+                # print(b_list)
+                # print(self.rules[k])
+        # print(len(self.rules))
+        # print(self.rules)
+        # print(letters)
 
         letters = {}
         for k, v in self.rules.items():
