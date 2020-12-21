@@ -124,80 +124,72 @@ Tile 3079:
         with open(file_name) as data_file:
             data_set = [x.strip() for x in data_file.readlines()]
 
+        self.edge = ("top", "bottom", "left", "right")
         self.data = test_data.split('\n')
         # self.data = data_set
 
     def run_it(self):
         tiles = {}
         num = 0
-        y = 0
+        new_tile = True
+        whole_tile = []
         for i in self.data:
             if "Tile" in i:
                 num = int(i[5:9])
-                print(num)
-                tiles[num] = [[0] * 10 for _ in range(10)]
-                y = 0
+                whole_tile = []
             elif i == "":
-                pass
+                tiles[num] = (whole_tile[0], whole_tile[9], "".join(
+                    [x[0] for x in whole_tile]), "".join([x[9] for x in whole_tile]))
             else:
-                x = 0
-                for b in i:
-                    if b == '#':
-                        tiles[num][x][y] = 1
-                    x += 1
-                y += 1
+                whole_tile.append(i)
+        print(tiles)
 
         sides = {}
-        rev_sides = {}
+        s_tiles = tiles.copy()
         for k, v in tiles.items():
-            a = b = c = d = 0
-            e = f = g = h = 0
-            for x in range(10):
-                if v[0][x] == 1:
-                    a |= 1 << x
-                if v[0][9-x] == 1:
-                    e |= 1 << x
-                if v[x][9] == 1:
-                    b |= 1 << x
-                if v[9-x][9]:
-                    f |= 1 << x
-                if v[9][9 - x] == 1:
-                    c |= 1 << x
-                if v[9][x] == 1:
-                    g |= 1 << x
-                if v[9 - x][0] == 1:
-                    d |= 1 << x
-                if v[x][0] == 1:
-                    h |= 1 << x
+            sides[k] = []
+            for k1, v1 in s_tiles.items():
+                if k != k1:
+                    # print(f"k{k}")
+                    for i, v2 in enumerate(v):
+                        for j, v3 in enumerate(v1):
+                            if v2 == v3:
+                                sides[k].append(
+                                    [(k, self.edge[i]), (k1, self.edge[j])])
+                            if v2[::-1] == v3:
+                                sides[k].append(
+                                    [(k, "flip-"+self.edge[i]), (k1, self.edge[j])])
 
-            sides[k] = (a, b, c, d)
-            rev_sides[k] = (e, f, g, h)
-        print(sides)
-
-        conn = {}
+        corners = []
         for k, v in sides.items():
-            for s in v:
-                if s in conn:
-                    conn[s].append(k)
-                else:
-                    conn[s] = [k, ]
-        print(conn)
-        # print(tiles)
+            num_sides = len(v)
+            place = "ERROR"
+            if num_sides == 4:
+                place = "Middle"
+            elif num_sides == 3:
+                place = "Mid-edge"
+            elif num_sides == 2:
+                place = "Corner"
+                corners.append(k)
+            print(f"{k}: {place} {v}")
 
-        t_con = {}
-        for t in tiles:
-            count = 0
-            for k, v in conn.items():
-                if t in v and len(conn[k]) > 1:
-                    count += 1
-            t_con[t] = count
-        print(t_con)
+        total = 1
+        for i in corners:
+            print
+            total *= i
+        print(f"total {total}")
 
-        for sk, sv in sides.items():
-            for rk, rv in rev_sides.items():
-                for n in rv:
-                    if n in sv:
-                        print(f"{n} {sk} {rk}")
+        return
+        for k, v in tiles.items():
+            for k1, v1 in s_tiles.items():
+                if v[0][::-1] in v1:
+                    print(f"{k} {self.edge[0]} {k1}")
+                if v[1][::-1] in v1:
+                    print(f"{k} {self.edge[1]} {k1}")
+                if v[2][::-1] in v1:
+                    print(f"{k} {self.edge[2]} {k1}")
+                if v[3][::-1] in v1:
+                    print(f"{k} {self.edge[3]} {k1}")
 
 
 if __name__ == "__main__":
