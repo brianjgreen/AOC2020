@@ -1,9 +1,12 @@
 #
-# Advent of Code 2020 - Day 21 Part 1
+# Advent of Code 2020 - Day 21 Parts 1 and 2
 # 21 Dec 2020 Brian Green
 #
 # Problem:
+# 1.) Determine which ingredients cannot possibly contain any of the allergens in your list.
+# How many times do any of those ingredients appear?
 #
+# 2.) Time to stock your raft with supplies. What is your canonical dangerous ingredient list?
 #
 import os
 
@@ -20,8 +23,8 @@ sqjhc mxmxvkd sbzzf (contains fish)
         with open(file_name) as data_file:
             data_set = [x.strip() for x in data_file.readlines()]
 
-        self.data = test_data.split('\n')
-        # self.data = data_set
+        # self.data = test_data.split('\n')
+        self.data = data_set
 
     def run_it(self):
         print(self.data)
@@ -86,6 +89,14 @@ sqjhc mxmxvkd sbzzf (contains fish)
             all_foreign[:] = [x for x in all_foreign if x != v]
         print(all_foreign)
         print(len(all_foreign))
+
+        # Part 2 adds this code
+        print(lang)
+        print(lang.keys())
+        print(sorted(lang.keys()))
+        for i in sorted(lang.keys()):
+            print(lang[i], end="")
+            print(",", end="")  # omit the final comma before submitting answer
 
 
 if __name__ == "__main__":
