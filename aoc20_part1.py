@@ -125,8 +125,8 @@ Tile 3079:
             data_set = [x.strip() for x in data_file.readlines()]
 
         self.edge = ("top", "bottom", "left", "right")
-        self.data = test_data.split('\n')
-        # self.data = data_set
+        # self.data = test_data.split('\n')
+        self.data = data_set
 
     def run_it(self):
         tiles = {}
@@ -173,23 +173,12 @@ Tile 3079:
                 corners.append(k)
             print(f"{k}: {place} {v}")
 
+        print(corners)
         total = 1
         for i in corners:
             print
             total *= i
         print(f"total {total}")
-
-        return
-        for k, v in tiles.items():
-            for k1, v1 in s_tiles.items():
-                if v[0][::-1] in v1:
-                    print(f"{k} {self.edge[0]} {k1}")
-                if v[1][::-1] in v1:
-                    print(f"{k} {self.edge[1]} {k1}")
-                if v[2][::-1] in v1:
-                    print(f"{k} {self.edge[2]} {k1}")
-                if v[3][::-1] in v1:
-                    print(f"{k} {self.edge[3]} {k1}")
 
 
 if __name__ == "__main__":
