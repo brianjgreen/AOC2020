@@ -142,7 +142,7 @@ Tile 3079:
                     [x[0] for x in whole_tile]), "".join([x[9] for x in whole_tile]))
             else:
                 whole_tile.append(i)
-        print(tiles)
+        # print(tiles)
 
         sides = {}
         s_tiles = tiles.copy()
