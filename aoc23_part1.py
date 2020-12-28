@@ -5,7 +5,6 @@
 # Problem:
 # Using your labeling, simulate 100 moves. What are the labels on the cups after cup 1?
 #
-import os
 
 
 class Aoc23:
