@@ -3,6 +3,8 @@
 # 24 Dec 2020 Brian Green
 #
 # Problem:
+# Go through the renovation crew's list and determine which tiles they need to flip.
+# After all of the instructions have been followed, how many tiles are left with the black side up?
 #
 import os
 
