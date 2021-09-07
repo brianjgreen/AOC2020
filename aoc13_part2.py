@@ -3,14 +3,14 @@
 # 13 Dec 2020 Brian Green
 #
 # Problem:
-# 
+#
 import os
 
 
 class Aoc13:
     def __init__(self):
         test_data_time = int("939")
-        test_data_sched = "7,13,x,x,59,x,31,19".split(',')  # 1068781
+        # test_data_sched = "7,13,x,x,59,x,31,19".split(',')  # 1068781
         # test_data_sched = "17,x,13,19".split(',')  # 3417
         # test_data_sched = "67,7,59,61".strip().split(',')  # 754018
         # test_data_sched = "67,x,7,59,61".strip().split(',')  # 779210
@@ -22,10 +22,10 @@ class Aoc13:
             data_set_time = int(data_file.readline())
             data_set_sched = data_file.readline().strip().split(',')
 
-        self.data_time = test_data_time
-        self.data_sched = test_data_sched
-        # self.data_time = data_set_time
-        # self.data_sched = data_set_sched
+        # self.data_time = test_data_time
+        # self.data_sched = test_data_sched
+        self.data_time = data_set_time
+        self.data_sched = data_set_sched
 
     def run_it(self):
         found_it = False
@@ -42,10 +42,37 @@ class Aoc13:
                 offets[bus] = wait
             wait += 1
         print(buses)
+        result = 1
+        for i in buses:
+            result *= i
+        print(f"{result:,}")
+        print(f"{100000000000000:,}")
+        return
         print(offets)
-        
+
         t = 0
+        new_t = 0  # round(100000000000000 / max(buses)) * max(buses)
+        big_t = max(buses)
+        print(f"big {new_t}")
+        big_t_offset = offets[big_t]
+        # print(big_t_offset)
+        # print(big_t)
         while found_it is False:
+            # if new_t % (big_t * 1000000) == 0:
+            #     print(f"{new_t:,}")
+            new_t += big_t
+            t = new_t - big_t_offset
+            # print(t)
+            found_it = True
+            for i in buses:
+                my_bus = (t + offets[i]) % i
+                # my_bus = t % i
+                # print(f"{i} {t % i}")
+                if my_bus != 0:
+                    # print(f"{my_bus} NOT IT?")
+                    found_it = False
+                    break
+            """
             t += buses[0]
             for i in buses[1:]:
 
@@ -54,10 +81,14 @@ class Aoc13:
                 if (t + offets[i]) % i != 0:
                     found_it = False
                     break
-        print(t)
+            """
+        print(f"{t:,}")
+        result = 1
         for i in buses:
-            print(f"{i} {(t + offets[i])/i}")
-            
+            print(f"{i} {round(t/i)} R{t % i}")
+            result *= i
+        print(f"result {result:,}")
+
 
 if __name__ == "__main__":
     solve_it = Aoc13()
