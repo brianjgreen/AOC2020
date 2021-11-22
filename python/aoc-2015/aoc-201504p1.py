@@ -3,6 +3,7 @@
 # 17 Nov 2021 Brian Green
 #
 # Problem:
+# find Santa the lowest positive number (no leading zeroes: 1, 2, 3, ...) that produces such a hash.
 #
 
 import hashlib

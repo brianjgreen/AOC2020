@@ -3,6 +3,7 @@
 # 16 Nov 2021 Brian Green
 #
 # Problem:
+# How many total feet of ribbon should they order?
 #
 
 import os

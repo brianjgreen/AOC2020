@@ -3,7 +3,8 @@
 # 21 Nov 2021 Brian Green
 #
 # Problem:
-#
+# encode each code representation as a new string and find the number of characters of the new encoded representation,
+# including the surrounding double quotes.
 
 import os
 

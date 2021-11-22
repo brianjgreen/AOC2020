@@ -3,6 +3,7 @@
 # 17 Nov 2021 Brian Green
 #
 # Problem:
+# How many strings are nice under these new rules?
 #
 
 import os

@@ -3,6 +3,8 @@
 # 21 Nov 2021 Brian Green
 #
 # Problem:
+# 1. what signal is ultimately provided to wire a?
+# 2. What new signal is ultimately provided to wire a?
 #
 
 import os

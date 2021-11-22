@@ -3,6 +3,7 @@
 # 17 Nov 2021 Brian Green
 #
 # Problem:
+# set up your lights by doing the instructions Santa sent you in order.
 #
 
 import os

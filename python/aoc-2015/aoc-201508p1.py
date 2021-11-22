@@ -3,6 +3,8 @@
 # 21 Nov 2021 Brian Green
 #
 # Problem:
+# what is the number of characters of code for string literals minus the number of characters in memory
+# for the values of the strings in total for the entire file?
 #
 
 import os

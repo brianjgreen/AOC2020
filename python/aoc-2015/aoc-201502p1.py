@@ -3,6 +3,7 @@
 # 16 Nov 2021 Brian Green
 #
 # Problem:
+# How many total square feet of wrapping paper should they order?
 #
 
 import os

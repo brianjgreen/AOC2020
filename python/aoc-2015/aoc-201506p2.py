@@ -3,6 +3,7 @@
 # 18 Nov 2021 Brian Green
 #
 # Problem:
+# What is the total brightness of all lights combined after following Santa's instructions?
 #
 
 import os

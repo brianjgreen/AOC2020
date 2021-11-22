@@ -3,6 +3,7 @@
 # 17 Nov 2021 Brian Green
 #
 # Problem:
+# how many houses receive at least one present?
 #
 
 import os

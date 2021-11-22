@@ -3,6 +3,7 @@
 # 17 Nov 2021 Brian Green
 #
 # Problem:
+# Find one that starts with six zeroes.
 #
 
 import hashlib

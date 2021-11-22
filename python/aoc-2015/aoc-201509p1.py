@@ -3,6 +3,7 @@
 # 22 Nov 2021 Brian Green
 #
 # Problem:
+# What is the distance of the shortest route?
 #
 
 import random
