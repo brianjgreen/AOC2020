@@ -6,7 +6,7 @@
 # What is the distance of the shortest route?
 #
 
-import random
+import itertools
 import os
 
 filename = "data" + os.sep + "brian_aoc201509.dat"
@@ -51,12 +51,13 @@ def get_distance(path):
     return distance
 
 
-for i in range(1000000):
-    random.shuffle(path)
-    distance = get_distance(path.copy())
+all_paths = list(itertools.permutations(path))
+for try_path in all_paths:
+    try_path = list(try_path)
+    distance = get_distance(try_path.copy())
     if distance < shortest_distance:
         shortest_distance = distance
-        shortest_list = path.copy()
+        shortest_list = try_path.copy()
 
 print(shortest_distance)
 print(shortest_list)
