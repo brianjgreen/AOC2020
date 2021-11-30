@@ -6,7 +6,7 @@
 # What is the total change in happiness for the optimal seating arrangement that actually includes yourself?
 #
 
-import random
+import itertools
 import os
 
 filename = "data" + os.sep + "brian_aoc201513.dat"
@@ -44,7 +44,6 @@ people = list(happiness.keys())
 total_people = len(people)
 
 most_happy = 0
-happy_sitting = people.copy()
 
 
 def get_happy(people):
@@ -65,12 +64,11 @@ def get_happy(people):
     return sum(happy_people.values())
 
 
-for i in range(1000000):
-    random.shuffle(people)
-    total_happiness = get_happy(people.copy())
+all_combos = list(itertools.permutations(people))
+# print(len(all_combos))
+for combo in all_combos:
+    total_happiness = get_happy(list(combo))
     if total_happiness > most_happy:
         most_happy = total_happiness
-        happy_sitting = people.copy()
 
 print(most_happy)
-print(happy_sitting)
