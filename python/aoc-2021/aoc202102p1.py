@@ -11,13 +11,13 @@ import os
 
 filename = "data" + os.sep + "brian_aoc202102.dat"
 with open(filename) as data_file:
-    data_set = [dir.strip() for dir in data_file.readlines()]
+    data_set = [direction.strip() for direction in data_file.readlines()]
 
 depth = 0
 position = 0
 
-for dir in data_set:
-    direction, movement = dir.split()
+for d in data_set:
+    direction, movement = d.split()
     moves = int(movement)
 
     if direction == "up":
