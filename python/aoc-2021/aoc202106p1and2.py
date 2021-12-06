@@ -20,8 +20,8 @@ testcase = """3,4,3,1,2"""
 school = [int(fish) for fish in data_set]
 # print(school)
 
-total_days = 80  # PART 1
-# total_days = 256  # PART 2
+# total_days = 80  # PART 1
+total_days = 256  # PART 2
 
 
 def calc_school(my_school):
