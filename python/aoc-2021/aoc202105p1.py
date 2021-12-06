@@ -6,6 +6,7 @@
 # Consider only horizontal and vertical lines. At how many points do at least two lines overlap?
 #
 
+from collections import defaultdict
 import os
 
 filename = "data" + os.sep + "brian_aoc202105.dat"
@@ -25,9 +26,9 @@ testcase = """0,9 -> 5,9
 
 # data_set = testcase.split('\n')
 
-print(data_set)
+# print(data_set)
 
-sub_map = {}
+sub_map = defaultdict(int)
 
 for coord in data_set:
     x, y = coord.split(' -> ')
@@ -39,25 +40,13 @@ for coord in data_set:
     x2 = int(x2)
     y2 = int(y2)
     if x1 == x2:
-        start = min(y1, y2)
-        end = max(y1, y2)
-        for y in range(start, end + 1):
-            key = (x1, y)
-            if key in sub_map:
-                sub_map[key] += 1
-            else:
-                sub_map[key] = 1
+        for y in range(min(y1, y2), max(y1, y2) + 1):
+            sub_map[(x1, y)] += 1
     elif y1 == y2:
-        start = min(x1, x2)
-        end = max(x1, x2)
-        for x in range(start, end + 1):
-            key = (x, y1)
-            if key in sub_map:
-                sub_map[key] += 1
-            else:
-                sub_map[key] = 1
+        for x in range(min(x1, x2), max(x1, x2) + 1):
+            sub_map[(x, y1)] += 1
 
-print(sub_map)
+# print(sub_map)
 count = 0
 for val in sub_map.values():
     if val > 1:
