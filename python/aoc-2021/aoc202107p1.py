@@ -7,7 +7,6 @@
 #
 
 import os
-from typing import MutableMapping
 
 filename = "data" + os.sep + "brian_aoc202107.dat"
 with open(filename) as data_file:
