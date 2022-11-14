@@ -49,7 +49,12 @@ next_row = 0
 max_col = len(sea[0])
 max_row = len(sea)
 
-for step in range(4):
+steps = 0
+changes = 1
+
+while changes != 0:
+    changes = 0
+    steps += 1
     print()
     new_sea = [x[:] for x in sea]
 
@@ -71,6 +76,7 @@ for step in range(4):
             if space == '>' and sea[row][next_col] == '.':
                 new_sea[row][col] = '.'
                 new_sea[row][next_col] = '>'
+                changes += 1
             else:
                 new_sea[row][col] = space
 
@@ -95,9 +101,11 @@ for step in range(4):
             if space == 'v' and sea[next_row][col] == '.':
                 new_sea[row][col] = '.'
                 new_sea[next_row][col] = 'v'
+                changes += 1
             else:
                 new_sea[row][col] = space
 
     sea = new_sea
     for row in sea:
         print(''.join(row))
+    print(f'changes={changes}, steps={steps}')
