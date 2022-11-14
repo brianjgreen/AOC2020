@@ -10,7 +10,7 @@ import os
 
 filename = "data" + os.sep + "brian_aoc202125.dat"
 with open(filename) as data_file:
-    data_set = [pos.split() for pos in data_file.readlines()]
+    data_set = [pos.strip() for pos in data_file.readlines()]
 
 test_data_1 = """
 ...>...
@@ -37,12 +37,18 @@ v.v..>>v.v
 ....v..v.>
 """
 
-print(test_data_2)
-data = test_data_2.splitlines()[1:]
+# print(test_data_2)
+# data = test_data_2.splitlines()[1:]
+
+data = data_set
+print(data)
 
 sea = []
 for row in data:
     sea.append(list(row))
+
+for row in sea:
+    print(''.join(row))
 
 next_col = 0
 next_row = 0
