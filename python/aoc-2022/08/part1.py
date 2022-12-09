@@ -1,9 +1,9 @@
 
 # Advent of Code 2022 - Day 8 Part 1
-# 1 Dec 2022 Brian Green
+# 8 Dec 2022 Brian Green
 #
 # Problem:
-# Tuning Trouble
+# Treetop Tree House
 
 # filename = 'test.dat'
 filename = "data.dat"

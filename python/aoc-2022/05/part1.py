@@ -1,6 +1,6 @@
 
 # Advent of Code 2022 - Day 5 Part 1
-# 5 Dec 2022 Brian Green
+# 6 Dec 2022 Brian Green
 #
 # Problem:
 # Supply Stacks
