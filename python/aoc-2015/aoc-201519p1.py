@@ -18,6 +18,8 @@ print(data_set)
 
 formula = data_set[-1]
 subs = {}
+
+# Create a dictionary of the molecule substitutions
 for instruction in data_set:
     if '=>' in instruction:
         key, value = instruction.split(' => ')
@@ -29,6 +31,8 @@ for instruction in data_set:
 print(subs)
 print(formula)
 new_formulas = []
+
+# Substitute one molecule at a time
 for key, values in subs.items():
     for match in re.finditer(key, formula):
         start, end = match.span()
