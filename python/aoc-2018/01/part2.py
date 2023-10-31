@@ -1,4 +1,3 @@
-
 # Advent of Code 2018 - Day 1 Part 2
 # 19 Oct 2023 Brian Green
 #
@@ -18,7 +17,7 @@ all_freqs = []
 while True:
     for adjust in data_set:
         num = adjust[1:]
-        if adjust[0] == '-':
+        if adjust[0] == "-":
             freq -= int(num)
         else:
             freq += int(num)

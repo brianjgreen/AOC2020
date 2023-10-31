@@ -19,20 +19,20 @@ sleep_start = 0
 ledger = {}
 
 for entry in guard_log:
-    if 'Guard' in entry:
-        guard = entry.split('#')[1].replace(' begins shift', '')
+    if "Guard" in entry:
+        guard = entry.split("#")[1].replace(" begins shift", "")
         if guard not in ledger.keys():
             ledger[guard] = {}
-    elif 'falls asleep' in entry:
+    elif "falls asleep" in entry:
         sleep_start = int(entry[15:17])
-    elif 'wakes up' in entry:
+    elif "wakes up" in entry:
         for minute in range(sleep_start, int(entry[15:17])):
             if minute in ledger[guard]:
                 ledger[guard][minute] += 1
             else:
                 ledger[guard][minute] = 1
     else:
-        print('WHAT!?')
+        print("WHAT!?")
 
 sleepy_guard = 0
 sleepy_minute = 0
@@ -45,4 +45,6 @@ for guard in ledger:
             sleepy_guard = guard
             max_days = days
 
-print(f'Guard #{sleepy_guard} Minute:{sleepy_minute} {int(sleepy_guard) * sleepy_minute}')
+print(
+    f"Guard #{sleepy_guard} Minute:{sleepy_minute} {int(sleepy_guard) * sleepy_minute}"
+)

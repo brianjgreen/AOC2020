@@ -1,4 +1,3 @@
-
 # Advent of Code 2018 - Day 6 Part 2
 # 25 Oct 2023 Brian Green
 #
@@ -21,7 +20,7 @@ min_x = 1000
 max_y = 0
 min_y = 1000
 for location in data_set:
-    x, y = location.split(', ')
+    x, y = location.split(", ")
     x = int(x)
     y = int(y)
     # Find the boundaries of the field

@@ -1,4 +1,3 @@
-
 # Advent of Code 2018 - Day 5 Part 1
 # 20 Oct 2023 Brian Green
 #
@@ -16,7 +15,7 @@ data_set = data_set[0]
 while not smallest:
     smallest = True
     ptr = 0
-    new_str = ''
+    new_str = ""
     while ptr < len(data_set) - 1:
         curr = data_set[ptr]
         next = data_set[ptr + 1]

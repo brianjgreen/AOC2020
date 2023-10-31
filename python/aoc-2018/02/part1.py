@@ -1,4 +1,3 @@
-
 # Advent of Code 2018 - Day 2 Part 1
 # 19 Oct 2023 Brian Green
 #

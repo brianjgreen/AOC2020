@@ -1,4 +1,3 @@
-
 # Advent of Code 2018 - Day 5 Part 2
 # 23 Oct 2023 Brian Green
 #
@@ -18,12 +17,12 @@ short_poly = len(orig_poly)
 for element in string.ascii_lowercase:
     print(element)
     smallest = False
-    lower_set = orig_poly.replace(element, '')
-    data_set = lower_set.replace(element.upper(), '')
+    lower_set = orig_poly.replace(element, "")
+    data_set = lower_set.replace(element.upper(), "")
     while not smallest:
         smallest = True
         ptr = 0
-        new_str = ''
+        new_str = ""
         while ptr < len(data_set) - 1:
             curr = data_set[ptr]
             next = data_set[ptr + 1]

@@ -1,4 +1,3 @@
-
 # Advent of Code 2018 - Day 2 Part 2
 # 20 Oct 2023 Brian Green
 #
@@ -26,7 +25,7 @@ while len(data_set) > 1:
 print(comp_ratio)
 print(best_match)
 str1, str2 = best_match
-common_str = ''
+common_str = ""
 for x in range(len(str1)):
     if str1[x] == str2[x]:
         common_str += str1[x]

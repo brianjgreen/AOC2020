@@ -1,4 +1,3 @@
-
 # Advent of Code 2022 - Day 3 Part 2
 # 19 Oct 2023 Brian Green
 #
@@ -15,10 +14,10 @@ fabric = {}
 claim = {}
 for patch in data_set:
     cloth = patch.split()
-    x_start, y_start = cloth[2][:-1].split(',')
+    x_start, y_start = cloth[2][:-1].split(",")
     x_start = int(x_start)
     y_start = int(y_start)
-    x_len, y_len = cloth[3].split('x')
+    x_len, y_len = cloth[3].split("x")
     x_len = int(x_len)
     y_len = int(y_len)
     claim[cloth[0]] = []

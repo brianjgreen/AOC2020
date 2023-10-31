@@ -1,4 +1,3 @@
-
 # Advent of Code 2018 - Day 1 Part 1
 # 19 Oct 2023 Brian Green
 #
@@ -15,7 +14,7 @@ freq = 0
 for adjust in data_set:
     num = adjust[1:]
     # print(num)
-    if adjust[0] == '-':
+    if adjust[0] == "-":
         freq -= int(num)
     else:
         freq += int(num)
