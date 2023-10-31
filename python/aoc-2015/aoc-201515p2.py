@@ -3,7 +3,8 @@
 # 1 Dec 2021 Brian Green
 #
 # Problem:
-# Given the ingredients in your kitchen and their properties, what is the total score of the highest-scoring cookie you can make with a calorie total of 500?
+# Given the ingredients in your kitchen and their properties,
+# what is the total score of the highest-scoring cookie you can make with a calorie total of 500?
 #
 
 import json

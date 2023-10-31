@@ -16,7 +16,7 @@ with open(filename) as data_file:
 # print(data_set)
 
 grand_total = 0
-pattern = re.compile("(\d+)x(\d+)x(\d+)")
+pattern = re.compile(r"(\d+)x(\d+)x(\d+)")
 for package in data_set:
     match = re.findall(pattern, package)
     if match:

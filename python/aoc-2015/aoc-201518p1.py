@@ -7,8 +7,6 @@
 # How many lights are on after X steps?
 #
 
-import time
-
 import numpy as np
 
 # filename = "test18.dat"

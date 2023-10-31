@@ -7,8 +7,6 @@
 # What is the value in register b?
 #
 
-import re
-
 # filename = "test23.dat"
 filename = "data23.dat"
 with open(filename) as data_file:

@@ -36,7 +36,7 @@ with open(filename) as data_file:
 
 # print(data_set)
 
-pattern = re.compile("(\d{1,3}),(\d{1,3}) through (\d{1,3}),(\d{1,3})")
+pattern = re.compile(r"(\d{1,3}),(\d{1,3}) through (\d{1,3}),(\d{1,3})")
 for instruction in data_set:
     coordinates = re.findall(pattern, instruction)[0]
     start_x, start_y, end_x, end_y = coordinates

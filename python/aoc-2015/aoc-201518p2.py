@@ -8,8 +8,6 @@
 # The lights in the four corners are stuck on.
 #
 
-import time
-
 import numpy as np
 
 # filename = "test18.dat"
