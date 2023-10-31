@@ -12,14 +12,14 @@ filename = "data" + os.sep + "brian_aoc201602.dat"
 with open(filename) as data_file:
     data_set = data_file.readlines()
 
-testcase1 = ['ULL', 'RRDDD', 'LURDL', 'UUUUD']
+testcase1 = ["ULL", "RRDDD", "LURDL", "UUUUD"]
 
 keypad = [
     [0, 0, 1, 0, 0],
     [0, 2, 3, 4, 0],
     [5, 6, 7, 8, 9],
     [0, 0xA, 0xB, 0xC, 0],
-    [0, 0, 0xD, 0, 0]
+    [0, 0, 0xD, 0, 0],
 ]
 max_x = 4
 max_y = 4
@@ -33,16 +33,16 @@ def get_code(instructions):
         for move in step.strip():
             undo_x = 0
             undo_y = 0
-            if move == 'U':
+            if move == "U":
                 y -= 1
                 undo_y = 1
-            elif move == 'D':
+            elif move == "D":
                 y += 1
                 undo_y = -1
-            elif move == 'R':
+            elif move == "R":
                 x += 1
                 undo_x = -1
-            elif move == 'L':
+            elif move == "L":
                 x -= 1
                 undo_x = 1
             else:

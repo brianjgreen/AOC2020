@@ -12,7 +12,7 @@ filename = "data" + os.sep + "brian_aoc201602.dat"
 with open(filename) as data_file:
     data_set = data_file.readlines()
 
-testcase1 = ['ULL', 'RRDDD', 'LURDL', 'UUUUD']
+testcase1 = ["ULL", "RRDDD", "LURDL", "UUUUD"]
 
 keypad = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
 
@@ -26,13 +26,13 @@ def get_code(instructions):
     code = []
     for step in instructions:
         for move in step.strip():
-            if move == 'U':
+            if move == "U":
                 y -= 1
-            elif move == 'D':
+            elif move == "D":
                 y += 1
-            elif move == 'R':
+            elif move == "R":
                 x += 1
-            elif move == 'L':
+            elif move == "L":
                 x -= 1
             else:
                 print(f"{move} WHAT?!?")

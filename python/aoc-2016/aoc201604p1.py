@@ -14,9 +14,9 @@ with open(filename) as data_file:
 
 print(data_set)
 
-test1 = 'aaaaa-bbb-z-y-x-123[abxyz]'
+test1 = "aaaaa-bbb-z-y-x-123[abxyz]"
 
-conn = test1.split('-')
+conn = test1.split("-")
 checksum = conn[-1]
 print(checksum)
 room = "".join(sorted(conn[:-1]))
