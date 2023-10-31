@@ -4,8 +4,8 @@
 # Problem:
 # Rope Bridge
 
-from collections import Counter
 import math
+from collections import Counter
 
 # filename = "test.dat"
 filename = "data.dat"

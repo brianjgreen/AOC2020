@@ -7,8 +7,8 @@
 # What is the sum of the risk levels of all low points on your heightmap?
 #
 
-from collections import defaultdict
 import os
+from collections import defaultdict
 
 filename = "data" + os.sep + "brian_aoc202112.dat"
 with open(filename) as data_file:

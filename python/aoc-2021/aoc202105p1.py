@@ -6,8 +6,8 @@
 # Consider only horizontal and vertical lines. At how many points do at least two lines overlap?
 #
 
-from collections import defaultdict
 import os
+from collections import defaultdict
 
 filename = "data" + os.sep + "brian_aoc202105.dat"
 with open(filename) as data_file:

@@ -8,8 +8,9 @@
 # The lights in the four corners are stuck on.
 #
 
-import numpy as np
 import time
+
+import numpy as np
 
 # filename = "test18.dat"
 # num_steps = 5

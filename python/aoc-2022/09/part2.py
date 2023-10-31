@@ -4,8 +4,8 @@
 # Problem:
 # Rope Bridge, 10 knots
 
-from collections import Counter
 import math
+from collections import Counter
 
 # filename = "test.dat"
 # filename = "test2.dat"
