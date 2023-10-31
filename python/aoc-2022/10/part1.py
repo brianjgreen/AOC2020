@@ -19,7 +19,7 @@ program_counter = 1
 for instruction in data_set:
     execute[program_counter] = register_V
     program_counter += 1
-    if instruction[0] == 'addx':
+    if instruction[0] == "addx":
         register_V += int(instruction[1])
         execute[program_counter] = register_V
         program_counter += 1
@@ -32,7 +32,7 @@ cycles = [19, 59, 99, 139, 179, 219]
 for state in cycles:
     reg = execute[state]
     # print(f"cycle={state} V={reg}")
-    signal += (reg * (state + 1))
+    signal += reg * (state + 1)
     # print(signal)
 
 print(signal)

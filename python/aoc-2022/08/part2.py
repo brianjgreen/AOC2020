@@ -1,4 +1,3 @@
-
 # Advent of Code 2022 - Day 8 Part 2
 # 8 Dec 2022 Brian Green
 #
@@ -15,7 +14,9 @@ with open(filename) as data_file:
 east_west = []
 for row in data_set:
     east_west.append(list(map(int, row)))
-north_south = [[east_west[j][i] for j in range(len(east_west))] for i in range(len(east_west[0]))]
+north_south = [
+    [east_west[j][i] for j in range(len(east_west))] for i in range(len(east_west[0]))
+]
 
 max_east = len(north_south)
 max_south = len(east_west)
@@ -30,9 +31,9 @@ for x in range(1, max_east - 1):
         west.reverse()
         north = north_south[x][:y].copy()
         north.reverse()
-        directions = [west, east_west[y][x+1:], north, north_south[x][y+1:]]
+        directions = [west, east_west[y][x + 1 :], north, north_south[x][y + 1 :]]
         # print(directions)
-        
+
         for dir in directions:
             num_of_trees = 0
             found_limit = False
@@ -40,7 +41,7 @@ for x in range(1, max_east - 1):
                 # print(dir)
                 for t in dir:
                     # print(f"t={t} tree={tree} x={x} y={y} num={num_of_trees} s={score} {found_limit}")
-                    if found_limit == False:
+                    if found_limit is False:
                         num_of_trees += 1
                     if t >= tree:
                         # print('SKIP')

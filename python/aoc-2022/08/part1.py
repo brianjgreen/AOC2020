@@ -1,4 +1,3 @@
-
 # Advent of Code 2022 - Day 8 Part 1
 # 8 Dec 2022 Brian Green
 #
@@ -15,7 +14,9 @@ print(data_set)
 east_west = []
 for row in data_set:
     east_west.append(list(map(int, row)))
-north_south = [[east_west[j][i] for j in range(len(east_west))] for i in range(len(east_west[0]))]
+north_south = [
+    [east_west[j][i] for j in range(len(east_west))] for i in range(len(east_west[0]))
+]
 
 for row in east_west:
     print(row)
@@ -24,7 +25,7 @@ for col in north_south:
     print(col)
 
 visible = len(east_west) * 2
-visible += ((len(north_south) - 2) * 2)
+visible += (len(north_south) - 2) * 2
 
 print(visible)
 
@@ -37,7 +38,12 @@ for x in range(1, max_east - 1):
     for y in range(1, max_south - 1):
         # print(f"{x} {y}")
         tree = east_west[y][x]
-        if max(east_west[y][:x]) < tree or max(east_west[y][x+1:]) < tree or max(north_south[x][:y]) < tree or max(north_south[x][y+1:]) < tree:
+        if (
+            max(east_west[y][:x]) < tree
+            or max(east_west[y][x + 1 :]) < tree
+            or max(north_south[x][:y]) < tree
+            or max(north_south[x][y + 1 :]) < tree
+        ):
             visible += 1
             print(f"{x} {y}")
 

@@ -1,4 +1,3 @@
-
 # Advent of Code 2022 - Day 1 Part 2
 # 1 Dec 2022 Brian Green
 #
@@ -18,7 +17,7 @@ calories = []
 acc_cal = 0
 
 for food in data_set:
-    if food == '':
+    if food == "":
         calories.append(acc_cal)
         elf += 1
         acc_cal = 0

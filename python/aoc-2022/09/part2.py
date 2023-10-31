@@ -19,21 +19,24 @@ knots = []
 for k in range(10):
     knots.append([0, 0])
 
-tracker = [(0, 0), ]
+tracker = [
+    (0, 0),
+]
+
 
 def move_it(direction):
     delta_x = 0
     delta_y = 0
-    if direction == 'U':
+    if direction == "U":
         delta_y = 1
-    elif direction == 'D':
+    elif direction == "D":
         delta_y = -1
-    elif direction == 'R':
+    elif direction == "R":
         delta_x = 1
-    elif direction == 'L':
+    elif direction == "L":
         delta_x = -1
     else:
-        print('UNKNOWN DIRECTION!')
+        print("UNKNOWN DIRECTION!")
 
     return (delta_x, delta_y)
 
@@ -46,7 +49,11 @@ for direction, steps in data_set:
         knots[0][1] += delta_y
 
         for k in range(len(knots) - 1):
-            distance = int(math.dist([knots[k + 1][0], knots[k + 1][1]], [knots[k][0], knots[k][1]]))
+            distance = int(
+                math.dist(
+                    [knots[k + 1][0], knots[k + 1][1]], [knots[k][0], knots[k][1]]
+                )
+            )
             if distance < 2:
                 pass
             else:
@@ -63,7 +70,7 @@ for direction, steps in data_set:
                     knots[k + 1][0] += 1
                 else:
                     knots[k + 1][0] -= 1
-           
+
         tracker.append((knots[9][0], knots[9][1]))
 
 print(len(Counter(tracker)))

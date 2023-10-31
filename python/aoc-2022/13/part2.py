@@ -32,18 +32,22 @@ def in_order(right, left):
     left_element = left.pop(0)
 
     # print(f"{left_element} {right_element}")
-    if type(right_element) == int and type(left_element) == int:
+    if isinstance(right_element, int) and isinstance(left_element, int):
         if right_element < left_element:
             return 1
         elif left_element < right_element:
             return -1
         else:
             return in_order(right, left)
-    
-    if type(right_element) == int:
-        right_element = [right_element, ]
-    elif type(left_element) == int:
-        left_element = [left_element, ]
+
+    if isinstance(right_element, int):
+        right_element = [
+            right_element,
+        ]
+    elif isinstance(left_element, int):
+        left_element = [
+            left_element,
+        ]
 
     result = in_order(right_element, left_element)
     if result == -1:
@@ -52,7 +56,7 @@ def in_order(right, left):
         return 1
     else:
         return in_order(right, left)
-    
+
 
 packets = []
 while len(data_set) > 0:
@@ -64,12 +68,17 @@ while len(data_set) > 0:
 sorted_packets = [[[2]], [[6]]]
 for message in packets:
     for index in range(len(sorted_packets)):
-        if in_order(left=copy.deepcopy(message), right=copy.deepcopy(sorted_packets[index])) == -1:
+        if (
+            in_order(
+                left=copy.deepcopy(message), right=copy.deepcopy(sorted_packets[index])
+            )
+            == -1
+        ):
             sorted_packets.insert(index, message)
             break
     if message not in sorted_packets:
         sorted_packets.append(message)
-    
+
 print(sorted_packets)
 for pack in sorted_packets:
     print(pack)

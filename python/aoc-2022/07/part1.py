@@ -14,23 +14,23 @@ with open(filename) as data_file:
 print(data_set)
 
 filesys = {}
-cwd = '/'
+cwd = "/"
 
 # build the filesystem
 for cmd in data_set:
-    if '$ cd ..' == cmd:
+    if "$ cd .." == cmd:
         # change current directory up one level
-        cwd = '/'.join(cwd.split('/')[:-2]) + '/'
-    elif '$ cd /' == cmd:
+        cwd = "/".join(cwd.split("/")[:-2]) + "/"
+    elif "$ cd /" == cmd:
         # ignore, change to root directory, only first command
         pass
-    elif '$ cd ' in cmd:
+    elif "$ cd " in cmd:
         # change current directory down one
-        cwd += cmd.split()[2] + '/'
-    elif '$ ls' == cmd:
+        cwd += cmd.split()[2] + "/"
+    elif "$ ls" == cmd:
         # ignore, show contents of directory
         pass
-    elif 'dir ' in cmd:
+    elif "dir " in cmd:
         # ignore, make a new directory, will be embedded in filename anyway
         pass
     else:
@@ -44,9 +44,9 @@ directories = {}
 
 # add up the file size in each subdirectory
 for filename, size in filesys.items():
-    node = '/'.join(filename.split('/')[:-1])
+    node = "/".join(filename.split("/")[:-1])
     print(node)
-    if node != '':
+    if node != "":
         if node in directories:
             directories[node] += int(size)
         else:
@@ -76,7 +76,7 @@ print(all_dirs)
 new_dirs = {}
 for name, size in all_dirs.items():
     if name.count("/") != 1:
-        this_name = '/'.join(name.split('/')[:-1])
+        this_name = "/".join(name.split("/")[:-1])
         print(this_name)
         if this_name in all_dirs:
             all_dirs[this_name] += size
@@ -93,7 +93,7 @@ all_dirs.update(new_dirs)
 # update the subdir sizes to account for the newly discovered subdirs
 for name, size in new_dirs.items():
     if name.count("/") != 1:
-        this_name = '/'.join(name.split('/')[:-1])
+        this_name = "/".join(name.split("/")[:-1])
         # print(this_name)
         if this_name in all_dirs:
             all_dirs[this_name] += size

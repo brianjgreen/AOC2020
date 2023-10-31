@@ -1,4 +1,3 @@
-
 # Advent of Code 2022 - Day 3 Part 2
 # 5 Dec 2022 Brian Green
 #
@@ -23,11 +22,11 @@ while len(data_set):
     first = data_set.pop()
     second = data_set.pop()
     third = data_set.pop()
-    print(f'{first} {second} {third}')
-    common = ''.join(set.intersection(*map(set,[first, second, third])))
+    print(f"{first} {second} {third}")
+    common = "".join(set.intersection(*map(set, [first, second, third])))
     print(common)
 
-    if ord(common) >= ord('a'):
+    if ord(common) >= ord("a"):
         total += ord(common) - 96
     else:
         total += ord(common) - 38

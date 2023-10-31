@@ -1,4 +1,3 @@
-
 # Advent of Code 2022 - Day 1 Part 1
 # 1 Dec 2022 Brian Green
 #
@@ -19,7 +18,7 @@ most_calories = 0
 calories = 0
 
 for food in data_set:
-    if food == '':
+    if food == "":
         if calories > most_calories:
             most_calories = calories
             top_elf = elf

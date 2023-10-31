@@ -19,19 +19,19 @@ program_counter = 1
 for instruction in data_set:
     execute[program_counter] = register_V
     program_counter += 1
-    if instruction[0] == 'addx':
+    if instruction[0] == "addx":
         register_V += int(instruction[1])
         execute[program_counter] = register_V
         program_counter += 1
 
 # print(execute)
 
-print('#', end='')
+print("#", end="")
 for cycle, val in execute.items():
     h_sync = cycle % 40
     if h_sync >= val - 1 and h_sync <= val + 1:
-        print("#", end='')
+        print("#", end="")
     else:
-        print('.', end='')
+        print(".", end="")
     if h_sync == 39:
         print()

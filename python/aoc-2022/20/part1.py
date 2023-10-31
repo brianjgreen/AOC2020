@@ -12,7 +12,7 @@ class Node:
         self.prev_node = None
         self.seq = seq
 
-        
+
 # filename = "test.dat"
 filename = "data.dat"
 with open(filename) as data_file:
@@ -27,7 +27,7 @@ for val in data_set:
     num_nodes += 1
     if head is None:
         head = temp
-    if tail != None:
+    if tail is not None:
         tail.next_node = temp
         temp.prev_node = tail
     tail = temp

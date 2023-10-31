@@ -1,4 +1,3 @@
-
 # Advent of Code 2022 - Day 2 Part 2
 # 4 Dec 2022 Brian Green
 #
@@ -18,11 +17,13 @@ with open(filename) as data_file:
 # Rock defeats Scissors, Scissors defeats Paper, and Paper defeats Rock.
 # X means you need to lose, Y means you need to end the round in a draw, and Z means you need to win.
 
-outcome = {'X': 0, 'Y': 3, 'Z': 6}
+outcome = {"X": 0, "Y": 3, "Z": 6}
 
-scores = {'A': {'X': 3, 'Y': 1, 'Z': 2},
-          'B': {'X': 1, 'Y': 2, 'Z': 3},
-          'C': {'X': 2, 'Y': 3, 'Z': 1}}
+scores = {
+    "A": {"X": 3, "Y": 1, "Z": 2},
+    "B": {"X": 1, "Y": 2, "Z": 3},
+    "C": {"X": 2, "Y": 3, "Z": 1},
+}
 
 total = 0
 

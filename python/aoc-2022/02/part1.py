@@ -1,4 +1,3 @@
-
 # Advent of Code 2022 - Day 2 Part 1
 # 4 Dec 2022 Brian Green
 #
@@ -17,11 +16,20 @@ with open(filename) as data_file:
 # C = Z = Scissors
 # Rock defeats Scissors, Scissors defeats Paper, and Paper defeats Rock.
 
-play_vals = {'X': 1, 'Y': 2, 'Z': 3}
+play_vals = {"X": 1, "Y": 2, "Z": 3}
 
-scores = {0: [['A', 'Z'], ['C', 'Y'], ['B', 'X']],
-          3: [['A', 'X',], ['B', 'Y'], ['C', 'Z']],
-          6: [['C', 'X'], ['B', 'Z'], ['A', 'Y']]}
+scores = {
+    0: [["A", "Z"], ["C", "Y"], ["B", "X"]],
+    3: [
+        [
+            "A",
+            "X",
+        ],
+        ["B", "Y"],
+        ["C", "Z"],
+    ],
+    6: [["C", "X"], ["B", "Z"], ["A", "Y"]],
+}
 
 total = 0
 

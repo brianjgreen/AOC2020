@@ -24,22 +24,22 @@ def get_val(monkey):
     val_1 = get_val(val_1)
     val_2 = get_val(val_2)
 
-    if math == '+':
-        return (val_1 + val_2)
-    elif math == '-':
-        return (val_1 - val_2)
-    elif math == '*':
-        return (val_1 * val_2)
-    elif math == '/':
-        return (val_1 / val_2)
+    if math == "+":
+        return val_1 + val_2
+    elif math == "-":
+        return val_1 - val_2
+    elif math == "*":
+        return val_1 * val_2
+    elif math == "/":
+        return val_1 / val_2
     else:
-        print(f'UNKNOWN OPERATOR {math}!!!')
+        print(f"UNKNOWN OPERATOR {math}!!!")
 
 
 for monkey in data_set:
-    name, oper = monkey.split(': ')
+    name, oper = monkey.split(": ")
     howl[name] = oper.split()
 
 print(howl)
 
-print(get_val('root'))
+print(get_val("root"))

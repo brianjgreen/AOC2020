@@ -31,18 +31,22 @@ def in_order(right, left):
     left_element = left.pop(0)
 
     print(f"{left_element} {right_element}")
-    if type(right_element) == int and type(left_element) == int:
+    if isinstance(right_element, int) and isinstance(left_element, int):
         if right_element < left_element:
             return "bad"
         elif left_element < right_element:
             return "good"
         else:
             return in_order(right, left)
-    
-    if type(right_element) == int:
-        right_element = [right_element, ]
-    elif type(left_element) == int:
-        left_element = [left_element, ]
+
+    if isinstance(right_element, int):
+        right_element = [
+            right_element,
+        ]
+    elif isinstance(left_element, int):
+        left_element = [
+            left_element,
+        ]
 
     result = in_order(right_element, left_element)
     if result == "good":
@@ -51,7 +55,7 @@ def in_order(right, left):
         return "bad"
     else:
         return in_order(right, left)
-    
+
 
 good_vals = []
 while len(data_set) > 0:

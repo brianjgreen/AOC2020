@@ -19,21 +19,24 @@ head_y = 0
 tail_x = 0
 tail_y = 0
 
-tracker = [(tail_x, tail_y), ]
+tracker = [
+    (tail_x, tail_y),
+]
+
 
 def move_it(direction):
     delta_x = 0
     delta_y = 0
-    if direction == 'U':
+    if direction == "U":
         delta_y = 1
-    elif direction == 'D':
+    elif direction == "D":
         delta_y = -1
-    elif direction == 'R':
+    elif direction == "R":
         delta_x = 1
-    elif direction == 'L':
+    elif direction == "L":
         delta_x = -1
     else:
-        print('UNKNOWN DIRECTION!')
+        print("UNKNOWN DIRECTION!")
 
     return (delta_x, delta_y)
 
@@ -62,7 +65,7 @@ for direction, steps in data_set:
                 tail_x += 1
             else:
                 tail_x -= 1
-           
+
         tracker.append((tail_x, tail_y))
         # print(f"tail={tail_x},{tail_y} head={head_x},{head_y}")
 

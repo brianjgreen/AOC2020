@@ -1,4 +1,3 @@
-
 # Advent of Code 2022 - Day 6 Part 2
 # 6 Dec 2022 Brian Green
 #
@@ -7,11 +6,11 @@
 
 from collections import Counter
 
-test1 = ['mjqjpqmgbljsphdztnvjfqwrcgsmlb'] # 7
-test2 = ['bvwbjplbgvbhsrlpgdmjqwftvncz'] # 5
-test3 = ['nppdvjthqldpwncqszvftbrmjlhg'] # 6
-test4 = ['nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg'] # 10
-test5 = ['zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw'] # 11
+test1 = ["mjqjpqmgbljsphdztnvjfqwrcgsmlb"]  # 7
+test2 = ["bvwbjplbgvbhsrlpgdmjqwftvncz"]  # 5
+test3 = ["nppdvjthqldpwncqszvftbrmjlhg"]  # 6
+test4 = ["nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg"]  # 10
+test5 = ["zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw"]  # 11
 
 filename = "data.dat"
 with open(filename) as data_file:
@@ -26,7 +25,7 @@ first_marker = 0
 # data = data_set[0]
 data = test1[0]
 while not found_it:
-    signal = data[pos:pos+14]
+    signal = data[pos : pos + 14]
     print(signal)
     freq = Counter(signal)
     if len(freq) == len(signal):
