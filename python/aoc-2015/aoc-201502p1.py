@@ -1,4 +1,3 @@
-
 # Advent of Code 2015 - Day 2 Part 1
 # 16 Nov 2021 Brian Green
 #
@@ -29,8 +28,7 @@ for package in data_set:
         surface.append(2 * width * height)
         surface.append(2 * height * length)
         total = sum(surface) + (min(surface) / 2)
-        print(
-            f"{package} {match[0]} {total}")
+        print(f"{package} {match[0]} {total}")
         grand_total += total
 
 print(grand_total)

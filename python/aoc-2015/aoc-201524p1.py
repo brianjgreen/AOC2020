@@ -1,4 +1,3 @@
-
 # Advent of Code 2015 - Day 23 Parts 1 and 2
 # 17 May 2023 Brian Green
 #
@@ -17,14 +16,17 @@ with open(filename) as data_file:
 
 print(data_set)
 # num_groups = 3    # part 1
-num_groups = 4      # part 2
+num_groups = 4  # part 2
 target = sum(data_set) // num_groups
 print(target)
 
 # Try all combinations of number groupings of that equal 1/3 (or 1/4) of the sum of all numbers
-result = [seq for i in range(len(data_set), 0, -1)
-          for seq in itertools.combinations(data_set, i)
-          if sum(seq) == target]
+result = [
+    seq
+    for i in range(len(data_set), 0, -1)
+    for seq in itertools.combinations(data_set, i)
+    if sum(seq) == target
+]
 
 print(result)
 
@@ -38,7 +40,7 @@ for group in result:
         # Group with the fewest members, so far
         fewest = number
         smallest = quantum
-        print(f'{group} {quantum}')
+        print(f"{group} {quantum}")
     if number == fewest and quantum < smallest:
         # Smallest quantum number amoung the groups with the fewest numbers
         smallest = quantum

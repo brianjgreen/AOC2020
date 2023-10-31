@@ -1,4 +1,3 @@
-
 # Advent of Code 2015 - Day 15 Part 1
 # 30 Nov 2021 Brian Green
 #
@@ -27,8 +26,13 @@ for ingredient in data_set:
     tex = int(pantry[8][:-1])
     cal = int(pantry[10])
 
-    stats[name] = {'capacity': cap, 'durability': dur,
-                   'flavor': fla, 'texture': tex, 'calories': cal}
+    stats[name] = {
+        "capacity": cap,
+        "durability": dur,
+        "flavor": fla,
+        "texture": tex,
+        "calories": cal,
+    }
 
 print(json.dumps(stats, indent=4))
 
@@ -40,31 +44,39 @@ for sugar in range(100):
                 if sugar + sprinkles + candy + chocolate != 100:
                     continue
 
-                cap = sugar * stats['Sugar']['capacity'] + \
-                    sprinkles * stats['Sprinkles']['capacity'] + \
-                    candy * stats['Candy']['capacity'] + \
-                    chocolate * stats['Chocolate']['capacity']
+                cap = (
+                    sugar * stats["Sugar"]["capacity"]
+                    + sprinkles * stats["Sprinkles"]["capacity"]
+                    + candy * stats["Candy"]["capacity"]
+                    + chocolate * stats["Chocolate"]["capacity"]
+                )
                 if cap < 0:
                     cap = 0
 
-                dur = sugar * stats['Sugar']['durability'] + \
-                    sprinkles * stats['Sprinkles']['durability'] + \
-                    candy * stats['Candy']['durability'] + \
-                    chocolate * stats['Chocolate']['durability']
+                dur = (
+                    sugar * stats["Sugar"]["durability"]
+                    + sprinkles * stats["Sprinkles"]["durability"]
+                    + candy * stats["Candy"]["durability"]
+                    + chocolate * stats["Chocolate"]["durability"]
+                )
                 if dur < 0:
                     dur = 0
 
-                fla = sugar * stats['Sugar']['flavor'] + \
-                    sprinkles * stats['Sprinkles']['flavor'] + \
-                    candy * stats['Candy']['flavor'] + \
-                    chocolate * stats['Chocolate']['flavor']
+                fla = (
+                    sugar * stats["Sugar"]["flavor"]
+                    + sprinkles * stats["Sprinkles"]["flavor"]
+                    + candy * stats["Candy"]["flavor"]
+                    + chocolate * stats["Chocolate"]["flavor"]
+                )
                 if fla < 0:
                     fla = 0
 
-                tex = sugar * stats['Sugar']['texture'] + \
-                    sprinkles * stats['Sprinkles']['texture'] + \
-                    candy * stats['Candy']['texture'] + \
-                    chocolate * stats['Chocolate']['texture']
+                tex = (
+                    sugar * stats["Sugar"]["texture"]
+                    + sprinkles * stats["Sprinkles"]["texture"]
+                    + candy * stats["Candy"]["texture"]
+                    + chocolate * stats["Chocolate"]["texture"]
+                )
                 if tex < 0:
                     text = 0
 

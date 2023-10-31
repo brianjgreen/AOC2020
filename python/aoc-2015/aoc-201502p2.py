@@ -1,4 +1,3 @@
-
 # Advent of Code 2015 - Day 2 Part 2
 # 16 Nov 2021 Brian Green
 #
@@ -29,8 +28,7 @@ for package in data_set:
         perimeter.append((2 * width) + (2 * height))
         perimeter.append((2 * height) + (2 * length))
         total = (length * width * height) + min(perimeter)
-        print(
-            f"{package} {match[0]} {total}")
+        print(f"{package} {match[0]} {total}")
         grand_total += total
 
 print(grand_total)

@@ -1,4 +1,3 @@
-
 # Advent of Code 2015 - Day 10 Part 1 and 2
 # 22 Nov 2021 Brian Green
 #
@@ -12,16 +11,15 @@
 from itertools import groupby, islice
 
 
-def lookandsay(number='1'):
+def lookandsay(number="1"):
     while True:
         yield number
-        number = ''.join(str(len(list(g))) + k
-                         for k, g in groupby(number))
+        number = "".join(str(len(list(g))) + k for k, g in groupby(number))
 
 
 # iterations = 40
 iterations = 50
-number = '\n'.join(islice(lookandsay('3113322113'), iterations + 1))
+number = "\n".join(islice(lookandsay("3113322113"), iterations + 1))
 one_number = number.split()
 print(one_number)
 print(len(one_number[-1]))

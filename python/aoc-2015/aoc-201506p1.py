@@ -1,4 +1,3 @@
-
 # Advent of Code 2015 - Day 6 Part 1
 # 17 Nov 2021 Brian Green
 #
@@ -41,9 +40,9 @@ for instruction in data_set:
     coordinates = re.findall(pattern, instruction)[0]
     start_x, start_y, end_x, end_y = coordinates
 
-    if 'turn on' in instruction:
+    if "turn on" in instruction:
         turn_on(start_x, start_y, end_x, end_y, True)
-    elif 'turn off' in instruction:
+    elif "turn off" in instruction:
         turn_on(start_x, start_y, end_x, end_y, False)
     else:
         toggle(start_x, start_y, end_x, end_y)

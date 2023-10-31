@@ -1,4 +1,3 @@
-
 # Advent of Code 2015 - Day 23 Parts 1 and 2
 # 17 May 2023 Brian Green
 #
@@ -21,7 +20,7 @@ The registers are named a and b, can hold any non-negative integer,
 """
 
 # a = 0   # Part 1
-a = 1   # Part 2
+a = 1  # Part 2
 b = 0
 program_counter = 0
 
@@ -34,49 +33,49 @@ while program_counter >= 0 and program_counter < len(data_set):
     action = instruction[0]
     reg = instruction[1]
 
-    if action == 'hlf':
+    if action == "hlf":
         # hlf r sets register r to half its current value
-        if reg == 'a':
+        if reg == "a":
             a = a // 2
         else:
             b = b // 2
         program_counter += 1
-    elif action == 'tpl':
+    elif action == "tpl":
         # tpl r sets register r to triple its current value
-        if reg == 'a':
+        if reg == "a":
             a *= 3
         else:
             b *= 3
         program_counter += 1
-    elif action == 'inc':
+    elif action == "inc":
         # inc r increments register r
-        if reg == 'a':
+        if reg == "a":
             a += 1
         else:
             b += 1
         program_counter += 1
-    elif action == 'jmp':
+    elif action == "jmp":
         # jmp offset is a jump; it continues with the instruction offset away relative to itself.
         program_counter += int(reg)
-    elif action == 'jie':
+    elif action == "jie":
         # jie r, offset is like jmp, but only jumps if register r is even ("jump if even").
         check_reg = a
-        if reg.startswith('b'):
+        if reg.startswith("b"):
             check_reg = b
         if check_reg % 2 == 0:
             program_counter += int(instruction[2])
         else:
             program_counter += 1
-    elif action == 'jio':
+    elif action == "jio":
         # jio r, offset is like jmp, but only jumps if register r is 1 ("jump if one", not odd).
         check_reg = a
-        if reg.startswith('b'):
+        if reg.startswith("b"):
             check_reg = b
         if check_reg == 1:
             program_counter += int(instruction[2])
         else:
             program_counter += 1
     else:
-        print(f'Unknown instruction {action}')
+        print(f"Unknown instruction {action}")
 
 print(f"a={a}, b={b}")

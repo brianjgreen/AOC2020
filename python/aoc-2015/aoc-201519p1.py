@@ -1,4 +1,3 @@
-
 # Advent of Code 2015 - Day 19 Part 1
 # 17 May 2023 Brian Green
 #
@@ -21,12 +20,14 @@ subs = {}
 
 # Create a dictionary of the molecule substitutions
 for instruction in data_set:
-    if '=>' in instruction:
-        key, value = instruction.split(' => ')
+    if "=>" in instruction:
+        key, value = instruction.split(" => ")
         if key in subs:
             subs[key].append(value)
         else:
-            subs[key] = [value, ]
+            subs[key] = [
+                value,
+            ]
 
 print(subs)
 print(formula)

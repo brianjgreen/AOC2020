@@ -1,4 +1,3 @@
-
 # Advent of Code 2015 - Day 18 Part 1
 # 15 May 2023 Brian Green
 #
@@ -26,7 +25,7 @@ field = np.zeros((rows, cols), dtype=np.int8)
 # Convert the data from . and # chars into 0 and 1 integers
 for x in range(cols):
     for y in range(rows):
-        if data_set[x][y] == '#':
+        if data_set[x][y] == "#":
             field[x, y] = 1
 # print(field)
 
@@ -37,11 +36,11 @@ for animation_frame in range(num_steps):
         for y in range(rows):
             # Calculate a subset of surrounding lights around the current light
             # Lights on the perimeter only count adjacent lights in bounds of the array
-            start_x = (x - 1 if x > 0 else x)
-            start_y = (y - 1 if y > 0 else y)
-            end_x = (x + 1 if x < cols - 1 else cols)
-            end_y = (y + 1 if y < rows - 1 else rows)
-            subfield = field[start_x:end_x + 1, start_y: end_y + 1]
+            start_x = x - 1 if x > 0 else x
+            start_y = y - 1 if y > 0 else y
+            end_x = x + 1 if x < cols - 1 else cols
+            end_y = y + 1 if y < rows - 1 else rows
+            subfield = field[start_x : end_x + 1, start_y : end_y + 1]
             # print(subfield)
 
             # If light is on and 2 or 4 adjacent lights are on, stay on

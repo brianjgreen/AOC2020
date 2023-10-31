@@ -1,4 +1,3 @@
-
 # Advent of Code 2015 - Day 1 Part 1
 # 16 Nov 2021 Brian Green
 #

@@ -1,4 +1,3 @@
-
 # Advent of Code 2015 - Day 9 Part 2
 # 22 Nov 2021 Brian Green
 #

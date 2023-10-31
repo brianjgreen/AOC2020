@@ -1,4 +1,3 @@
-
 # Advent of Code 2015 - Day 8 Part 1
 # 21 Nov 2021 Brian Green
 #
@@ -19,16 +18,16 @@ total = 0
 memory = 0
 
 for item in data_set:
-    mess = item.strip()[1: -1]
+    mess = item.strip()[1:-1]
     total += len(mess) + 2
     chars = list(mess)
     while len(chars) > 0:
         c = chars.pop(0)
-        if c == '\\':
+        if c == "\\":
             d = chars.pop(0)
-            if d == '\\' or d == '\"':
+            if d == "\\" or d == '"':
                 pass
-            elif d == 'x':
+            elif d == "x":
                 chars.pop(0)
                 chars.pop(0)
         memory += 1

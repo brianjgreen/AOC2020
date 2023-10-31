@@ -1,4 +1,3 @@
-
 # Advent of Code 2015 - Day 14 Part 1
 # 30 Nov 2021 Brian Green
 #
@@ -23,8 +22,7 @@ for deer in data_set:
     duration = int(stats[6])
     cooldown = int(stats[13])
     # print(f"{name} {speed} {duration} {cooldown}")
-    roster[name] = list([speed for i in range(duration)] +
-                        [0 for i in range(cooldown)])
+    roster[name] = list([speed for i in range(duration)] + [0 for i in range(cooldown)])
 
 # print(roster)
 

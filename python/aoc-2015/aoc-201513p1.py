@@ -1,4 +1,3 @@
-
 # Advent of Code 2015 - Day 13 Part 1
 # 29 Nov 2021 Brian Green
 #
@@ -48,8 +47,7 @@ def get_happy(people):
 
     for p in people:
         # print(f"{people[left]} <- {p} -> {people[right]}")
-        happy_people[p] += happiness[p][people[left]] + \
-            happiness[p][people[right]]
+        happy_people[p] += happiness[p][people[left]] + happiness[p][people[right]]
         left += 1
         right += 1
         if right >= total_people:

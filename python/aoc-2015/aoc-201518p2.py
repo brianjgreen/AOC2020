@@ -1,4 +1,3 @@
-
 # Advent of Code 2015 - Day 18 Part 2
 # 16 May 2023 Brian Green
 #
@@ -24,7 +23,7 @@ field = np.zeros((rows, cols), dtype=np.int8)
 
 for x in range(cols):
     for y in range(rows):
-        if data_set[x][y] == '#':
+        if data_set[x][y] == "#":
             field[x, y] = 1
 print(field)
 
@@ -38,11 +37,11 @@ for animation_frame in range(num_steps):
 
     for x in range(cols):
         for y in range(rows):
-            start_x = (x - 1 if x > 0 else x)
-            start_y = (y - 1 if y > 0 else y)
-            end_x = (x + 1 if x < cols - 1 else cols)
-            end_y = (y + 1 if y < rows - 1 else rows)
-            subfield = field[start_x:end_x + 1, start_y: end_y + 1]
+            start_x = x - 1 if x > 0 else x
+            start_y = y - 1 if y > 0 else y
+            end_x = x + 1 if x < cols - 1 else cols
+            end_y = y + 1 if y < rows - 1 else rows
+            subfield = field[start_x : end_x + 1, start_y : end_y + 1]
             # print(subfield)
             if field[x, y] == 1 and (subfield.sum() == 3 or subfield.sum() == 4):
                 new_field[x, y] = 1

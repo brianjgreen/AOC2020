@@ -1,4 +1,3 @@
-
 # Advent of Code 2015 - Day 13 Part 2
 # 29 Nov 2021 Brian Green
 #
@@ -36,8 +35,8 @@ for happy in data_set:
 
 happiness["Brian"] = {}
 for p in happiness:
-    happiness[p]['Brian'] = 0
-    happiness['Brian'][p] = 0
+    happiness[p]["Brian"] = 0
+    happiness["Brian"][p] = 0
 
 # print(json.dumps(happiness, indent=4))
 people = list(happiness.keys())
@@ -53,8 +52,7 @@ def get_happy(people):
 
     for p in people:
         # print(f"{people[left]} <- {p} -> {people[right]}")
-        happy_people[p] += happiness[p][people[left]] + \
-            happiness[p][people[right]]
+        happy_people[p] += happiness[p][people[left]] + happiness[p][people[right]]
         left += 1
         right += 1
         if right >= total_people:

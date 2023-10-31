@@ -1,4 +1,3 @@
-
 # Advent of Code 2015 - Day 16 Part 1
 # 7 Dec 2021 Brian Green
 #
@@ -14,15 +13,28 @@ with open(filename) as data_file:
 
 # print(data_set)
 
-matching_aunt = {'children': 3, 'cats': 7, 'samoyeds': 2, 'pomeranians': 3,
-                 'akitas': 0, 'vizslas': 0, 'goldfish': 5, 'trees': 3, 'cars': 2, 'perfumes': 1}
+matching_aunt = {
+    "children": 3,
+    "cats": 7,
+    "samoyeds": 2,
+    "pomeranians": 3,
+    "akitas": 0,
+    "vizslas": 0,
+    "goldfish": 5,
+    "trees": 3,
+    "cars": 2,
+    "perfumes": 1,
+}
 
 aunts = {}
 for sue in data_set:
     attribs = sue.split()
     # print(attribs)
-    aunts[attribs[1][:-1]] = {attribs[2][:-1]: int(attribs[3][:-1]),
-                              attribs[4][:-1]: int(attribs[5][:-1]), attribs[6][:-1]: int(attribs[7])}
+    aunts[attribs[1][:-1]] = {
+        attribs[2][:-1]: int(attribs[3][:-1]),
+        attribs[4][:-1]: int(attribs[5][:-1]),
+        attribs[6][:-1]: int(attribs[7]),
+    }
 
 eligible_aunts = []
 for sue in aunts:

@@ -1,4 +1,3 @@
-
 # Advent of Code 2015 - Day 11 Part 1 and 2
 # 22 Nov 2021 Brian Green
 #
@@ -18,14 +17,14 @@ while len(alpha) > 2:
 print(straight)
 
 # Password Rule 2
-banned = ['i', 'o', 'l']
+banned = ["i", "o", "l"]
 
 # Password Rule 3
 pairs = []
 alpha = list(string.ascii_lowercase)
 while len(alpha) > 0:
     letter = alpha.pop(0)
-    pairs.append(letter+letter)
+    pairs.append(letter + letter)
 print(pairs)
 
 
@@ -60,15 +59,15 @@ print(f"ghjaabcc {is_valid('ghjaabcc')}")
 
 
 def increment_letter(letter):
-    b = bytes(letter, 'utf-8')
+    b = bytes(letter, "utf-8")
     b = b[0] + 1
     return chr(b)
 
 
 def increment_password(password):
     index = -1
-    if password[index] == 'z':
-        password = increment_password(password[:-1]) + 'a'
+    if password[index] == "z":
+        password = increment_password(password[:-1]) + "a"
     else:
         password = password[:-1] + increment_letter(password[index])
 

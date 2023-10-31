@@ -1,4 +1,3 @@
-
 # Advent of Code 2015 - Day 5 Part 2
 # 17 Nov 2021 Brian Green
 #
@@ -31,7 +30,7 @@ for message in data_set:
         continue
 
     # at least one letter which repeats with exactly one letter between them
-    double_gap = [i+j for i, j in zip(message, message[2:]) if i == j]
+    double_gap = [i + j for i, j in zip(message, message[2:]) if i == j]
     if len(double_gap) == 0:
         continue
 

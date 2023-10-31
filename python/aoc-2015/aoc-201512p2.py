@@ -1,4 +1,3 @@
-
 # Advent of Code 2015 - Day 12 Part 2
 # 22 Nov 2021 Brian Green
 #
@@ -22,7 +21,7 @@ def clear_dict(d):
             clear_dict(i)
         elif isinstance(i, list):
             get_red(i)
-        elif 'red' == i:
+        elif "red" == i:
             d.clear()
             print("CLEAR")
             return True

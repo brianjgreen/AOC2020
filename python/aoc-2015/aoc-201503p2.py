@@ -1,4 +1,3 @@
-
 # Advent of Code 2015 - Day 3 Part 2
 # 17 Nov 2021 Brian Green
 #
@@ -24,17 +23,17 @@ dalek_y = 0
 santa = True
 
 for direction in data_set[0]:
-    if direction == '^':
+    if direction == "^":
         if santa:
             y += 1
         else:
             dalek_y += 1
-    elif direction == '>':
+    elif direction == ">":
         if santa:
             x += 1
         else:
             dalek_x += 1
-    elif direction == '<':
+    elif direction == "<":
         if santa:
             x -= 1
         else:

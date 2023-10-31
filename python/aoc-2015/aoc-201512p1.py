@@ -1,4 +1,3 @@
-
 # Advent of Code 2015 - Day 12 Part 1
 # 22 Nov 2021 Brian Green
 #
