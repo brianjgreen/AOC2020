@@ -11,19 +11,6 @@ import re
 
 class Aoc19:
     def __init__(self):
-        test_rules = ['0: 4 1 5',
-                      '1: 2 3 | 3 2',
-                      '2: 4 4 | 5 5',
-                      '3: 4 5 | 5 4',
-                      '4: "a"',
-                      '5: "b"']
-
-        test_message = ['ababbb',
-                        'bababa',
-                        'abbbab',
-                        'aaabbb',
-                        'aaaabbb']
-
         file_name = "data" + os.sep + "brian_aoc19_rules.dat"
         with open(file_name) as data_file:
             data_set_rules = [x.strip() for x in data_file.readlines()]
@@ -38,17 +25,17 @@ class Aoc19:
 
         self.rules = {}
         for rule in self.data_rules:
-            num, pattern = rule.split(':')
+            num, pattern = rule.split(":")
             self.rules[int(num)] = pattern.strip()
 
     def sub_letters(self, letters):
         for k, v in self.rules.items():
             for k1, v1 in letters.items():
-                b_list = v.split(' ')
+                b_list = v.split(" ")
                 for b in range(len(b_list)):
                     if str(k1) == b_list[b]:
                         b_list[b] = v1
-                v = self.rules[k] = ' '.join(b_list)
+                v = self.rules[k] = " ".join(b_list)
                 # print(b_list)
                 # print(self.rules[k])
         # print(len(self.rules))
@@ -84,7 +71,7 @@ class Aoc19:
             # print(self.rules)
 
         print(self.rules)
-        pattern = '^' + self.rules[0].replace(' ', '') + '$'
+        pattern = "^" + self.rules[0].replace(" ", "") + "$"
         print(pattern)
         p = re.compile(pattern)
         total = 0

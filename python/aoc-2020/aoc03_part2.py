@@ -12,8 +12,8 @@ import os
 class Aoc03:
     def __init__(self):
         self.slopes = [(1, 1), (3, 1), (5, 1), (7, 1), (1, 2)]
-        self.open = '.'
-        self.tree = '#'
+        self.open = "."
+        self.tree = "#"
         """
         test_data = ["..##.......",
                      "#...#...#..",

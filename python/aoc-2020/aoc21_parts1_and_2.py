@@ -13,12 +13,6 @@ import os
 
 class Aoc21:
     def __init__(self):
-        test_data = """mxmxvkd kfcds sqjhc nhms (contains dairy, fish)
-trh fvjkl sbzzf mxmxvkd (contains dairy)
-sqjhc fvjkl (contains soy)
-sqjhc mxmxvkd sbzzf (contains fish)
-"""
-
         file_name = "data" + os.sep + "brian_aoc21.dat"
         with open(file_name) as data_file:
             data_set = [x.strip() for x in data_file.readlines()]
@@ -37,12 +31,14 @@ sqjhc mxmxvkd sbzzf (contains fish)
                 if ingredient == "(contains":
                     allergen = True
                 elif allergen:
-                    if ingredient[-1] == ')' or ingredient[-1] == ',':
+                    if ingredient[-1] == ")" or ingredient[-1] == ",":
                         ingredient = ingredient[:-1]
                     if ingredient in bad:
                         bad[ingredient].append(i)
                     else:
-                        bad[ingredient] = [i, ]
+                        bad[ingredient] = [
+                            i,
+                        ]
                 else:
                     i.append(ingredient)
                     all_foreign.append(ingredient)
@@ -62,9 +58,9 @@ sqjhc mxmxvkd sbzzf (contains fish)
             if len(tv) == 1:
                 lang[tk] = tv[0]
         print(lang)
-        for l in lang:
-            print(l)
-            trans.pop(l)
+        for elem in lang:
+            print(elem)
+            trans.pop(elem)
         print(trans)
 
         while len(trans) > 0:
@@ -77,10 +73,10 @@ sqjhc mxmxvkd sbzzf (contains fish)
                 if len(tv) == 1:
                     lang[tk] = tv[0]
             print(lang)
-            for l in lang:
-                print(l)
-                if l in trans:
-                    trans.pop(l)
+            for elem in lang:
+                print(elem)
+                if elem in trans:
+                    trans.pop(elem)
             print(trans)
             print(len(trans))
         print(lang)

@@ -27,7 +27,7 @@ class Aoc05:
             low = 0
             high = 127
             for j in range(7):
-                if i[j] == 'F':
+                if i[j] == "F":
                     # Front
                     high -= (high - low + 1) / 2
                 else:
@@ -43,7 +43,7 @@ class Aoc05:
             low = 0
             high = 7
             for j in range(7, 10):
-                if i[j] == 'L':
+                if i[j] == "L":
                     # Left
                     high -= (high - low + 1) / 2
                 else:

@@ -6,14 +6,44 @@
 #
 #
 import os
-import sys
 
 
 class Aoc10:
     def __init__(self):
         self.test_data = [16, 10, 15, 5, 1, 11, 7, 19, 6, 12, 4]
-        self.test_data_2 = [28, 33, 18, 42, 31, 14, 46, 20, 48, 47, 24, 23,
-                            49, 45, 19, 38, 39, 11, 1, 32, 25, 35, 8, 17, 7, 9, 4, 2, 34, 10, 3]
+        self.test_data_2 = [
+            28,
+            33,
+            18,
+            42,
+            31,
+            14,
+            46,
+            20,
+            48,
+            47,
+            24,
+            23,
+            49,
+            45,
+            19,
+            38,
+            39,
+            11,
+            1,
+            32,
+            25,
+            35,
+            8,
+            17,
+            7,
+            9,
+            4,
+            2,
+            34,
+            10,
+            3,
+        ]
         file_name = "data" + os.sep + "brian_aoc10.dat"
         with open(file_name) as data_file:
             data_set = [int(x) for x in data_file.readlines()]
@@ -52,9 +82,11 @@ class Aoc10:
                     # print("BREAK")
                     break
 
-                if self.data[position] + 1 == self.data[position + i] or \
-                        self.data[position] + 2 == self.data[position + i] or \
-                        self.data[position] + 3 == self.data[position + i]:
+                if (
+                    self.data[position] + 1 == self.data[position + i]
+                    or self.data[position] + 2 == self.data[position + i]
+                    or self.data[position] + 3 == self.data[position + i]
+                ):
                     tabulate[position] += tabulate[position + i]
                 # print(f"i:{i} pos:{position} {tabulate}")
 

@@ -6,120 +6,10 @@
 #
 #
 import os
-import re
 
 
 class Aoc20:
     def __init__(self):
-        test_data = """Tile 2311:
-..##.#..#.
-##..#.....
-#...##..#.
-####.#...#
-##.##.###.
-##...#.###
-.#.#.#..##
-..#....#..
-###...#.#.
-..###..###
-
-Tile 1951:
-#.##...##.
-#.####...#
-.....#..##
-#...######
-.##.#....#
-.###.#####
-###.##.##.
-.###....#.
-..#.#..#.#
-#...##.#..
-
-Tile 1171:
-####...##.
-#..##.#..#
-##.#..#.#.
-.###.####.
-..###.####
-.##....##.
-.#...####.
-#.##.####.
-####..#...
-.....##...
-
-Tile 1427:
-###.##.#..
-.#..#.##..
-.#.##.#..#
-#.#.#.##.#
-....#...##
-...##..##.
-...#.#####
-.#.####.#.
-..#..###.#
-..##.#..#.
-
-Tile 1489:
-##.#.#....
-..##...#..
-.##..##...
-..#...#...
-#####...#.
-#..#.#.#.#
-...#.#.#..
-##.#...##.
-..##.##.##
-###.##.#..
-
-Tile 2473:
-#....####.
-#..#.##...
-#.##..#...
-######.#.#
-.#...#.#.#
-.#########
-.###.#..#.
-########.#
-##...##.#.
-..###.#.#.
-
-Tile 2971:
-..#.#....#
-#...###...
-#.#.###...
-##.##..#..
-.#####..##
-.#..####.#
-#..#.#..#.
-..####.###
-..#.#.###.
-...#.#.#.#
-
-Tile 2729:
-...#.#.#.#
-####.#....
-..#.#.....
-....#..#.#
-.##..##.#.
-.#.####...
-####.#.#..
-##.####...
-##..#.##..
-#.##...##.
-
-Tile 3079:
-#.#.#####.
-.#..######
-..#.......
-######....
-####.#..#.
-.#...#.##.
-#.#####.##
-..#.###...
-..#.......
-..#.###...
-"""
-
         file_name = "data" + os.sep + "brian_aoc20.dat"
         with open(file_name) as data_file:
             data_set = [x.strip() for x in data_file.readlines()]
@@ -131,15 +21,18 @@ Tile 3079:
     def run_it(self):
         tiles = {}
         num = 0
-        new_tile = True
         whole_tile = []
         for i in self.data:
             if "Tile" in i:
                 num = int(i[5:9])
                 whole_tile = []
             elif i == "":
-                tiles[num] = (whole_tile[0], whole_tile[9], "".join(
-                    [x[0] for x in whole_tile]), "".join([x[9] for x in whole_tile]))
+                tiles[num] = (
+                    whole_tile[0],
+                    whole_tile[9],
+                    "".join([x[0] for x in whole_tile]),
+                    "".join([x[9] for x in whole_tile]),
+                )
             else:
                 whole_tile.append(i)
         # print(tiles)
@@ -154,11 +47,11 @@ Tile 3079:
                     for i, v2 in enumerate(v):
                         for j, v3 in enumerate(v1):
                             if v2 == v3:
-                                sides[k].append(
-                                    [(k, self.edge[i]), (k1, self.edge[j])])
+                                sides[k].append([(k, self.edge[i]), (k1, self.edge[j])])
                             if v2[::-1] == v3:
                                 sides[k].append(
-                                    [(k, "flip-"+self.edge[i]), (k1, self.edge[j])])
+                                    [(k, "flip-" + self.edge[i]), (k1, self.edge[j])]
+                                )
 
         corners = []
         for k, v in sides.items():

@@ -34,7 +34,9 @@ def check_height(hgt):
     m = re.match(r"(\d+)(cm|in)", hgt)
     if m:
         measure, unit = m.groups()
-        if (unit == 'cm' and 150 <= int(measure) <= 193) or (unit == 'in' and 59 <= int(measure) <= 76):
+        if (unit == "cm" and 150 <= int(measure) <= 193) or (
+            unit == "in" and 59 <= int(measure) <= 76
+        ):
             return True
     return False
 
@@ -60,8 +62,8 @@ def check_passport_id(pid):
 
 class Aoc04:
     def __init__(self):
-        self.req_fields = ('byr', 'iyr', 'eyr', 'hgt', 'hcl', 'ecl', 'pid')
-        self.opt_field = ('cid',)
+        self.req_fields = ("byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid")
+        self.opt_field = ("cid",)
         file_name = "data" + os.sep + "brian_aoc04.dat"
         with open(file_name) as data_file:
             data_set = data_file.readlines()
@@ -81,7 +83,7 @@ class Aoc04:
                 # print(records)
             else:
                 # Parse the string to create a dictionary (key/value pair)
-                new_fields = dict(field.split(':') for field in i.split(' '))
+                new_fields = dict(field.split(":") for field in i.split(" "))
                 # Add the new key/value pairs to the dictionary
                 passport.update(new_fields)
                 # print(passport)
@@ -98,14 +100,16 @@ class Aoc04:
                     valid = 0
                     break
 
-            if valid == 1 and \
-                    check_birth_year(i['byr']) and \
-                    check_issue_year(i['iyr']) and \
-                    check_expiration_year(i['eyr']) and \
-                    check_height(i['hgt']) and \
-                    check_hair_color(i['hcl']) and \
-                    check_eye_color(i['ecl']) and \
-                    check_passport_id(i['pid']):
+            if (
+                valid == 1
+                and check_birth_year(i["byr"])
+                and check_issue_year(i["iyr"])
+                and check_expiration_year(i["eyr"])
+                and check_height(i["hgt"])
+                and check_hair_color(i["hcl"])
+                and check_eye_color(i["ecl"])
+                and check_passport_id(i["pid"])
+            ):
                 pass
             else:
                 valid = 0

@@ -13,18 +13,17 @@ class Aoc17:
         self.old_space = []
         self.new_space = []
         self.check_space = []
-        test_data = [".#.",
-                     "..#",
-                     "###"]
 
-        data_set = ["..#..#..",
-                    "#.#...#.",
-                    "..#.....",
-                    "##....##",
-                    "#..#.###",
-                    ".#..#...",
-                    "###..#..",
-                    "....#..#"]
+        data_set = [
+            "..#..#..",
+            "#.#...#.",
+            "..#.....",
+            "##....##",
+            "#..#.###",
+            ".#..#...",
+            "###..#..",
+            "....#..#",
+        ]
 
         x = y = z = 0
         # space = test_data
@@ -33,7 +32,7 @@ class Aoc17:
         for row in space:
             x = 0
             for cube in row:
-                if cube == '#':
+                if cube == "#":
                     self.old_space.append((z, y, x))
                 x += 1
             y += 1
@@ -45,10 +44,14 @@ class Aoc17:
             if (z, y, x) in self.old_space:
                 cube_on = True
                 total = -1
-            for zz in range(z-1, z+2):
-                for yy in range(y-1, y+2):
-                    for xx in range(x-1, x+2):
-                        if check_sector and (zz, yy, xx) not in self.check_space and (zz, yy, xx) not in self.old_space:
+            for zz in range(z - 1, z + 2):
+                for yy in range(y - 1, y + 2):
+                    for xx in range(x - 1, x + 2):
+                        if (
+                            check_sector
+                            and (zz, yy, xx) not in self.check_space
+                            and (zz, yy, xx) not in self.old_space
+                        ):
                             self.check_space.append((zz, yy, xx))
                         if (zz, yy, xx) in self.old_space:
                             total += 1

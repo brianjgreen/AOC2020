@@ -11,9 +11,11 @@ import os
 
 class Aoc24:
     def __init__(self):
+        """
         file_name = "data" + os.sep + "brian_aoc24_test.dat"
         with open(file_name) as data_file:
             test_data = [x.strip() for x in data_file.readlines()]
+        """
 
         file_name = "data" + os.sep + "brian_aoc24.dat"
         with open(file_name) as data_file:
@@ -31,24 +33,24 @@ class Aoc24:
             max = len(t)
             pos = 0
             x = y = 0
-            print(t[pos:pos+2])
+            print(t[pos : pos + 2])
             while pos < max:
-                if t[pos] == 'e':
+                if t[pos] == "e":
                     x += 2
                     pos -= 1
-                elif t[pos:pos+2] == 'se':
+                elif t[pos : pos + 2] == "se":
                     x += 1
                     y -= 1
-                elif t[pos:pos+2] == 'sw':
+                elif t[pos : pos + 2] == "sw":
                     x -= 1
                     y -= 1
-                elif t[pos] == 'w':
+                elif t[pos] == "w":
                     x -= 2
                     pos -= 1
-                elif t[pos:pos+2] == 'nw':
+                elif t[pos : pos + 2] == "nw":
                     x -= 1
                     y += 1
-                elif t[pos:pos+2] == 'ne':
+                elif t[pos : pos + 2] == "ne":
                     x += 1
                     y += 1
                 pos += 2

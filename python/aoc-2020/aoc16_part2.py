@@ -12,17 +12,32 @@ import re
 
 class Aoc16:
     def __init__(self):
-        test_rules = ["class: 1-3 or 5-7",
-                      "row: 6-11 or 33-44",
-                      "seat: 13-40 or 45-50"]
-        test_tickets = [(7, 3, 47), (40, 4, 50), (55, 2, 20), (38, 6, 12)]
-
-        self.my_ticket = [71, 127, 181, 179, 113, 109, 79, 151, 97,
-                          107, 53, 193, 73, 83, 191, 101, 89, 149, 103, 197]
+        self.my_ticket = [
+            71,
+            127,
+            181,
+            179,
+            113,
+            109,
+            79,
+            151,
+            97,
+            107,
+            53,
+            193,
+            73,
+            83,
+            191,
+            101,
+            89,
+            149,
+            103,
+            197,
+        ]
 
         file_name = "data" + os.sep + "brian_aoc16_tickets.dat"
         with open(file_name) as data_file:
-            tickets = [x.strip().split(',') for x in data_file.readlines()]
+            tickets = [x.strip().split(",") for x in data_file.readlines()]
         data_set_tickets = []
         for i in tickets:
             data_set_tickets.append(tuple(int(x) for x in i))
@@ -107,7 +122,7 @@ class Aoc16:
         # find the field positions for field names starting with 'departure'
         departures = []
         for f in field_assign:
-            if 'departure' in field_assign[f]:
+            if "departure" in field_assign[f]:
                 print(f"{f} {field_assign[f]}")
                 departures.append(f)
         print(departures)

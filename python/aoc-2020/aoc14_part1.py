@@ -11,16 +11,10 @@ import re
 
 class Aoc14:
     def __init__(self):
-        test_data = ["mask = XXXXXXXXXXXXXXXXXXXXXXXXXXXXX1XXXX0X",
-                     "mem[8] = 11",
-                     "mem[7] = 101",
-                     "mem[8] = 0"]
-
         file_name = "data" + os.sep + "brian_aoc14.dat"
         with open(file_name) as data_file:
             data_set = [x.strip() for x in data_file.readlines()]
 
-        # self.data = test_data
         self.data = data_set
 
     def run_it(self):
@@ -28,7 +22,7 @@ class Aoc14:
         mem = {}
         pattern = re.compile(r"mem\[(\d+)\] = (\d+)")
         for i in self.data:
-            if 'mask' in i:
+            if "mask" in i:
                 mask = list(i.split(" = ")[1])
                 mask.reverse()
             else:
@@ -40,7 +34,7 @@ class Aoc14:
 
                 for j in range(len(mask)):
                     bit = mask[j]
-                    if bit == 'X':
+                    if bit == "X":
                         # OR bit from data
                         value |= data & (1 << j)
                     else:

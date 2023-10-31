@@ -6,19 +6,10 @@
 # Part 1: Given your starting numbers, what will be the 2020th number spoken?
 # Part 2: Given your starting numbers, what will be the 30000000th number spoken?
 #
-import os
 
 
 class Aoc15:
     def __init__(self):
-        test_data = [0, 3, 6]  # 436
-        test_data1 = [1, 3, 2]  # 1 
-        test_data2 = [2, 1, 3]  # 10
-        test_data3 = [1, 2, 3]  # 27
-        test_data4 = [2, 3, 1]  # 78
-        test_data5 = [3, 2, 1]  # 438
-        test_data6 = [3, 1, 2]  # 1836
-
         data_set = [0, 12, 6, 13, 20, 1, 17]
 
         # self.data = test_data

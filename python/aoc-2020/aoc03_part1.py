@@ -11,8 +11,8 @@ import os
 
 class Aoc03:
     def __init__(self):
-        self.open = '.'
-        self.tree = '#'
+        self.open = "."
+        self.tree = "#"
         self.x_offset = 3
         self.y_offset = 1
         """

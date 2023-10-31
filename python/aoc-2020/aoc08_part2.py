@@ -12,15 +12,17 @@ import sys
 
 class Aoc08:
     def __init__(self):
-        self.test_data = ["nop +0",
-                          "acc +1",
-                          "jmp +4",
-                          "acc +3",
-                          "jmp -3",
-                          "acc -99",
-                          "acc +1",
-                          "jmp -4",
-                          "acc +6"]
+        self.test_data = [
+            "nop +0",
+            "acc +1",
+            "jmp +4",
+            "acc +3",
+            "jmp -3",
+            "acc -99",
+            "acc +1",
+            "jmp -4",
+            "acc +6",
+        ]
         file_name = "data" + os.sep + "brian_aoc08.dat"
         with open(file_name) as data_file:
             data_set = data_file.readlines()
@@ -36,12 +38,12 @@ class Aoc08:
         while ip not in usage:
             usage[ip] = 0
             instr = program[ip][0]
-            if instr == 'acc':
+            if instr == "acc":
                 acc += int(program[ip][1])
                 ip += 1
-            elif instr == 'nop':
+            elif instr == "nop":
                 ip += 1
-            elif instr == 'jmp':
+            elif instr == "jmp":
                 ip += int(program[ip][1])
 
             # Stop when the ip (instruction pointer) attempts to go beyond the end of the list
@@ -59,14 +61,14 @@ class Aoc08:
         for i in range(len(program)):
             # Crawl down the list and change one nop/jmp at a time, execute, and then restore the instruction
             curr = program[i][0]
-            if curr == 'nop':
-                program[i][0] = 'jmp'
+            if curr == "nop":
+                program[i][0] = "jmp"
                 self.run_program(program)
-                program[i][0] = 'nop'
-            elif curr == 'jmp':
-                program[i][0] = 'nop'
+                program[i][0] = "nop"
+            elif curr == "jmp":
+                program[i][0] = "nop"
                 self.run_program(program)
-                program[i][0] = 'jmp'
+                program[i][0] = "jmp"
 
 
 if __name__ == "__main__":

@@ -27,7 +27,7 @@ class Aoc06:
         for i in self.data:
             if len(i) == 1:
                 # Finished with this group, start a new group
-                answers = ''.join(questions)  # convert list of strings into one string
+                answers = "".join(questions)  # convert list of strings into one string
                 questions = []
                 for answered_yes in self.alpha:
                     if answered_yes in answers:

@@ -9,7 +9,7 @@
 
 class Aoc23:
     def __init__(self):
-        test_data = [3, 8, 9, 1, 2, 5, 4, 6, 7]
+        # test_data = [3, 8, 9, 1, 2, 5, 4, 6, 7]
         data_set = [5, 8, 6, 4, 3, 9, 1, 7, 2]
 
         # self.data = test_data
@@ -56,14 +56,14 @@ class Aoc23:
             print(cups[:dest_pos])
             print("post")
             print(cups[dest_pos:])
-            cups = cups[:dest_pos+1] + pick_up + cups[dest_pos+1:]
+            cups = cups[: dest_pos + 1] + pick_up + cups[dest_pos + 1 :]
 
             # The crab selects a new current cup: the cup which is immediately clockwise of the current cup.
             cups.append(cups.pop(0))
 
         print(cups)
         pos = cups.index(1)
-        final = ''
+        final = ""
         for i in range(len(cups)):
             pos += 1
             if pos >= len(cups):

@@ -11,22 +11,31 @@ import os
 
 class Aoc11:
     def __init__(self):
-        self.vectors = ((-1, -1), (-1, 0), (-1, 1),
-                        (0, -1), (0, 1),
-                        (1, -1), (1, 0), (1, 1))
-        self.empty = 'L'
-        self.occupied = '#'
-        self.floor = '.'
-        self.test_data = ["L.LL.LL.LL",
-                          "LLLLLLL.LL",
-                          "L.L.L..L..",
-                          "LLLL.LL.LL",
-                          "L.LL.LL.LL",
-                          "L.LLLLL.LL",
-                          "..L.L.....",
-                          "LLLLLLLLLL",
-                          "L.LLLLLL.L",
-                          "L.LLLLL.LL"]
+        self.vectors = (
+            (-1, -1),
+            (-1, 0),
+            (-1, 1),
+            (0, -1),
+            (0, 1),
+            (1, -1),
+            (1, 0),
+            (1, 1),
+        )
+        self.empty = "L"
+        self.occupied = "#"
+        self.floor = "."
+        self.test_data = [
+            "L.LL.LL.LL",
+            "LLLLLLL.LL",
+            "L.L.L..L..",
+            "LLLL.LL.LL",
+            "L.LL.LL.LL",
+            "L.LLLLL.LL",
+            "..L.L.....",
+            "LLLLLLLLLL",
+            "L.LLLLLL.L",
+            "L.LLLLL.LL",
+        ]
         file_name = "data" + os.sep + "brian_aoc11.dat"
         with open(file_name) as data_file:
             data_set = [list(x.strip()) for x in data_file.readlines()]
@@ -54,10 +63,14 @@ class Aoc11:
                     # print("floor")
                     continue
                 for adj_x, adj_y in self.vectors:
-                    check_x = (x + adj_x) 
-                    check_y = (y + adj_y)
+                    check_x = x + adj_x
+                    check_y = y + adj_y
                     # print(f"{check_x} c {check_y}")
-                    if 0 <= check_x < max_x and 0 <= check_y < max_y and self.cur_set[check_x][check_y] == self.occupied:
+                    if (
+                        0 <= check_x < max_x
+                        and 0 <= check_y < max_y
+                        and self.cur_set[check_x][check_y] == self.occupied
+                    ):
                         occupied_count += 1
                 # print(f"o{occupied_count}")
                 if self.cur_set[x][y] == self.empty and occupied_count == 0:
@@ -69,18 +82,18 @@ class Aoc11:
                     num_changed_seats += 1
                     # print("o -> e")
         return num_changed_seats
-                
+
     def print_seat_chart(self, data):
         for x in data:
             print(x)
-                    
+
     def run_it(self):
         seats_changed = 1
         while seats_changed != 0:
             seats_changed = self.apply_seat_rules()
             # self.print_seat_chart(self.new_set)
             self.cur_set = [row[:] for row in self.new_set]
-        
+
         seats_taken = 0
         for x in range(len(self.new_set)):
             for y in range(len(self.new_set[0])):

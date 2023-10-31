@@ -11,8 +11,8 @@ import os
 
 class Aoc04:
     def __init__(self):
-        self.req_fields = ('byr', 'iyr', 'eyr', 'hgt', 'hcl', 'ecl', 'pid')
-        self.opt_field = ('cid',)
+        self.req_fields = ("byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid")
+        self.opt_field = ("cid",)
         """
         test_data = ['ecl:gry pid:860033327 eyr:2020 hcl:#fffffd\n', 'byr:1937 iyr:2017 cid:147 hgt:183cm\n', '\n',
                      'iyr:2013 ecl:amb cid:350 eyr:2023 pid:028048884\n', 'hcl:#cfa07d byr:1929\n', '\n',
@@ -39,7 +39,7 @@ class Aoc04:
                 # print(records)
             else:
                 # Parse the string to create a dictionary (key/value pair)
-                new_fields = dict(field.split(':') for field in i.split(' '))
+                new_fields = dict(field.split(":") for field in i.split(" "))
                 # Add the new key/value pairs to the dictionary
                 passport.update(new_fields)
                 # print(passport)

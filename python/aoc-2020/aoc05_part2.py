@@ -28,7 +28,7 @@ class Aoc05:
             low = 0
             high = 127
             for j in range(7):
-                if i[j] == 'F':
+                if i[j] == "F":
                     # Front
                     high -= (high - low + 1) / 2
                 else:
@@ -44,7 +44,7 @@ class Aoc05:
             low = 0
             high = 7
             for j in range(7, 10):
-                if i[j] == 'L':
+                if i[j] == "L":
                     # Left
                     high -= (high - low + 1) / 2
                 else:
@@ -76,7 +76,7 @@ class Aoc05:
 
         # Look for an empty seat with occupied seats on both sides
         for i in range(len(seats_taken)):
-            if seats_taken[i] + 1 != seats_taken[i+1]:
+            if seats_taken[i] + 1 != seats_taken[i + 1]:
                 # The statement above will cause an out of bounds error if we go to the end of the array
                 # but we are expecting our seat to be somewhere in the middle
                 print(seats_taken[i] + 1)

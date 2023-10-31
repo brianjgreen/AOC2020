@@ -10,8 +10,8 @@ import os
 
 class Aoc22:
     def __init__(self):
-        test_player_1 = [9, 2, 6, 3, 1]
-        test_player_2 = [5, 8, 4, 7, 10]
+        # test_player_1 = [9, 2, 6, 3, 1]
+        # test_player_2 = [5, 8, 4, 7, 10]
 
         file_name = "data" + os.sep + "brian_aoc22_p1.dat"
         with open(file_name) as data_file:
