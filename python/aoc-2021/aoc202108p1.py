@@ -1,4 +1,3 @@
-
 # Advent of Code 2021 - Day 8 Part 1
 # 8 Dec 2021 Brian Green
 #

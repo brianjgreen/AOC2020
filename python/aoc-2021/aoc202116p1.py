@@ -1,4 +1,3 @@
-
 # Advent of Code 2021 - Day 16 Part 1
 # 20 Dec 2021 Brian Green
 #
@@ -13,31 +12,34 @@ filename = "data" + os.sep + "brian_aoc202116.dat"
 with open(filename) as data_file:
     data_set = [pos.strip() for pos in data_file.readlines()]
 
-hex2bin = {'0': [0, 0, 0, 0],
-           '1': [0, 0, 0, 1],
-           '2': [0, 0, 1, 0],
-           '3': [0, 0, 1, 1],
-           '4': [0, 1, 0, 0],
-           '5': [0, 1, 0, 1],
-           '6': [0, 1, 1, 0],
-           '7': [0, 1, 1, 1],
-           '8': [1, 0, 0, 0],
-           '9': [1, 0, 0, 1],
-           'A': [1, 0, 1, 0],
-           'B': [1, 0, 1, 1],
-           'C': [1, 1, 0, 0],
-           'D': [1, 1, 0, 1],
-           'E': [1, 1, 1, 0],
-           'F': [1, 1, 1, 1]
-           }
+hex2bin = {
+    "0": [0, 0, 0, 0],
+    "1": [0, 0, 0, 1],
+    "2": [0, 0, 1, 0],
+    "3": [0, 0, 1, 1],
+    "4": [0, 1, 0, 0],
+    "5": [0, 1, 0, 1],
+    "6": [0, 1, 1, 0],
+    "7": [0, 1, 1, 1],
+    "8": [1, 0, 0, 0],
+    "9": [1, 0, 0, 1],
+    "A": [1, 0, 1, 0],
+    "B": [1, 0, 1, 1],
+    "C": [1, 1, 0, 0],
+    "D": [1, 1, 0, 1],
+    "E": [1, 1, 1, 0],
+    "F": [1, 1, 1, 1],
+}
 
-testdata = ["D2FE28",
-            "38006F45291200",
-            "EE00D40C823060",
-            "8A004A801A8002F478",
-            "620080001611562C8802118E34",
-            "C0015000016115A2E0802F182340",
-            "A0016C880162017C3686B18A3D4780"]
+testdata = [
+    "D2FE28",
+    "38006F45291200",
+    "EE00D40C823060",
+    "8A004A801A8002F478",
+    "620080001611562C8802118E34",
+    "C0015000016115A2E0802F182340",
+    "A0016C880162017C3686B18A3D4780",
+]
 
 # data_set = testdata
 
@@ -90,7 +92,7 @@ def decode_message(message):
         num, used = decode_literal(message[6:])
         print(bin2int(num))
         # print(used+6)
-        return(used+6)
+        return used + 6
 
     else:
         len_of_subpackets = 0
@@ -107,8 +109,8 @@ def decode_message(message):
             start_sub = 18
         total_used = start_sub
         while len_of_subpackets > 0 or num_of_subpackets > 0:
-            print(f'length of subpackets in bits: {len_of_subpackets}')
-            print(f'number of subpackets: {num_of_subpackets}')
+            print(f"length of subpackets in bits: {len_of_subpackets}")
+            print(f"number of subpackets: {num_of_subpackets}")
             used = decode_message(message[start_sub:])
             total_used += used
             len_of_subpackets -= used
@@ -123,7 +125,7 @@ for t in testdata:
     tot_ver = 0
     decode_message(hex2bin_list(t))
     print(f"SUPRE TOTAL VER: {tot_ver}")
-    print('====')
+    print("====")
 
 tot_ver = 0
 print(data_set)

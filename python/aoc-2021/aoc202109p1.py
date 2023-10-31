@@ -1,4 +1,3 @@
-
 # Advent of Code 2021 - Day 9 Part 1
 # 9 Dec 2021 Brian Green
 #
@@ -32,13 +31,13 @@ low_points = []
 for x in range(x_max):
     for y in range(y_max):
         test_point = data_set[y][x]
-        if x != 0 and test_point >= data_set[y][x-1]:
+        if x != 0 and test_point >= data_set[y][x - 1]:
             continue
-        if x != x_max - 1 and test_point >= data_set[y][x+1]:
+        if x != x_max - 1 and test_point >= data_set[y][x + 1]:
             continue
-        if y != 0 and test_point >= data_set[y-1][x]:
+        if y != 0 and test_point >= data_set[y - 1][x]:
             continue
-        if y != y_max - 1 and test_point >= data_set[y+1][x]:
+        if y != y_max - 1 and test_point >= data_set[y + 1][x]:
             continue
         low_points.append(int(test_point) + 1)
 

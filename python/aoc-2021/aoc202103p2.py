@@ -1,4 +1,3 @@
-
 # Advent of Code 2021 - Day 3 Part 2
 # 3 Dec 2021 Brian Green
 #

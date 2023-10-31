@@ -1,4 +1,3 @@
-
 # Advent of Code 2021 - Day 7 Part 2
 # 7 Dec 2021 Brian Green
 #
@@ -10,7 +9,7 @@ import os
 
 filename = "data" + os.sep + "brian_aoc202107.dat"
 with open(filename) as data_file:
-    data_set = [pos.split(',') for pos in data_file.readlines()][0]
+    data_set = [pos.split(",") for pos in data_file.readlines()][0]
 
 testcase = """16,1,2,0,4,2,7,1,2,14"""
 

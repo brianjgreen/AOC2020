@@ -1,4 +1,3 @@
-
 # Advent of Code 2021 - Day 1 Part 2
 # 1 Dec 2021 Brian Green
 #
@@ -14,7 +13,10 @@ with open(filename) as data_file:
 
 total_increases = 0
 for pos in range(len(data_set) - 3):
-    if data_set[pos + 1] + data_set[pos + 2] + data_set[pos + 3] > data_set[pos] + data_set[pos + 1] + data_set[pos + 2]:
+    if (
+        data_set[pos + 1] + data_set[pos + 2] + data_set[pos + 3]
+        > data_set[pos] + data_set[pos + 1] + data_set[pos + 2]
+    ):
         total_increases += 1
 
 print(total_increases)

@@ -1,4 +1,3 @@
-
 # Advent of Code 2021 - Day 12 Part 2
 # 22 Dec 2021 Brian Green
 #
@@ -61,8 +60,8 @@ print(data_set)
 map_steps = defaultdict(list)
 
 for step in data_set:
-    key, value = step.split('-')
-    if value == 'start' or value == 'end':
+    key, value = step.split("-")
+    if value == "start" or value == "end":
         temp_val = key
         key = value
         value = temp_val
@@ -71,10 +70,10 @@ for step in data_set:
 print(map_steps)
 temp_map_steps = map_steps.copy()
 for key, values in temp_map_steps.items():
-    if key == 'start':
+    if key == "start":
         continue
     for v in values:
-        if v == 'start' or v == 'end':
+        if v == "start" or v == "end":
             continue
         if v not in map_steps:
             map_steps[v].append(key)
@@ -96,15 +95,15 @@ def next_room(start, crumbs, visits):
     for r in rooms:
         add_lower = []
         # print(f" CHECKING {r}")
-        if r == 'end':
-            print(new_crumbs + ['end'])
+        if r == "end":
+            print(new_crumbs + ["end"])
             counter += 1
             continue
         elif r in visits:
-            if 'double' in visits:
+            if "double" in visits:
                 continue
             else:
-                add_lower = ['double']
+                add_lower = ["double"]
         elif r.islower():
             # new_visits.append(r)
             add_lower = [r]
@@ -112,5 +111,5 @@ def next_room(start, crumbs, visits):
         next_room(r, new_crumbs, new_visits + add_lower)
 
 
-next_room('start', [], [])
+next_room("start", [], [])
 print(counter)

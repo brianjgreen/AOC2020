@@ -1,4 +1,3 @@
-
 # Advent of Code 2021 - Day 4 Part 2
 # 5 Dec 2021 Brian Green
 #
@@ -43,7 +42,7 @@ data_set = temp_data_set
 
 # print(data_set)
 order = data_set.pop(0)
-order = [int(x) for x in order.split(',')]
+order = [int(x) for x in order.split(",")]
 # print(order)
 
 all_cards = []
@@ -101,7 +100,7 @@ while len(all_cards) > 1:
     all_cards.remove(card)
 
 card, nums_called = play_bingo()
-print('done?')
+print("done?")
 print(all_cards)
 print(card)
 print(nums_called)

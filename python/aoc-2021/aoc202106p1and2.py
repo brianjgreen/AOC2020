@@ -1,4 +1,3 @@
-
 # Advent of Code 2021 - Day 6 Part 1 and 2
 # 6 Dec 2021 Brian Green
 #
@@ -11,7 +10,7 @@ import os
 
 filename = "data" + os.sep + "brian_aoc202106.dat"
 with open(filename) as data_file:
-    data_set = [fish.split(',') for fish in data_file.readlines()][0]
+    data_set = [fish.split(",") for fish in data_file.readlines()][0]
 
 testcase = """3,4,3,1,2"""
 
@@ -42,7 +41,11 @@ super_school = [0 for x in range(9)]
 num_school = [0 for x in range(9)]
 total_school = []
 for i in range(9):
-    new_school = calc_school([i, ])
+    new_school = calc_school(
+        [
+            i,
+        ]
+    )
     super_school[i] = new_school
     num_school[i] = len(new_school)
 

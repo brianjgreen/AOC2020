@@ -1,4 +1,3 @@
-
 # Advent of Code 2021 - Day 9 Part 2
 # 9 Dec 2021 Brian Green
 #
@@ -31,13 +30,13 @@ low_points = []
 for x in range(x_max):
     for y in range(y_max):
         test_point = data_set[y][x]
-        if x != 0 and test_point >= data_set[y][x-1]:
+        if x != 0 and test_point >= data_set[y][x - 1]:
             continue
-        if x != x_max - 1 and test_point >= data_set[y][x+1]:
+        if x != x_max - 1 and test_point >= data_set[y][x + 1]:
             continue
-        if y != 0 and test_point >= data_set[y-1][x]:
+        if y != 0 and test_point >= data_set[y - 1][x]:
             continue
-        if y != y_max - 1 and test_point >= data_set[y+1][x]:
+        if y != y_max - 1 and test_point >= data_set[y + 1][x]:
             continue
         low_points.append((y, x))
 
@@ -50,14 +49,22 @@ def find_basin(y, x):
     global checked_blocks
     checked_blocks.append((y, x))
     blocks = 1
-    if (y, x-1) not in checked_blocks and x != 0 and data_set[y][x-1] != '9':
-        blocks += find_basin(y, x-1)
-    if (y, x+1) not in checked_blocks and x != x_max - 1 and data_set[y][x+1] != '9':
-        blocks += find_basin(y, x+1)
-    if (y-1, x) not in checked_blocks and y != 0 and data_set[y-1][x] != '9':
-        blocks += find_basin(y-1, x)
-    if (y+1, x) not in checked_blocks and y != y_max - 1 and data_set[y+1][x] != '9':
-        blocks += find_basin(y+1, x)
+    if (y, x - 1) not in checked_blocks and x != 0 and data_set[y][x - 1] != "9":
+        blocks += find_basin(y, x - 1)
+    if (
+        (y, x + 1) not in checked_blocks
+        and x != x_max - 1
+        and data_set[y][x + 1] != "9"
+    ):
+        blocks += find_basin(y, x + 1)
+    if (y - 1, x) not in checked_blocks and y != 0 and data_set[y - 1][x] != "9":
+        blocks += find_basin(y - 1, x)
+    if (
+        (y + 1, x) not in checked_blocks
+        and y != y_max - 1
+        and data_set[y + 1][x] != "9"
+    ):
+        blocks += find_basin(y + 1, x)
     return blocks
 
 

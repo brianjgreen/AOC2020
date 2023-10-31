@@ -1,4 +1,3 @@
-
 # Advent of Code 2021 - Day 24 Part 1
 # 14 Nov 2022 Brian Green
 #
@@ -48,7 +47,7 @@ for row in data:
     sea.append(list(row))
 
 for row in sea:
-    print(''.join(row))
+    print("".join(row))
 
 next_col = 0
 next_row = 0
@@ -66,11 +65,11 @@ while changes != 0:
 
     for row in range(max_row):
         for col in range(max_col):
-            new_sea[row][col] = '.'
+            new_sea[row][col] = "."
 
     for row in range(max_row):
         for col in range(max_col):
-            if new_sea[row][col] != '.':
+            if new_sea[row][col] != ".":
                 continue
 
             space = sea[row][col]
@@ -79,9 +78,9 @@ while changes != 0:
             else:
                 next_col = col + 1
 
-            if space == '>' and sea[row][next_col] == '.':
-                new_sea[row][col] = '.'
-                new_sea[row][next_col] = '>'
+            if space == ">" and sea[row][next_col] == ".":
+                new_sea[row][col] = "."
+                new_sea[row][next_col] = ">"
                 changes += 1
             else:
                 new_sea[row][col] = space
@@ -91,11 +90,11 @@ while changes != 0:
 
     for row in range(max_row):
         for col in range(max_col):
-            new_sea[row][col] = '.'
+            new_sea[row][col] = "."
 
     for row in range(max_row):
         for col in range(max_col):
-            if new_sea[row][col] != '.':
+            if new_sea[row][col] != ".":
                 continue
 
             space = sea[row][col]
@@ -103,15 +102,15 @@ while changes != 0:
                 next_row = 0
             else:
                 next_row = row + 1
-            
-            if space == 'v' and sea[next_row][col] == '.':
-                new_sea[row][col] = '.'
-                new_sea[next_row][col] = 'v'
+
+            if space == "v" and sea[next_row][col] == ".":
+                new_sea[row][col] = "."
+                new_sea[next_row][col] = "v"
                 changes += 1
             else:
                 new_sea[row][col] = space
 
     sea = new_sea
     for row in sea:
-        print(''.join(row))
-    print(f'changes={changes}, steps={steps}')
+        print("".join(row))
+    print(f"changes={changes}, steps={steps}")

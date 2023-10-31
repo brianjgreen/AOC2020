@@ -1,4 +1,3 @@
-
 # Advent of Code 2021 - Day 8 Part 2
 # 8 Nov 2022 Brian Green
 #
@@ -84,9 +83,9 @@ data_set = [pos.split() for pos in miswired_data]
 
 count = 0
 for message in data_set:
-    led_segments = {2: [], 3: [], 4:[], 5:[], 6:[], 7:[]}
-    segment_map = {2: {}, 3: {}, 4:{}, 5:{}, 6:{}, 7:{}}
-    
+    led_segments = {2: [], 3: [], 4: [], 5: [], 6: [], 7: []}
+    segment_map = {2: {}, 3: {}, 4: {}, 5: {}, 6: {}, 7: {}}
+
     for data in message[:10]:
         num_segments = len(data)
         # print(num_segments)
@@ -95,12 +94,23 @@ for message in data_set:
         # print(led_segments[num_segments])
     # print(led_segments)
 
-    led_nums = {0: None, 1: None, 2: None, 3: None, 4: None, 5: None, 6: None, 7: None, 8: None, 9: None}
-    
+    led_nums = {
+        0: None,
+        1: None,
+        2: None,
+        3: None,
+        4: None,
+        5: None,
+        6: None,
+        7: None,
+        8: None,
+        9: None,
+    }
+
     # 1 is 2 segments
     led_nums[1] = led_segments[2][0]
     segment_map[2][led_nums[1]] = 1
-    
+
     # 7 is 3 segments
     led_nums[7] = led_segments[3][0]
     segment_map[3][led_nums[7]] = 7
@@ -117,10 +127,10 @@ for message in data_set:
     # 2 is 5 segments and shares 3 of them with 4
     # 5 is 5 segments and shares 2 of them with 4
     for led in led_segments[5]:
-        if len(''.join(set(led_nums[7]).intersection(led))) == 3:
+        if len("".join(set(led_nums[7]).intersection(led))) == 3:
             led_nums[3] = led
             segment_map[5][led] = 3
-        elif len(''.join(set(led_nums[4]).intersection(led))) == 3:
+        elif len("".join(set(led_nums[4]).intersection(led))) == 3:
             led_nums[5] = led
             segment_map[5][led] = 5
         else:
@@ -131,22 +141,22 @@ for message in data_set:
     # 6 is 6 segments and shared 5 of them with 5 and only 3 of them with 4
     # 0 is 6 segments and shares 3 of them with 7
     for led in led_segments[6]:
-        if len(''.join(set(led_nums[4]).intersection(led))) == 4:
+        if len("".join(set(led_nums[4]).intersection(led))) == 4:
             led_nums[9] = led
             segment_map[6][led] = 9
-        elif len(''.join(set(led_nums[7]).intersection(led))) == 3:
+        elif len("".join(set(led_nums[7]).intersection(led))) == 3:
             led_nums[0] = led
             segment_map[6][led] = 0
         else:
             led_nums[6] = led
             segment_map[6][led] = 6
-            
+
     display_num = 0
     for data in message[11:]:
         display_num *= 10
         possible_segs = segment_map[len(data)]
         for key, value in possible_segs.items():
-            if len(''.join(set(key).intersection(data))) == len(data):
+            if len("".join(set(key).intersection(data))) == len(data):
                 display_num += value
     print(display_num)
     count += display_num

@@ -1,4 +1,3 @@
-
 # Advent of Code 2021 - Day 10 Part 1
 # 10 Dec 2021 Brian Green
 #
@@ -41,7 +40,7 @@ def reduce_chunks(data):
     return next_data
 
 
-points = {')': 3, ']': 57, '}': 1197, '>': 25137}
+points = {")": 3, "]": 57, "}": 1197, ">": 25137}
 total = 0
 # tabulate = {'[': 0, '(': 0, '{': 0, '<': 0}
 for data in data_set:

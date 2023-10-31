@@ -1,4 +1,3 @@
-
 # Advent of Code 2021 - Day 16 Part 2
 # 20 Dec 2021 Brian Green
 #
@@ -13,46 +12,50 @@ filename = "data" + os.sep + "brian_aoc202116.dat"
 with open(filename) as data_file:
     data_set = [pos.strip() for pos in data_file.readlines()]
 
-hex2bin = {'0': [0, 0, 0, 0],
-           '1': [0, 0, 0, 1],
-           '2': [0, 0, 1, 0],
-           '3': [0, 0, 1, 1],
-           '4': [0, 1, 0, 0],
-           '5': [0, 1, 0, 1],
-           '6': [0, 1, 1, 0],
-           '7': [0, 1, 1, 1],
-           '8': [1, 0, 0, 0],
-           '9': [1, 0, 0, 1],
-           'A': [1, 0, 1, 0],
-           'B': [1, 0, 1, 1],
-           'C': [1, 1, 0, 0],
-           'D': [1, 1, 0, 1],
-           'E': [1, 1, 1, 0],
-           'F': [1, 1, 1, 1]
-           }
+hex2bin = {
+    "0": [0, 0, 0, 0],
+    "1": [0, 0, 0, 1],
+    "2": [0, 0, 1, 0],
+    "3": [0, 0, 1, 1],
+    "4": [0, 1, 0, 0],
+    "5": [0, 1, 0, 1],
+    "6": [0, 1, 1, 0],
+    "7": [0, 1, 1, 1],
+    "8": [1, 0, 0, 0],
+    "9": [1, 0, 0, 1],
+    "A": [1, 0, 1, 0],
+    "B": [1, 0, 1, 1],
+    "C": [1, 1, 0, 0],
+    "D": [1, 1, 0, 1],
+    "E": [1, 1, 1, 0],
+    "F": [1, 1, 1, 1],
+}
 
-packet_type = {0: "sum",
-               1: "product",
-               2: "min",
-               3: "max",
-               4: "literal",
-               5: "greater",
-               6: "less",
-               7: "equal"
-               }
+packet_type = {
+    0: "sum",
+    1: "product",
+    2: "min",
+    3: "max",
+    4: "literal",
+    5: "greater",
+    6: "less",
+    7: "equal",
+}
 
 
-testdata = ["C200B40A82",  # finds the sum of 1 and 2, resulting in the value 3.
-            # finds the product of 6 and 9, resulting in the value 54.
-            "04005AC33890",
-            # finds the minimum of 7, 8, and 9, resulting in the value 7.
-            "880086C3E88112",
-            # finds the maximum of 7, 8, and 9, resulting in the value 9.
-            "CE00C43D881120",
-            "D8005AC2A8F0",  # produces 1, because 5 is less than 15.
-            "F600BC2D8F",  # produces 0, because 5 is not greater than 15.
-            "9C005AC2F8F0",  # produces 0, because 5 is not equal to 15.
-            "9C0141080250320F1802104A08"]
+testdata = [
+    "C200B40A82",  # finds the sum of 1 and 2, resulting in the value 3.
+    # finds the product of 6 and 9, resulting in the value 54.
+    "04005AC33890",
+    # finds the minimum of 7, 8, and 9, resulting in the value 7.
+    "880086C3E88112",
+    # finds the maximum of 7, 8, and 9, resulting in the value 9.
+    "CE00C43D881120",
+    "D8005AC2A8F0",  # produces 1, because 5 is less than 15.
+    "F600BC2D8F",  # produces 0, because 5 is not greater than 15.
+    "9C005AC2F8F0",  # produces 0, because 5 is not equal to 15.
+    "9C0141080250320F1802104A08",
+]
 
 
 def hex2bin_list(hex):
@@ -98,7 +101,7 @@ def decode_message(message):
         value = bin2int(num)
         # print(bin2int(num))
         # print(used+6)
-        return value, used+6
+        return value, used + 6
 
     else:
         len_of_subpackets = 0
@@ -165,7 +168,7 @@ for t in testdata:
     total, total_used = decode_message(hex2bin_list(t))
     # print(f"SUPRE TOTAL VER: {tot_ver}")
     print(f"total={total}")
-    print('====')
+    print("====")
 
 # tot_ver = 0
 

@@ -1,4 +1,3 @@
-
 # Advent of Code 2021 - Day 4 Part 1
 # 5 Dec 2021 Brian Green
 #
@@ -43,7 +42,7 @@ data_set = temp_data_set
 
 print(data_set)
 order = data_set.pop(0)
-order = [int(x) for x in order.split(',')]
+order = [int(x) for x in order.split(",")]
 print(order)
 
 all_cards = []

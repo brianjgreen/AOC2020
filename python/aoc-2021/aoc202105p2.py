@@ -1,4 +1,3 @@
-
 # Advent of Code 2021 - Day 5 Part 2
 # 5 Dec 2021 Brian Green
 #
@@ -31,10 +30,10 @@ testcase = """0,9 -> 5,9
 sub_map = defaultdict(int)
 
 for coord in data_set:
-    x, y = coord.split(' -> ')
+    x, y = coord.split(" -> ")
     # print(f"{x} {y}")
-    x1, y1 = x.split(',')
-    x2, y2 = y.split(',')
+    x1, y1 = x.split(",")
+    x2, y2 = y.split(",")
     x1 = int(x1)
     y1 = int(y1)
     x2 = int(x2)
@@ -45,7 +44,7 @@ for coord in data_set:
     elif y1 == y2:
         for x in range(min(x1, x2), max(x1, x2) + 1):
             sub_map[(x, y1)] += 1
-    elif abs(x1-x2) == abs(y1-y2):
+    elif abs(x1 - x2) == abs(y1 - y2):
         # print(f"{x1},{y1} {x2},{y2}")
         if x1 < x2:
             x_step = 1
