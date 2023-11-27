@@ -1,6 +1,9 @@
 # data files for AoC
 *.dat
 
+# Compiled Python file
+*.pyc
+
 # Compiled class file
 *.class
 

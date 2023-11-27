@@ -8,44 +8,62 @@
 import bisect
 import collections
 
-# filename = "test.dat"
-filename = "data.dat"
-with open(filename) as data_file:
-    data_set = [num.strip() for num in data_file.readlines()]
 
-# Each step has a done flag and a list of preceeding steps
-steps = {}
-for inst in data_set:
-    pred = inst[5]  # Preceeding step
-    next = inst[36]  # Current step
-    if pred not in steps:
-        # Add a new step if the preceeding step is not already in the dict
-        steps[pred] = {"done": False, "pred": []}
-    if next in steps:
-        # Update the sorted list of preceeding steps
-        bisect.insort(steps[next]["pred"], pred)
-    else:
-        # Add a new step if the next step is not already in the dict
-        steps[next] = {
-            "done": False,
-            "pred": [
-                pred,
-            ],
-        }
+def get_data():
+    """Read the data file and return a list of stripped strings of each line"""
+    filename = "data.dat"
+    with open(filename) as data_file:
+        data_set = [num.strip() for num in data_file.readlines()]
 
-all_steps = collections.OrderedDict(sorted(steps.items()))  # Place steps in alpha order
-order = []
-while len(order) < len(steps.keys()):
-    for step in all_steps:
-        if step not in order and not all_steps[step]["done"]:
-            blockers = 0
-            for pred in all_steps[step]["pred"]:
-                if not all_steps[pred]["done"]:
-                    blockers += 1
-                    break  # Not all preceeding steps done, no need to check further
-            if blockers == 0:
-                all_steps[step]["done"] = True
-                order.append(step)
-                break  # Need to check for newly unblocked steps in alpha order
+    return data_set
 
-print("".join(order))
+
+def get_steps(data_set):
+    # Each step has a done flag and a list of preceeding steps
+    steps = {}
+    for inst in data_set:
+        pred = inst[5]  # Preceeding step
+        next = inst[36]  # Current step
+        if pred not in steps:
+            # Add a new step if the preceeding step is not already in the dict
+            steps[pred] = {"done": False, "pred": []}
+        if next in steps:
+            # Update the sorted list of preceeding steps
+            bisect.insort(steps[next]["pred"], pred)
+        else:
+            # Add a new step if the next step is not already in the dict
+            steps[next] = {
+                "done": False,
+                "pred": [
+                    pred,
+                ],
+            }
+    return steps
+
+
+def get_all_steps_alpha(steps):
+    return collections.OrderedDict(sorted(steps.items()))  # Place steps in alpha order
+
+
+def get_steps_in_order(steps, all_steps):
+    order = []
+    while len(order) < len(steps.keys()):
+        for step in all_steps:
+            if step not in order and not all_steps[step]["done"]:
+                blockers = 0
+                for pred in all_steps[step]["pred"]:
+                    if not all_steps[pred]["done"]:
+                        blockers += 1
+                        break  # Not all preceeding steps done, no need to check further
+                if blockers == 0:
+                    all_steps[step]["done"] = True
+                    order.append(step)
+                    break  # Need to check for newly unblocked steps in alpha order
+    return order
+
+
+if __name__ == "__main__":
+    raw_data = get_data()
+    steps = get_steps(raw_data)
+    all_steps_alpha = get_all_steps_alpha(steps)
+    print("".join(get_steps_in_order(steps, all_steps_alpha)))
