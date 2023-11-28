@@ -5,18 +5,26 @@
 # What is the resulting frequency?
 #
 
-# filename = "test.dat"
-filename = "data.dat"
-with open(filename) as data_file:
-    data_set = [num.strip() for num in data_file.readlines()]
 
-freq = 0
-for adjust in data_set:
-    num = adjust[1:]
-    # print(num)
-    if adjust[0] == "-":
-        freq -= int(num)
-    else:
-        freq += int(num)
+def get_data():
+    """Read the data file and return a list of stripped strings of each line"""
+    filename = "data.dat"
+    with open(filename) as data_file:
+        data_set = [num.strip() for num in data_file.readlines()]
 
-print(freq)
+    return data_set
+
+
+def get_freq(data_set):
+    freq = 0
+    for adjust in data_set:
+        num = adjust[1:]
+        if adjust[0] == "-":
+            freq -= int(num)
+        else:
+            freq += int(num)
+    return freq
+
+
+if __name__ == "__main__":
+    print(get_freq(get_data()))

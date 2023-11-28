@@ -63,7 +63,6 @@ def get_steps_in_order(steps, all_steps):
 
 
 if __name__ == "__main__":
-    raw_data = get_data()
-    steps = get_steps(raw_data)
+    steps = get_steps(get_data())
     all_steps_alpha = get_all_steps_alpha(steps)
     print("".join(get_steps_in_order(steps, all_steps_alpha)))

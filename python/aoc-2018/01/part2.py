@@ -5,24 +5,24 @@
 # Which frequency does it reach twice?
 #
 
-import sys
+from part1 import get_data
 
-# filename = "test.dat"
-filename = "data.dat"
-with open(filename) as data_file:
-    data_set = [num.strip() for num in data_file.readlines()]
 
-freq = 0
-all_freqs = []
-while True:
-    for adjust in data_set:
-        num = adjust[1:]
-        if adjust[0] == "-":
-            freq -= int(num)
-        else:
-            freq += int(num)
-        if freq in all_freqs:
-            print(freq)
-            sys.exit()
-        else:
-            all_freqs.append(freq)
+def get_freq_found_twice(data_set):
+    freq = 0
+    all_freqs = []
+    while True:
+        for adjust in data_set:
+            num = adjust[1:]
+            if adjust[0] == "-":
+                freq -= int(num)
+            else:
+                freq += int(num)
+            if freq in all_freqs:
+                return freq
+            else:
+                all_freqs.append(freq)
+
+
+if __name__ == "__main__":
+    print(get_freq_found_twice(get_data()))
