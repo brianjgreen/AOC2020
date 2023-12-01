@@ -18,13 +18,19 @@ fn lines_from_file() -> Vec<String> {
         .collect()
 }
 
+fn get_dimentions(boxes: &String) -> (u32, u32, u32) {
+    let gift: Vec<&str> = boxes.split("x").collect();
+    let length: u32 = gift[0].parse().unwrap();
+    let width: u32 = gift[1].parse().unwrap();
+    let height: u32 = gift[2].parse().unwrap();
+
+    return (length, width, height);
+}
+
 fn get_wrapping_paper(dimensions: &Vec<String>) -> u32 {
     let mut total_paper = 0;
     for boxes in dimensions {
-        let gift: Vec<&str> = boxes.split("x").collect();
-        let length: u32 = gift[0].parse().unwrap();
-        let width: u32 = gift[1].parse().unwrap();
-        let height: u32 = gift[2].parse().unwrap();
+        let (length, width, height) = get_dimentions(boxes);
         let mut surface: Vec<u32> = Vec::new();
         surface.push(2 * length * width);
         surface.push(2 * width * height);
@@ -37,10 +43,7 @@ fn get_wrapping_paper(dimensions: &Vec<String>) -> u32 {
 fn get_ribbon(dimensions: &Vec<String>) -> u32 {
     let mut total_ribbon = 0;
     for boxes in dimensions {
-        let gift: Vec<&str> = boxes.split("x").collect();
-        let length: u32 = gift[0].parse().unwrap();
-        let width: u32 = gift[1].parse().unwrap();
-        let height: u32 = gift[2].parse().unwrap();
+        let (length, width, height) = get_dimentions(boxes);
         let mut perimeter: Vec<u32> = Vec::new();
         perimeter.push((2 * length) + (2 * width));
         perimeter.push((2 * width) + (2 * height));
