@@ -66,6 +66,76 @@ fn get_min_loc_seed_range(almanac: &Vec<String>) -> u64 {
         .split(" ")
         .map(|x| x.parse::<u64>().unwrap())
         .collect();
+    let mut location: u64 = 0;
+    loop {
+        let mut seed_line: i32 = (almanac.len() - 1).try_into().unwrap();
+        let mut map_line = almanac.len();
+        let mut seed_location = location;
+        let mut soil_found: bool = false;
+        while seed_line >= 0 { 
+            map_line -= 1;
+            let soil = &almanac[map_line];
+            if soil.contains(" map:") {
+                soil_found = false;
+            }
+            if !soil_found && !soil.contains(" map:") && !soil.contains("seeds") && soil.len() > 0 {
+                let dest_sour_rang: Vec<u64> =
+                    soil.split(" ").map(|x| x.parse::<u64>().unwrap()).collect();
+                let dest = dest_sour_rang[0];
+                let source = dest_sour_rang[1];
+                let seed_range = dest_sour_rang[2];
+
+                if seed_location >= source && seed_location < source + seed_range {
+                    soil_found = true;
+                    seed_location = dest + (seed_location - source);
+                }
+            }
+            seed_line -= 1;
+        }
+        let mut i = 0;
+        while i < seed_ranges.len() {
+            if seed_location >= seed_ranges[i] && seed_location < seed_ranges[i] + seed_ranges[i+1] {
+                return location;
+            }
+            i += 2;
+        }
+        location += 1;
+        if location % 100000 == 0 {
+            println!("loc={}", location)
+        }
+    }
+    /*
+    for init_seed in seeds {
+        let mut seed_location = init_seed;
+        let mut soil_found: bool = false;
+        for soil in almanac {
+            if soil.contains(" map:") {
+                soil_found = false;
+            }
+            if !soil_found && !soil.contains(" map:") && !soil.contains("seeds") && soil.len() > 0 {
+                let dest_sour_rang: Vec<u64> =
+                    soil.split(" ").map(|x| x.parse::<u64>().unwrap()).collect();
+                let dest = dest_sour_rang[0];
+                let source = dest_sour_rang[1];
+                let seed_range = dest_sour_rang[2];
+
+                if seed_location >= source && seed_location < source + seed_range {
+                    soil_found = true;
+                    seed_location = dest + (seed_location - source);
+                }
+            }
+        }
+        if min_location == 0 || seed_location < min_location {
+            min_location = seed_location;
+        }
+    }
+    min_location*/
+    /*
+    let seed_header: Vec<&str> = almanac[0].split(": ").collect();
+    let seed_ranges: Vec<u64> = seed_header[1]
+        .split(" ")
+        .map(|x| x.parse::<u64>().unwrap())
+        .collect();
     let mut i = 0;
     while i < seed_ranges.len() {
         let s_range: u64 = seed_ranges[i] + seed_ranges[i + 1];
@@ -73,8 +143,8 @@ fn get_min_loc_seed_range(almanac: &Vec<String>) -> u64 {
         println!("Seeds generated");
         println!("{}", low_seed_loc(&almanac, more_seeds));
         i += 2;
-    }
-    0 // Brute force is not working, need to optimize the algo
+    }*/
+    //0
 }
 
 fn main() -> std::io::Result<()> {
