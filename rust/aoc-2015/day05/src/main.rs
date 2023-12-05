@@ -24,19 +24,19 @@ fn num_vowels(message: &String) -> usize {
     for letter in "aeiou".chars() {
         num_vowels += message.matches(letter).count();
     }
-    return num_vowels;
+    num_vowels
 }
 
 // Return the number of double chars in a message
-fn num_doubles(message: &String) -> usize {
+fn num_doubles(message: &String, step: usize) -> usize {
     let mut num_doubles = 0;
     let letters: Vec<char> = message.chars().collect();
-    for i in 0..letters.len() - 1 {
-        if letters[i] == letters[i + 1] {
+    for i in 0..letters.len() - step {
+        if letters[i] == letters[i + step] {
             num_doubles += 1;
         }
     }
-    return num_doubles;
+    num_doubles
 }
 
 // Return true if any of the naughty strings are in a message
@@ -47,7 +47,7 @@ fn contains_naugty_string(message: &String) -> bool {
             return true;
         }
     }
-    return false;
+    false
 }
 
 // Find the number of nice messages based on Part 1 rules
@@ -59,7 +59,7 @@ fn num_nice(letters: &Vec<String>) -> u32 {
             continue;
         }
         // Contains at least one letter that appears twice in a row
-        if num_doubles(&entry) == 0 {
+        if num_doubles(&entry, 1) == 0 {
             continue;
         }
         // Does not contain the strings ab, cd, pq, or xy
@@ -68,7 +68,7 @@ fn num_nice(letters: &Vec<String>) -> u32 {
         }
         total_nice += 1;
     }
-    return total_nice;
+    total_nice
 }
 
 // Return the number of identical non-overlapping pairs of chars
@@ -79,19 +79,7 @@ fn num_pairs(message: &String) -> usize {
             num_pairs += 1;
         }
     }
-    return num_pairs;
-}
-
-// Return the number of doubles with one char between them
-fn num_gap_doubles(message: &String) -> usize {
-    let mut num_doubles = 0;
-    let letters: Vec<char> = message.chars().collect();
-    for i in 0..letters.len() - 2 {
-        if letters[i] == letters[i + 2] {
-            num_doubles += 1;
-        }
-    }
-    return num_doubles;
+    num_pairs
 }
 
 // Find the number of nice messages based on Part 2 rules
@@ -103,7 +91,7 @@ fn num_nice_alternate(letters: &Vec<String>) -> u32 {
             continue;
         }
         // Contains at least one letter which repeats with exactly one letter between them
-        if num_gap_doubles(&entry) == 0 {
+        if num_doubles(&entry, 2) == 0 {
             continue;
         }
         total_nice += 1;

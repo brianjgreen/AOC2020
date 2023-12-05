@@ -26,7 +26,7 @@ fn get_num_houses(directions: &String) -> usize {
         let count = houses.entry((x, y)).or_insert(0);
         *count += 1;
     }
-    return houses.keys().len();
+    houses.keys().len()
 }
 
 fn get_num_houses_two_santas(directions: &String) -> usize {
@@ -60,7 +60,7 @@ fn get_num_houses_two_santas(directions: &String) -> usize {
             *count += 1;
         }
     }
-    return houses.keys().len();
+    houses.keys().len()
 }
 
 fn main() -> std::io::Result<()> {

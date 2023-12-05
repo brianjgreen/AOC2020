@@ -24,7 +24,7 @@ fn get_dimentions(boxes: &String) -> (u32, u32, u32) {
     let width: u32 = gift[1].parse().unwrap();
     let height: u32 = gift[2].parse().unwrap();
 
-    return (length, width, height);
+    (length, width, height)
 }
 
 fn get_wrapping_paper(dimensions: &Vec<String>) -> u32 {
@@ -37,7 +37,7 @@ fn get_wrapping_paper(dimensions: &Vec<String>) -> u32 {
         surface.push(2 * height * length);
         total_paper += surface.iter().sum::<u32>() + (surface.iter().min().unwrap() / 2);
     }
-    return total_paper;
+    total_paper
 }
 
 fn get_ribbon(dimensions: &Vec<String>) -> u32 {
@@ -50,7 +50,7 @@ fn get_ribbon(dimensions: &Vec<String>) -> u32 {
         perimeter.push((2 * height) + (2 * length));
         total_ribbon += (length * width * height) + perimeter.iter().min().unwrap();
     }
-    return total_ribbon;
+    total_ribbon
 }
 
 fn main() -> std::io::Result<()> {

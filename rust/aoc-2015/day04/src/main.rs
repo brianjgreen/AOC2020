@@ -13,8 +13,7 @@ fn find_hash(size: usize) -> i32 {
         base += 1;
         let base_hex = format!("{}", base);
         let secret = "iwrupvqb".to_owned() + &base_hex;
-        let digest = md5::compute(&secret);
-        let hash = format!("{:x}", digest);
+        let hash = format!("{:x}", md5::compute(&secret));
         let compare = "0".repeat(size);
         if hash[0..size] == compare.to_owned() {
             return base;

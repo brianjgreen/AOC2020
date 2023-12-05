@@ -23,7 +23,7 @@ fn find_floor(directions: &String) -> i32 {
     for movement in directions.chars() {
         floor += get_floor_movement(movement);
     }
-    return floor;
+    floor
 }
 
 fn find_basement_position(directions: &String) -> i32 {
@@ -37,7 +37,7 @@ fn find_basement_position(directions: &String) -> i32 {
         }
     }
     println!("Unable to find basement!");
-    return 0;
+    0
 }
 
 fn main() -> std::io::Result<()> {
