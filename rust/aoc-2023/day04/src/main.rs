@@ -25,7 +25,7 @@ fn get_winners_players(card: &String) -> (Vec<&str>, Vec<&str>) {
     let numbers: Vec<&str> = card_format[1].split("|").collect();
     let winners: Vec<&str> = numbers[0].split(" ").collect();
     let my_picks: Vec<&str> = numbers[1].split(" ").collect();
-    return (winners, my_picks);
+    (winners, my_picks)
 }
 
 // Tally the score of winning numbers on a card
@@ -48,7 +48,7 @@ fn get_score(card: &String) -> i32 {
             }
         }
     }
-    return final_score;
+    final_score
 }
 
 // Return the number of winning player numbers on a card
@@ -66,7 +66,7 @@ fn get_winners(card: &String) -> i32 {
             }
         }
     }
-    return num_of_winners;
+    num_of_winners
 }
 
 // Sum all of the scores from each card
@@ -75,7 +75,7 @@ fn score_winners(cards: &Vec<String>) -> i32 {
     for scratch_card in cards {
         total_score += get_score(&scratch_card)
     }
-    return total_score;
+    total_score
 }
 
 fn num_of_scratch_tickets(cards: &Vec<String>) -> i32 {
@@ -102,13 +102,7 @@ fn num_of_scratch_tickets(cards: &Vec<String>) -> i32 {
             num_win -= 1;
         }
     }
-    // Need to optimize the code to sum all values of a HashMap
-    let all_values = total_cards.values();
-    let mut grand_total: i32 = 0;
-    for val in all_values {
-        grand_total += val;
-    }
-    return grand_total;
+    total_cards.values().sum()
 }
 
 fn main() -> std::io::Result<()> {
