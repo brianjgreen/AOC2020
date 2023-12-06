@@ -85,9 +85,9 @@ fn get_min_loc_seed_range(almanac: &Vec<String>) -> u64 {
                 let source = dest_sour_rang[1];
                 let seed_range = dest_sour_rang[2];
 
-                if seed_location >= source && seed_location < source + seed_range {
+                if seed_location >= dest && seed_location < dest + seed_range {
                     soil_found = true;
-                    seed_location = dest + (seed_location - source);
+                    seed_location = source + (seed_location - dest);
                 }
             }
             seed_line -= 1;
