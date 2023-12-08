@@ -38,8 +38,8 @@ fn str_char_freq(word: &str) -> HashMap<char, i32> {
 }
 
 // Convert the cards into alphabetic order so their values can be sorted
-fn get_card_value(hand: &str) -> String {
-    let card_to_alpha = HashMap::from([
+fn get_card_value(hand: &str, part2: bool) -> String {
+    let mut card_to_alpha = HashMap::from([
         ('A', 'a'),
         ('K', 'b'),
         ('Q', 'c'),
@@ -54,11 +54,14 @@ fn get_card_value(hand: &str) -> String {
         ('3', 'l'),
         ('2', 'm'),
     ]);
+    if part2 {
+        card_to_alpha.remove(&'J');
+        card_to_alpha.insert('J', 'n');
+    }
     let mut alpha_hand: String = String::new();
     for c in hand.chars() {
         alpha_hand.push(*card_to_alpha.get(&c).unwrap());
     }
-    println!("hand={} alpha={}", hand, alpha_hand);
     alpha_hand
 }
 
@@ -70,8 +73,16 @@ fn get_card_value(hand: &str) -> String {
 // Two pair, where two cards share one label, two other cards share a second label, and the remaining card has a third label: 23432
 // One pair, where two cards share one label, and the other three cards have a different label from the pair and each other: A23A4
 // High card, where all cards' labels are distinct: 23456
-fn get_hand_type(hand: &str) -> HandType {
-    let card_freq = str_char_freq(hand);
+fn get_hand_type(hand: &str, part2: bool) -> HandType {
+    let mut card_freq = str_char_freq(hand);
+    let mut jokers = 0;
+    if part2 && card_freq.get(&'n') != None {
+        jokers = card_freq.get(&'n').unwrap().clone();
+        card_freq.remove(&'n');
+        if jokers == 5 {
+            return HandType::FiveOfAKind;
+        }
+    }
     let distro: Vec<_> = card_freq.values().collect();
     // Need to optmize the checking of the values
     // Not sure that &&num[x] is the correct way to do this
@@ -79,28 +90,55 @@ fn get_hand_type(hand: &str) -> HandType {
     if distro.contains(&&num[5]) {
         return HandType::FiveOfAKind;
     } else if distro.contains(&&num[4]) {
+        if jokers == 1 {
+            return HandType::FiveOfAKind;
+        }
         return HandType::FourOfAKind;
     } else if distro.contains(&&num[3]) && distro.contains(&&num[2]) {
         return HandType::FullHouse;
     } else if distro.contains(&&num[3]) {
+        if jokers == 2 {
+            return HandType::FiveOfAKind;
+        } else if jokers == 1 {
+            return HandType::FourOfAKind;
+        }
         return HandType::ThreeOfAKind;
     } else if distro.contains(&&num[2]) {
         if distro.iter().filter(|&n| *n == &num[2]).count() == 2 {
+            if jokers == 1 {
+                return HandType::FullHouse;
+            }
             return HandType::TwoPair;
         } else {
+            if jokers == 1 {
+                return HandType::ThreeOfAKind;
+            } else if jokers == 2 {
+                return HandType::FourOfAKind;
+            } else if jokers == 3 {
+                return HandType::FiveOfAKind;
+            }
             return HandType::OnePair;
         }
     } else {
+        if jokers == 1 {
+            return HandType::OnePair;
+        } else if jokers == 2 {
+            return HandType::ThreeOfAKind;
+        } else if jokers == 3 {
+            return HandType::FourOfAKind;
+        } else if jokers == 4 {
+            return HandType::FiveOfAKind;
+        }
         return HandType::HighCard;
     }
 }
 
 // Parse the data file into a HashMap of hand with bid
-fn get_hands_with_bids(hands: &Vec<String>) -> HashMap<String, u64> {
+fn get_hands_with_bids(hands: &Vec<String>, part2: bool) -> HashMap<String, u64> {
     let mut hands_bids: HashMap<String, u64> = HashMap::new();
     for hand_bid in hands {
         let hand_bid_format: Vec<&str> = hand_bid.split(" ").collect();
-        let hand = get_card_value(hand_bid_format[0]);
+        let hand = get_card_value(hand_bid_format[0], part2);
         let bid: u64 = hand_bid_format[1].parse().unwrap();
         hands_bids.insert(hand, bid);
     }
@@ -109,9 +147,9 @@ fn get_hands_with_bids(hands: &Vec<String>) -> HashMap<String, u64> {
 
 // Sort the hands into hand types then sort by value low to high
 // Return the sum the products from lowest value to highest multiplied by enumerator
-fn get_total_winnings(hands: &Vec<String>) -> u64 {
+fn get_total_winnings(hands: &Vec<String>, part2: bool) -> u64 {
     let mut counter: u64 = 0;
-    let hands_bids = get_hands_with_bids(hands);
+    let hands_bids = get_hands_with_bids(hands, part2);
     let mut five_of_a_kind: Vec<&str> = Vec::new();
     let mut four_of_a_kind: Vec<&str> = Vec::new();
     let mut full_house: Vec<&str> = Vec::new();
@@ -121,7 +159,7 @@ fn get_total_winnings(hands: &Vec<String>) -> u64 {
     let mut high_card: Vec<&str> = Vec::new();
 
     for hand in hands_bids.keys() {
-        match get_hand_type(hand) {
+        match get_hand_type(hand, part2) {
             HandType::FiveOfAKind => five_of_a_kind.push(hand),
             HandType::FourOfAKind => four_of_a_kind.push(hand),
             HandType::FullHouse => full_house.push(hand),
@@ -145,6 +183,8 @@ fn get_total_winnings(hands: &Vec<String>) -> u64 {
     one_pair.reverse();
     high_card.sort();
     high_card.reverse();
+
+    println!("{:?}", high_card);
 
     let mut i: u64 = 1;
     for cards in high_card {
@@ -181,8 +221,8 @@ fn get_total_winnings(hands: &Vec<String>) -> u64 {
 fn main() -> std::io::Result<()> {
     let hands = lines_from_file();
     // Part 1
-    println!("Part 1 = {}", get_total_winnings(&hands));
+    println!("Part 1 = {}", get_total_winnings(&hands, false));
     // Part 2
-    // println!("Part 2 = {}", num_of_scratch_tickets(&cards));
+    println!("Part 2 = {}", get_total_winnings(&hands, true));
     Ok(())
 }
