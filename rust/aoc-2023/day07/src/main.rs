@@ -1,14 +1,15 @@
 // Advent of Code 2023 - Day 7
 // Rust solution: 7 Dec 2023 Brian Green
 //
-// Problem 1: What are the total winnings??
-// Problem 2: ?
+// Problem 1: What are the total winnings?
+// Problem 2: What are the new total winnings? (Joker rules)
 use std::collections::HashMap;
 use std::{
     fs::File,
     io::{prelude::*, BufReader},
 };
 
+// Types of Hands ordered by strength (highest to lowest)
 enum HandType {
     FiveOfAKind,
     FourOfAKind,
@@ -97,12 +98,11 @@ fn get_hand_type(hand: &str, part2: bool) -> HandType {
     } else if distro.contains(&&num[3]) && distro.contains(&&num[2]) {
         return HandType::FullHouse;
     } else if distro.contains(&&num[3]) {
-        if jokers == 2 {
-            return HandType::FiveOfAKind;
-        } else if jokers == 1 {
-            return HandType::FourOfAKind;
+        match jokers {
+            1 => return HandType::FourOfAKind,
+            2 => return HandType::FiveOfAKind,
+            _ => return HandType::ThreeOfAKind,
         }
-        return HandType::ThreeOfAKind;
     } else if distro.contains(&&num[2]) {
         if distro.iter().filter(|&n| *n == &num[2]).count() == 2 {
             if jokers == 1 {
@@ -110,26 +110,21 @@ fn get_hand_type(hand: &str, part2: bool) -> HandType {
             }
             return HandType::TwoPair;
         } else {
-            if jokers == 1 {
-                return HandType::ThreeOfAKind;
-            } else if jokers == 2 {
-                return HandType::FourOfAKind;
-            } else if jokers == 3 {
-                return HandType::FiveOfAKind;
+            match jokers {
+                1 => return HandType::ThreeOfAKind,
+                2 => return HandType::FourOfAKind,
+                3 => return HandType::FiveOfAKind,
+                _ =>  return HandType::OnePair,
             }
-            return HandType::OnePair;
         }
     } else {
-        if jokers == 1 {
-            return HandType::OnePair;
-        } else if jokers == 2 {
-            return HandType::ThreeOfAKind;
-        } else if jokers == 3 {
-            return HandType::FourOfAKind;
-        } else if jokers == 4 {
-            return HandType::FiveOfAKind;
+        match jokers {
+            1 => return HandType::OnePair,
+            2 => return HandType::ThreeOfAKind,
+            3 => return HandType::FourOfAKind,
+            4 => return HandType::FiveOfAKind,
+            _ => return HandType::HighCard,
         }
-        return HandType::HighCard;
     }
 }
 
@@ -183,8 +178,6 @@ fn get_total_winnings(hands: &Vec<String>, part2: bool) -> u64 {
     one_pair.reverse();
     high_card.sort();
     high_card.reverse();
-
-    println!("{:?}", high_card);
 
     let mut i: u64 = 1;
     for cards in high_card {
