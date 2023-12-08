@@ -9,6 +9,16 @@ use std::{
     io::{prelude::*, BufReader},
 };
 
+enum HandType {
+    FiveOfAKind,
+    FourOfAKind,
+    FullHouse,
+    ThreeOfAKind,
+    TwoPair,
+    OnePair,
+    HighCard,
+}
+
 // Return a Vector of Strings, each element is a String of a row of data
 fn lines_from_file() -> Vec<String> {
     let file = File::open("data.dat").expect("Unable to read data file.");
@@ -27,64 +37,143 @@ fn str_char_freq(word: &str) -> HashMap<char, i32> {
     })
 }
 
+// Convert the cards into alphabetic order so their values can be sorted
+fn get_card_value(hand: &str) -> String {
+    let card_to_alpha = HashMap::from([
+        ('A', 'a'),
+        ('K', 'b'),
+        ('Q', 'c'),
+        ('J', 'd'),
+        ('T', 'e'),
+        ('9', 'f'),
+        ('8', 'g'),
+        ('7', 'h'),
+        ('6', 'i'),
+        ('5', 'j'),
+        ('4', 'k'),
+        ('3', 'l'),
+        ('2', 'm'),
+    ]);
+    let mut alpha_hand: String = String::new();
+    for c in hand.chars() {
+        alpha_hand.push(*card_to_alpha.get(&c).unwrap());
+    }
+    println!("hand={} alpha={}", hand, alpha_hand);
+    alpha_hand
+}
+
 // Every hand is exactly one type. From strongest to weakest, they are:
-// 6 - Five of a kind, where all five cards have the same label: AAAAA
-// 5 - Four of a kind, where four cards have the same label and one card has a different label: AA8AA
-// 4 - Full house, where three cards have the same label, and the remaining two cards share a different label: 23332
-// 3 - Three of a kind, where three cards have the same label, and the remaining two cards are each different from any other card in the hand: TTT98
-// 2 - Two pair, where two cards share one label, two other cards share a second label, and the remaining card has a third label: 23432
-// 1 - One pair, where two cards share one label, and the other three cards have a different label from the pair and each other: A23A4
-// 0 - High card, where all cards' labels are distinct: 23456
-fn get_hand_type(hand: &str) -> u64 {
+// Five of a kind, where all five cards have the same label: AAAAA
+// Four of a kind, where four cards have the same label and one card has a different label: AA8AA
+// Full house, where three cards have the same label, and the remaining two cards share a different label: 23332
+// Three of a kind, where three cards have the same label, and the remaining two cards are each different from any other card in the hand: TTT98
+// Two pair, where two cards share one label, two other cards share a second label, and the remaining card has a third label: 23432
+// One pair, where two cards share one label, and the other three cards have a different label from the pair and each other: A23A4
+// High card, where all cards' labels are distinct: 23456
+fn get_hand_type(hand: &str) -> HandType {
     let card_freq = str_char_freq(hand);
-    let mut hand_type: u64 = 0;
     let distro: Vec<_> = card_freq.values().collect();
     // Need to optmize the checking of the values
     // Not sure that &&num[x] is the correct way to do this
     let num: Vec<i32> = vec![0, 1, 2, 3, 4, 5];
     if distro.contains(&&num[5]) {
-        println!("{} is 5 of a kind!", hand);
-        hand_type = 6;
+        return HandType::FiveOfAKind;
     } else if distro.contains(&&num[4]) {
-        println!("{} is 4 of a kind!", hand);
-        hand_type = 5;
+        return HandType::FourOfAKind;
     } else if distro.contains(&&num[3]) && distro.contains(&&num[2]) {
-        println!("{} is a full house!", hand);
-        hand_type = 4;
+        return HandType::FullHouse;
     } else if distro.contains(&&num[3]) {
-        println!("{} is a three of a kind!", hand);
-        hand_type = 3;
+        return HandType::ThreeOfAKind;
     } else if distro.contains(&&num[2]) {
         if distro.iter().filter(|&n| *n == &num[2]).count() == 2 {
-            println!("{} is two pairs.", hand);
-            hand_type = 2;
+            return HandType::TwoPair;
         } else {
-            println!("{} is a pair.", hand);
-            hand_type = 1;
+            return HandType::OnePair;
         }
     } else {
-        println!("{} is high card only.", hand);
+        return HandType::HighCard;
     }
-    hand_type
 }
 
-fn get_hands_with_bids(hands: &Vec<String>) -> HashMap<&str, u64> {
-    let mut hands_bids: HashMap<&str, u64> = HashMap::new();
+// Parse the data file into a HashMap of hand with bid
+fn get_hands_with_bids(hands: &Vec<String>) -> HashMap<String, u64> {
+    let mut hands_bids: HashMap<String, u64> = HashMap::new();
     for hand_bid in hands {
         let hand_bid_format: Vec<&str> = hand_bid.split(" ").collect();
-        let hand = hand_bid_format[0];
+        let hand = get_card_value(hand_bid_format[0]);
         let bid: u64 = hand_bid_format[1].parse().unwrap();
         hands_bids.insert(hand, bid);
     }
     hands_bids
 }
 
+// Sort the hands into hand types then sort by value low to high
+// Return the sum the products from lowest value to highest multiplied by enumerator
 fn get_total_winnings(hands: &Vec<String>) -> u64 {
-    // println!("{:?}", hands);
     let mut counter: u64 = 0;
     let hands_bids = get_hands_with_bids(hands);
+    let mut five_of_a_kind: Vec<&str> = Vec::new();
+    let mut four_of_a_kind: Vec<&str> = Vec::new();
+    let mut full_house: Vec<&str> = Vec::new();
+    let mut three_of_a_kind: Vec<&str> = Vec::new();
+    let mut two_pair: Vec<&str> = Vec::new();
+    let mut one_pair: Vec<&str> = Vec::new();
+    let mut high_card: Vec<&str> = Vec::new();
+
     for hand in hands_bids.keys() {
-        counter += get_hand_type(*hand);
+        match get_hand_type(hand) {
+            HandType::FiveOfAKind => five_of_a_kind.push(hand),
+            HandType::FourOfAKind => four_of_a_kind.push(hand),
+            HandType::FullHouse => full_house.push(hand),
+            HandType::ThreeOfAKind => three_of_a_kind.push(hand),
+            HandType::TwoPair => two_pair.push(hand),
+            HandType::OnePair => one_pair.push(hand),
+            HandType::HighCard => high_card.push(hand),
+        }
+    }
+    five_of_a_kind.sort();
+    five_of_a_kind.reverse();
+    four_of_a_kind.sort();
+    four_of_a_kind.reverse();
+    full_house.sort();
+    full_house.reverse();
+    three_of_a_kind.sort();
+    three_of_a_kind.reverse();
+    two_pair.sort();
+    two_pair.reverse();
+    one_pair.sort();
+    one_pair.reverse();
+    high_card.sort();
+    high_card.reverse();
+
+    let mut i: u64 = 1;
+    for cards in high_card {
+        counter += i * hands_bids.get(cards).unwrap();
+        i += 1;
+    }
+    for cards in one_pair {
+        counter += i * hands_bids.get(cards).unwrap();
+        i += 1;
+    }
+    for cards in two_pair {
+        counter += i * hands_bids.get(cards).unwrap();
+        i += 1;
+    }
+    for cards in three_of_a_kind {
+        counter += i * hands_bids.get(cards).unwrap();
+        i += 1;
+    }
+    for cards in full_house {
+        counter += i * hands_bids.get(cards).unwrap();
+        i += 1;
+    }
+    for cards in four_of_a_kind {
+        counter += i * hands_bids.get(cards).unwrap();
+        i += 1;
+    }
+    for cards in five_of_a_kind {
+        counter += i * hands_bids.get(cards).unwrap();
+        i += 1;
     }
     counter
 }
