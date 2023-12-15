@@ -1,8 +1,8 @@
 // Advent of Code 2023 - Day 9
 // Rust solution: 11 Dec 2023 Brian Green
 //
-// Problem 1: What is the sum of these extrapolated values?
-// Problem 2: What is the sum of these extrapolated values?
+// Problem 1: What is the sum of these extrapolated values? (end)
+// Problem 2: What is the sum of these extrapolated values? (beginning)
 //use std::collections::HashMap;
 use std::{
     fs::File,
