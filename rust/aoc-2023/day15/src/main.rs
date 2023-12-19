@@ -2,7 +2,7 @@
 // Rust solution: 15 Dec 2023 Brian Green
 //
 // Problem 1: What is the sum of the results?
-// Problem 2: 
+// Problem 2:
 //use std::collections::HashMap;
 use std::{
     fs::File,
@@ -22,7 +22,7 @@ fn lines_from_file(filename: String) -> Vec<String> {
 fn get_hash(curr_hash: &str) -> i64 {
     let mut curr_val = 0;
     for c in curr_hash.bytes() {
-        // Determine the ASCII code for the current character of the string.            
+        // Determine the ASCII code for the current character of the string.
         // Increase the current value by the ASCII code you just determined.
         curr_val += c as i64;
 
