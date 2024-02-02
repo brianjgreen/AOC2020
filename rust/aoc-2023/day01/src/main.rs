@@ -20,7 +20,7 @@ fn lines_from_file() -> Vec<String> {
 
 // Convert spelled out numbers from words to digits
 // Note that some of the words overlap, substitution may corrupt the second word
-fn word_to_digit(value: &String) -> String {
+fn word_to_digit(value: &str) -> String {
     let num_name: HashMap<&str, &str> = HashMap::from([
         ("one", "1"),
         ("two", "2"),
@@ -50,7 +50,7 @@ fn word_to_digit(value: &String) -> String {
             }
         }
     }
-    let mut new_value = value.clone();
+    let mut new_value = value.to_owned();
     // Replace the first and last digit words with the digit (e.g one -> 1)
     if min_word.1 != no_word {
         // Double the last char in a digit word, inject that into the string so that the overlapping digit word is preserved
@@ -68,17 +68,17 @@ fn word_to_digit(value: &String) -> String {
     if max_word.1 != no_word {
         new_value = str::replace(&new_value, max_word.1, num_name[max_word.1]);
     }
-    return new_value;
+    new_value
 }
 
 // Find the first and last digits in each line
 // Note that if there is only one digit in a line, it is both first and last
-fn get_calibration_value(value: &String) -> i32 {
+fn get_calibration_value(value: &str) -> i32 {
     let mut found_first: bool = false;
     let mut first = ' ';
     let mut last = ' ';
     for digit in value.chars() {
-        if digit.is_digit(10) {
+        if digit.is_ascii_digit() {
             if !found_first {
                 first = digit;
                 last = digit;
@@ -89,25 +89,25 @@ fn get_calibration_value(value: &String) -> i32 {
         }
     }
     let calibration = first.to_string() + &last.to_string();
-    return calibration.parse::<i32>().unwrap();
+    calibration.parse::<i32>().unwrap()
 }
 
 // Sum the first and last digits in each line
 fn get_calibration(calculations: &Vec<String>) -> i32 {
     let mut total_calc: i32 = 0;
     for value in calculations {
-        total_calc += get_calibration_value(&value);
+        total_calc += get_calibration_value(value);
     }
-    return total_calc;
+    total_calc
 }
 
 // Sum the first and last digits in each line, include digits spelled out as words (e.g. "eight")
 fn get_calibration_words(calculations: &Vec<String>) -> i32 {
     let mut total_calc: i32 = 0;
     for value in calculations {
-        total_calc += get_calibration_value(&word_to_digit(&value));
+        total_calc += get_calibration_value(&word_to_digit(value));
     }
-    return total_calc;
+    total_calc
 }
 
 fn main() -> std::io::Result<()> {
