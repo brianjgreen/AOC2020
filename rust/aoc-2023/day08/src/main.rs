@@ -48,14 +48,14 @@ fn gcd_of_two_numbers(a: u64, b: u64) -> u64 {
 // Brute force takes way too long. Figured out the pattern of the ghost travel path cycles were a multiple of
 // the length of the directions. After some debug and experimentation, figured out the quick way is to find the
 // least common multiplier of the number of steps each ghost takes to get from xxA to xxZ
-fn get_num_steps(path_map: &Vec<String>, part2: bool) -> u64 {
+fn get_num_steps(path_map: &[String], part2: bool) -> u64 {
     let directions = &path_map[0];
     let mut left_dir: HashMap<String, String> = HashMap::new();
     let mut right_dir: HashMap<String, String> = HashMap::new();
-    for map_dir in 2..path_map.len() {
-        let map_dir_format: Vec<&str> = path_map[map_dir].split(" = ").collect();
+    for path_map_dir in path_map.iter().skip(2) {
+        let map_dir_format: Vec<&str> = path_map_dir.split(" = ").collect();
         let key: String = map_dir_format[0].to_string();
-        let left_right_raw = map_dir_format[1].replace("(", "").replace(")", "");
+        let left_right_raw = map_dir_format[1].replace(['(', ')'], "");
         let left_right_format: Vec<&str> = left_right_raw.split(", ").collect();
         left_dir.insert(key.clone(), left_right_format[0].to_string());
         right_dir.insert(key.clone(), left_right_format[1].to_string());
@@ -75,17 +75,17 @@ fn get_num_steps(path_map: &Vec<String>, part2: bool) -> u64 {
         }
     }
     loop {
-        for i in 0..directions.len() {
+        for this_char in next_char.iter().take(directions.len()) {
             count += 1;
             if part2 {
-                for j in 0..all_curr.len() {
-                    if next_char[i] == 'L' {
+                for this_ghost in &mut all_curr {
+                    if *this_char == 'L' {
                         // There must be a way to optmize this ownership of strings
-                        all_curr[j] = left_dir.get(&all_curr[j]).unwrap().to_string();
+                        *this_ghost = left_dir.get(this_ghost).unwrap().to_string();
                     } else {
-                        all_curr[j] = right_dir.get(&all_curr[j]).unwrap().to_string();
+                        *this_ghost = right_dir.get(this_ghost).unwrap().to_string();
                     }
-                    if all_done.contains(&all_curr[j]) {
+                    if all_done.contains(this_ghost) {
                         // Ghost completed one whole path cycle
                         ghost_path.push(count);
                     }
@@ -96,7 +96,7 @@ fn get_num_steps(path_map: &Vec<String>, part2: bool) -> u64 {
                 }
             } else {
                 // Part 1
-                if next_char[i] == 'L' {
+                if *this_char == 'L' {
                     current = left_dir.get(&current).unwrap().to_string();
                 } else {
                     current = right_dir.get(&current).unwrap().to_string();

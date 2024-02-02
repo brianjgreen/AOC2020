@@ -50,7 +50,7 @@ fn process_part(
                 return process_part(x, m, a, s, test, rules);
             }
             // If workflow matches a rule, execute the result (could be A, R, or next rule/workflow)
-            let rule_format: Vec<_> = test.split(":").collect();
+            let rule_format: Vec<_> = test.split(':').collect();
             let test_value: i64 = rule_format[0][2..rule_format[0].len()].parse().unwrap();
             let next_rule = rule_format[1];
             if lt_gt == '>' {
@@ -61,14 +61,12 @@ fn process_part(
                 {
                     return process_part(x, m, a, s, next_rule, rules);
                 }
-            } else {
-                if (cat == 'x' && x < test_value)
-                    || (cat == 'm' && m < test_value)
-                    || (cat == 'a' && a < test_value)
-                    || (cat == 's' && s < test_value)
-                {
-                    return process_part(x, m, a, s, next_rule, rules);
-                }
+            } else if (cat == 'x' && x < test_value)
+                || (cat == 'm' && m < test_value)
+                || (cat == 'a' && a < test_value)
+                || (cat == 's' && s < test_value)
+            {
+                return process_part(x, m, a, s, next_rule, rules);
             }
         }
     }
@@ -106,7 +104,7 @@ fn get_part_nums(part: &String) -> (i64, i64, i64, i64) {
 fn get_parts(part_data: &Vec<String>) -> Vec<String> {
     let mut parts: Vec<String> = Vec::new();
     for data in part_data {
-        if data.len() > 0 && data.chars().next().unwrap() == '{' {
+        if !data.is_empty() && data.starts_with('{') {
             parts.push(data.to_string());
         }
     }
@@ -117,7 +115,7 @@ fn get_parts(part_data: &Vec<String>) -> Vec<String> {
 fn get_rules(part_data: &Vec<String>) -> HashMap<&str, &str> {
     let mut rules: HashMap<&str, &str> = HashMap::new();
     for data in part_data {
-        if data.len() > 0 && data.chars().next().unwrap() != '{' {
+        if !data.is_empty() && !data.starts_with('{') {
             let rule_format: Vec<_> = data[0..data.len() - 1].split('{').collect();
             rules.insert(rule_format[0], rule_format[1]);
         }

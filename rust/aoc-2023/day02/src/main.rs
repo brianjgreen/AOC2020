@@ -17,9 +17,9 @@ fn lines_from_file() -> Vec<String> {
 }
 
 // Return the Game id number from the gaming session
-fn get_game_id(game_play: &String) -> i32 {
-    let game_format: Vec<&str> = game_play.split(":").collect();
-    let game_header: Vec<&str> = game_format[0].split(" ").collect();
+fn get_game_id(game_play: &str) -> i32 {
+    let game_format: Vec<&str> = game_play.split(':').collect();
+    let game_header: Vec<&str> = game_format[0].split(' ').collect();
     let game_id: i32 = game_header[1].parse().unwrap();
     game_id
 }
@@ -29,9 +29,9 @@ fn min_cubes_needed(game: &str) -> (i32, i32, i32) {
     let mut red: i32 = 0;
     let mut green: i32 = 0;
     let mut blue: i32 = 0;
-    let dice: Vec<&str> = game.split(",").collect();
+    let dice: Vec<&str> = game.split(',').collect();
     for die in dice {
-        let parts: Vec<&str> = die.split(" ").collect();
+        let parts: Vec<&str> = die.split(' ').collect();
         let number_of_die: i32 = parts[1].parse().unwrap();
         if die.contains("red") {
             red += number_of_die;
@@ -57,9 +57,9 @@ fn is_cheating(game: &str) -> bool {
 }
 
 // Returns true if the game was played with the available dice quantities
-fn is_game_possible(game_play: &String) -> bool {
-    let game_format: Vec<&str> = game_play.split(":").collect();
-    let game_sets: Vec<&str> = game_format[1].split(";").collect();
+fn is_game_possible(game_play: &str) -> bool {
+    let game_format: Vec<&str> = game_play.split(':').collect();
+    let game_sets: Vec<&str> = game_format[1].split(';').collect();
     for game in game_sets {
         if is_cheating(game) {
             return false;
@@ -72,8 +72,8 @@ fn is_game_possible(game_play: &String) -> bool {
 fn sum_possible_games(games: &Vec<String>) -> i32 {
     let mut total_ids: i32 = 0;
     for game_play in games {
-        let game_id = get_game_id(&game_play);
-        if is_game_possible(&game_play) {
+        let game_id = get_game_id(game_play);
+        if is_game_possible(game_play) {
             total_ids += game_id
         }
     }
@@ -81,14 +81,14 @@ fn sum_possible_games(games: &Vec<String>) -> i32 {
 }
 
 // Return the power which is the minimum necessary dice for each color multiplied together
-fn get_power(game_play: &String) -> i32 {
+fn get_power(game_play: &str) -> i32 {
     let mut max_red: i32 = 0;
     let mut max_green: i32 = 0;
     let mut max_blue: i32 = 0;
-    let game_format: Vec<&str> = game_play.split(":").collect();
-    let game_sets: Vec<&str> = game_format[1].split(";").collect();
+    let game_format: Vec<&str> = game_play.split(':').collect();
+    let game_sets: Vec<&str> = game_format[1].split(';').collect();
     for game in game_sets {
-        let (red, green, blue) = min_cubes_needed(&game);
+        let (red, green, blue) = min_cubes_needed(game);
         if red > max_red {
             max_red = red;
         }
@@ -106,7 +106,7 @@ fn get_power(game_play: &String) -> i32 {
 fn power_of_cubes(games: &Vec<String>) -> i32 {
     let mut total_power: i32 = 0;
     for game_play in games {
-        total_power += get_power(&game_play)
+        total_power += get_power(game_play)
     }
     total_power
 }

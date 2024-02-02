@@ -36,17 +36,16 @@ fn get_next_value(sequence: &Vec<i64>, part2: bool) -> i64 {
 
     // Calcualte the next sequence using the difference between each adjacent value
     let mut left_e = sequence[0];
-    for i in 1..sequence.len() {
-        let right_e = sequence[i];
+    for right_e in sequence.iter().skip(1) {
         new_seq.push(right_e - left_e);
-        left_e = right_e;
+        left_e = *right_e;
     }
     if part2 {
         // Find the first value in the sequence
-        return sequence[0] - get_next_value(&new_seq, part2);
+        sequence[0] - get_next_value(&new_seq, part2)
     } else {
         // Find the last value in the sequence
-        return left_e + get_next_value(&new_seq, part2);
+        left_e + get_next_value(&new_seq, part2)
     }
 }
 
@@ -55,7 +54,7 @@ fn sum_of_values(history: &Vec<String>, part2: bool) -> i64 {
     let mut sum_vals: i64 = 0;
     for sequence in history {
         let seq: Vec<i64> = sequence
-            .split(" ")
+            .split(' ')
             .map(|x| x.parse::<i64>().unwrap())
             .collect();
         sum_vals += get_next_value(&seq, part2);

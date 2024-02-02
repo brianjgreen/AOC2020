@@ -18,10 +18,10 @@ fn lines_from_file() -> Vec<String> {
 }
 
 // Parse the first line of the data file and return a Vector (list) of seeds
-fn get_seeds(almanac: &Vec<String>) -> Vec<u64> {
+fn get_seeds(almanac: &[String]) -> Vec<u64> {
     let seed_header: Vec<&str> = almanac[0].split(": ").collect();
     let seeds: Vec<u64> = seed_header[1]
-        .split(" ")
+        .split(' ')
         .map(|x| x.parse::<u64>().unwrap())
         .collect();
     seeds
@@ -37,9 +37,10 @@ fn low_seed_loc(almanac: &Vec<String>, seeds: Vec<u64>) -> u64 {
             if soil.contains(" map:") {
                 soil_found = false;
             }
-            if !soil_found && !soil.contains(" map:") && !soil.contains("seeds") && soil.len() > 0 {
+            if !soil_found && !soil.contains(" map:") && !soil.contains("seeds") && !soil.is_empty()
+            {
                 let dest_sour_rang: Vec<u64> =
-                    soil.split(" ").map(|x| x.parse::<u64>().unwrap()).collect();
+                    soil.split(' ').map(|x| x.parse::<u64>().unwrap()).collect();
                 let dest = dest_sour_rang[0];
                 let source = dest_sour_rang[1];
                 let seed_range = dest_sour_rang[2];
@@ -59,7 +60,7 @@ fn low_seed_loc(almanac: &Vec<String>, seeds: Vec<u64>) -> u64 {
 
 // Originally thought that I would reuse code but it turns out part 2 needed a different algo
 fn get_min_loc_seed_list(almanac: &Vec<String>) -> u64 {
-    low_seed_loc(&almanac, get_seeds(almanac))
+    low_seed_loc(almanac, get_seeds(almanac))
 }
 
 // This is brute force checking all locations starting from 0 and reversing the path from location to seed
@@ -70,7 +71,7 @@ fn get_min_loc_seed_list(almanac: &Vec<String>) -> u64 {
 fn get_min_loc_seed_range(almanac: &Vec<String>) -> u64 {
     let seed_header: Vec<&str> = almanac[0].split(": ").collect();
     let seed_ranges: Vec<u64> = seed_header[1]
-        .split(" ")
+        .split(' ')
         .map(|x| x.parse::<u64>().unwrap())
         .collect();
     let mut location: u64 = 0;
@@ -85,9 +86,10 @@ fn get_min_loc_seed_range(almanac: &Vec<String>) -> u64 {
             if soil.contains(" map:") {
                 soil_found = false;
             }
-            if !soil_found && !soil.contains(" map:") && !soil.contains("seeds") && soil.len() > 0 {
+            if !soil_found && !soil.contains(" map:") && !soil.contains("seeds") && !soil.is_empty()
+            {
                 let dest_sour_rang: Vec<u64> =
-                    soil.split(" ").map(|x| x.parse::<u64>().unwrap()).collect();
+                    soil.split(' ').map(|x| x.parse::<u64>().unwrap()).collect();
                 let dest = dest_sour_rang[0];
                 let source = dest_sour_rang[1];
                 let seed_range = dest_sour_rang[2];

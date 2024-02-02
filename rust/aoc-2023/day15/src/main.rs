@@ -40,9 +40,9 @@ fn get_hash(curr_hash: &str) -> i64 {
 }
 
 // Split the string by commas, sum the calculations of each hash
-fn sum_of_hashes(hash_data: &Vec<String>) -> i64 {
+fn sum_of_hashes(hash_data: &[String]) -> i64 {
     let mut sum_results: i64 = 0;
-    let all_hashes: Vec<&str> = hash_data[0].split(",").collect();
+    let all_hashes: Vec<&str> = hash_data[0].split(',').collect();
     for curr_hash in all_hashes {
         sum_results += get_hash(curr_hash);
     }

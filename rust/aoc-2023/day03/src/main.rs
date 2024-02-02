@@ -34,9 +34,8 @@ fn sum_of_part_nums(lines: &Vec<String>) -> (u32, u32) {
         let mut start_y: usize = 0;
         let mut row: Vec<char> = lines[y].chars().collect();
         row.push('.'); // Fix for part numbers at the end of a line
-        for x in 0..max_x {
-            let point: char = row[x];
-            if point.is_digit(10) {
+        for (x, point) in row.iter().enumerate().take(max_x) {
+            if point.is_ascii_digit() {
                 if new_part {
                     new_part = false;
                     part_in_progress = true;
@@ -73,15 +72,15 @@ fn sum_of_part_nums(lines: &Vec<String>) -> (u32, u32) {
                         end_y = max_y;
                     }
                     let mut valid_part_no: bool = false;
-                    for k in start_y..end_y {
-                        let mut y_zone: Vec<char> = lines[k].chars().collect();
+                    for (k, line_y_zone) in lines.iter().enumerate().take(end_y).skip(start_y) {
+                        let mut y_zone: Vec<char> = line_y_zone.chars().collect();
                         y_zone.push('.'); // Fix for part numbers at the end of the line
-                        for j in start_x..end_x {
-                            let check_point: char = y_zone[j];
-                            if !check_point.is_digit(10) && check_point != '.' {
+                        for (j, check_point) in y_zone.iter().enumerate().take(end_x).skip(start_x)
+                        {
+                            if !check_point.is_ascii_digit() && *check_point != '.' {
                                 // A valid part number is next to a char that is not a digit or a "."
                                 valid_part_no = true;
-                                if check_point == '*' {
+                                if *check_point == '*' {
                                     // For part 2, count up how many part numbers are next to a "*"
                                     let count = num_gears.entry((j, k)).or_insert(0);
                                     *count += 1;
@@ -106,7 +105,7 @@ fn sum_of_part_nums(lines: &Vec<String>) -> (u32, u32) {
             sum_prod_gears += prod_gears[&key];
         }
     }
-    return (sum_part_nums, sum_prod_gears);
+    (sum_part_nums, sum_prod_gears)
 }
 
 fn main() -> std::io::Result<()> {

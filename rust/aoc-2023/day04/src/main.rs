@@ -19,23 +19,23 @@ fn lines_from_file() -> Vec<String> {
 }
 
 // Return the winning numbers and the players numbers
-fn get_winners_players(card: &String) -> (Vec<&str>, Vec<&str>) {
+fn get_winners_players(card: &str) -> (Vec<&str>, Vec<&str>) {
     // Need to optimize this code for parsing the cards in the data file.
-    let card_format: Vec<&str> = card.split(":").collect();
-    let numbers: Vec<&str> = card_format[1].split("|").collect();
-    let winners: Vec<&str> = numbers[0].split(" ").collect();
-    let my_picks: Vec<&str> = numbers[1].split(" ").collect();
+    let card_format: Vec<&str> = card.split(':').collect();
+    let numbers: Vec<&str> = card_format[1].split('|').collect();
+    let winners: Vec<&str> = numbers[0].split(' ').collect();
+    let my_picks: Vec<&str> = numbers[1].split(' ').collect();
     (winners, my_picks)
 }
 
 // Tally the score of winning numbers on a card
 // Each matching number doubles the value of the prize
-fn get_score(card: &String) -> i32 {
+fn get_score(card: &str) -> i32 {
     let mut final_score = 0;
-    let (winners, my_picks) = get_winners_players(&card);
+    let (winners, my_picks) = get_winners_players(card);
     for win in winners.iter() {
         for my_num in my_picks.iter() {
-            if win.len() == 0 || my_num.len() == 0 {
+            if win.is_empty() || my_num.is_empty() {
                 // Need to optimize the code to deal with empty strings from parser
                 continue;
             }
@@ -52,12 +52,12 @@ fn get_score(card: &String) -> i32 {
 }
 
 // Return the number of winning player numbers on a card
-fn get_winners(card: &String) -> i32 {
+fn get_winners(card: &str) -> i32 {
     let mut num_of_winners = 0;
-    let (winners, my_picks) = get_winners_players(&card);
+    let (winners, my_picks) = get_winners_players(card);
     for win in winners.iter() {
         for my_num in my_picks.iter() {
-            if win.len() == 0 || my_num.len() == 0 {
+            if win.is_empty() || my_num.is_empty() {
                 // Need to optimize the code to deal with empty strings from parser
                 continue;
             }
@@ -73,7 +73,7 @@ fn get_winners(card: &String) -> i32 {
 fn score_winners(cards: &Vec<String>) -> i32 {
     let mut total_score: i32 = 0;
     for scratch_card in cards {
-        total_score += get_score(&scratch_card)
+        total_score += get_score(scratch_card)
     }
     total_score
 }
@@ -89,7 +89,7 @@ fn num_of_scratch_tickets(cards: &Vec<String>) -> i32 {
         // Add the number of winning payer numbers to each card
         // This will be the number of subsequent cards to clone
         let count = cloned_cards.entry(i).or_insert(0);
-        *count += get_winners(&scratch_card);
+        *count += get_winners(scratch_card);
         i += 1;
     }
     for card in 1..i {

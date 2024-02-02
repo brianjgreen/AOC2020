@@ -77,8 +77,8 @@ fn get_card_value(hand: &str, part2: bool) -> String {
 fn get_hand_type(hand: &str, part2: bool) -> HandType {
     let mut card_freq = str_char_freq(hand);
     let mut jokers = 0;
-    if part2 && card_freq.get(&'n') != None {
-        jokers = card_freq.get(&'n').unwrap().clone();
+    if part2 && card_freq.get(&'n').is_some() {
+        jokers = *card_freq.get(&'n').unwrap();
         card_freq.remove(&'n');
         if jokers == 5 {
             return HandType::FiveOfAKind;
@@ -89,7 +89,7 @@ fn get_hand_type(hand: &str, part2: bool) -> HandType {
     // Not sure that &&num[x] is the correct way to do this
     let num: Vec<i32> = vec![0, 1, 2, 3, 4, 5];
     if distro.contains(&&num[5]) {
-        return HandType::FiveOfAKind;
+        HandType::FiveOfAKind
     } else if distro.contains(&&num[4]) {
         if jokers == 1 {
             return HandType::FiveOfAKind;
@@ -114,7 +114,7 @@ fn get_hand_type(hand: &str, part2: bool) -> HandType {
                 1 => return HandType::ThreeOfAKind,
                 2 => return HandType::FourOfAKind,
                 3 => return HandType::FiveOfAKind,
-                _ =>  return HandType::OnePair,
+                _ => return HandType::OnePair,
             }
         }
     } else {
@@ -132,7 +132,7 @@ fn get_hand_type(hand: &str, part2: bool) -> HandType {
 fn get_hands_with_bids(hands: &Vec<String>, part2: bool) -> HashMap<String, u64> {
     let mut hands_bids: HashMap<String, u64> = HashMap::new();
     for hand_bid in hands {
-        let hand_bid_format: Vec<&str> = hand_bid.split(" ").collect();
+        let hand_bid_format: Vec<&str> = hand_bid.split(' ').collect();
         let hand = get_card_value(hand_bid_format[0], part2);
         let bid: u64 = hand_bid_format[1].parse().unwrap();
         hands_bids.insert(hand, bid);
