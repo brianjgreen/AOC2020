@@ -5,8 +5,6 @@
 // Problem 1: lowest positive number that produces such a hash starting with 5 zeros
 // Problem 2: same but starting with 6 zeros
 
-use md5;
-
 fn find_hash(size: usize) -> i32 {
     let mut base = -1;
     loop {
@@ -15,7 +13,7 @@ fn find_hash(size: usize) -> i32 {
         let secret = "iwrupvqb".to_owned() + &base_hex;
         let hash = format!("{:x}", md5::compute(&secret));
         let compare = "0".repeat(size);
-        if hash[0..size] == compare.to_owned() {
+        if hash[0..size] == compare {
             return base;
         }
     }

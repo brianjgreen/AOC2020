@@ -12,13 +12,13 @@ fn get_data() -> String {
 
 fn get_floor_movement(movement: char) -> i32 {
     if movement == ')' {
-        return -1;
+        -1
     } else {
-        return 1;
+        1
     }
 }
 
-fn find_floor(directions: &String) -> i32 {
+fn find_floor(directions: &str) -> i32 {
     let mut floor = 0;
     for movement in directions.chars() {
         floor += get_floor_movement(movement);
@@ -26,7 +26,7 @@ fn find_floor(directions: &String) -> i32 {
     floor
 }
 
-fn find_basement_position(directions: &String) -> i32 {
+fn find_basement_position(directions: &str) -> i32 {
     let mut floor = 0;
     let mut position = 0;
     for movement in directions.chars() {
@@ -47,4 +47,37 @@ fn main() -> std::io::Result<()> {
     // Part 2
     println!("Part 2 = {}", find_basement_position(&move_instr));
     Ok(())
+}
+
+/*
+For example:
+
+    (()) and ()() both result in floor 0.
+    ((( and (()(()( both result in floor 3.
+    ))((((( also results in floor 3.
+    ()) and ))( both result in floor -1 (the first basement level).
+    ))) and )())()) both result in floor -3.
+*/
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_find_floor() {
+        assert_eq!(find_floor("(())"), 0);
+        assert_eq!(find_floor("()()"), 0);
+        assert_eq!(find_floor("((("), 3);
+        assert_eq!(find_floor("(()(()("), 3);
+        assert_eq!(find_floor("))((((("), 3);
+        assert_eq!(find_floor("())"), -1);
+        assert_eq!(find_floor("))("), -1);
+        assert_eq!(find_floor(")))"), -3);
+        assert_eq!(find_floor(")())())"), -3);
+    }
+
+    #[test]
+    fn test_find_basement_position() {
+        assert_eq!(find_basement_position("()())"), 5);
+    }
 }

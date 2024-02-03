@@ -11,7 +11,7 @@ fn get_data() -> String {
     fs::read_to_string("data.dat").expect("Unable to read data file.")
 }
 
-fn get_num_houses(directions: &String) -> usize {
+fn get_num_houses(directions: &str) -> usize {
     let mut houses = HashMap::from([((0, 0), 1)]);
     let mut x = 0;
     let mut y = 0;
@@ -29,7 +29,7 @@ fn get_num_houses(directions: &String) -> usize {
     houses.keys().len()
 }
 
-fn get_num_houses_two_santas(directions: &String) -> usize {
+fn get_num_houses_two_santas(directions: &str) -> usize {
     let mut houses = HashMap::from([((0, 0), 2)]);
     let mut santa = true;
     let mut santa_x = 0;

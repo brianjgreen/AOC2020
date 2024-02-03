@@ -19,7 +19,7 @@ fn lines_from_file() -> Vec<String> {
 }
 
 // Return the number of vowels in a message
-fn num_vowels(message: &String) -> usize {
+fn num_vowels(message: &str) -> usize {
     let mut num_vowels = 0;
     for letter in "aeiou".chars() {
         num_vowels += message.matches(letter).count();
@@ -28,7 +28,7 @@ fn num_vowels(message: &String) -> usize {
 }
 
 // Return the number of double chars in a message
-fn num_doubles(message: &String, step: usize) -> usize {
+fn num_doubles(message: &str, step: usize) -> usize {
     let mut num_doubles = 0;
     let letters: Vec<char> = message.chars().collect();
     for i in 0..letters.len() - step {
@@ -40,7 +40,7 @@ fn num_doubles(message: &String, step: usize) -> usize {
 }
 
 // Return true if any of the naughty strings are in a message
-fn contains_naugty_string(message: &String) -> bool {
+fn contains_naugty_string(message: &str) -> bool {
     let naughty = ["ab", "cd", "pq", "xy"];
     for bad in naughty {
         if message.contains(bad) {
@@ -55,15 +55,15 @@ fn num_nice(letters: &Vec<String>) -> u32 {
     let mut total_nice = 0;
     for entry in letters {
         // Contains at least three vowels (aeiou only)
-        if num_vowels(&entry) < 3 {
+        if num_vowels(entry) < 3 {
             continue;
         }
         // Contains at least one letter that appears twice in a row
-        if num_doubles(&entry, 1) == 0 {
+        if num_doubles(entry, 1) == 0 {
             continue;
         }
         // Does not contain the strings ab, cd, pq, or xy
-        if contains_naugty_string(&entry) {
+        if contains_naugty_string(entry) {
             continue;
         }
         total_nice += 1;
@@ -87,16 +87,16 @@ fn num_nice_alternate(letters: &Vec<String>) -> u32 {
     let mut total_nice = 0;
     for entry in letters {
         // Contains a pair of any two letters that appears at least twice in the string without overlapping
-        if num_pairs(&entry) == 0 {
+        if num_pairs(entry) == 0 {
             continue;
         }
         // Contains at least one letter which repeats with exactly one letter between them
-        if num_doubles(&entry, 2) == 0 {
+        if num_doubles(entry, 2) == 0 {
             continue;
         }
         total_nice += 1;
     }
-    return total_nice;
+    total_nice
 }
 
 fn main() -> std::io::Result<()> {
