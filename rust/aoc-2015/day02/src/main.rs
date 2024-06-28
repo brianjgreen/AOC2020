@@ -59,3 +59,40 @@ fn main() -> std::io::Result<()> {
     println!("Part 2 = {}", get_ribbon(&dimensions));
     Ok(())
 }
+
+/*
+For example:
+
+[Part 1]
+A present with dimensions 2x3x4 requires 2*6 + 2*12 + 2*8 = 52 square feet of
+wrapping paper plus 6 square feet of slack, for a total of 58 square feet.
+A present with dimensions 1x1x10 requires 2*1 + 2*10 + 2*10 = 42 square feet of
+wrapping paper plus 1 square foot of slack, for a total of 43 square feet.
+
+[Part 2]
+A present with dimensions 2x3x4 requires 2+2+3+3 = 10 feet of ribbon to wrap
+the present plus 2*3*4 = 24 feet of ribbon for the bow, for a total of 34 feet.
+A present with dimensions 1x1x10 requires 1+1+1+1 = 4 feet of ribbon to wrap
+the present plus 1*1*10 = 10 feet of ribbon for the bow, for a total of 14 feet.
+*/
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_get_wrapping_paper() {
+        let test_data1 = vec!["2x3x4".to_string()];
+        let test_data2 = vec!["1x1x10".to_string()];
+        assert_eq!(get_wrapping_paper(&test_data1), 58);
+        assert_eq!(get_wrapping_paper(&test_data2), 43);
+    }
+
+    #[test]
+    fn test_get_ribbon() {
+        let test_data1 = vec!["2x3x4".to_string()];
+        let test_data2 = vec!["1x1x10".to_string()];
+        assert_eq!(get_ribbon(&test_data1), 34);
+        assert_eq!(get_ribbon(&test_data2), 14);
+    }
+}
