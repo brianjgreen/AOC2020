@@ -1,6 +1,9 @@
 # data files for AoC
 *.dat
 
+# Windows .EXE
+*.exe
+
 # Compiled Python file
 *.pyc
 
