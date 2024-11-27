@@ -4,12 +4,12 @@
 //
 //
 
-const fs = require("fs");
+import { promises } from "fs";
 
 // Read data from file and return array
 async function readLines(filePath) {
   try {
-    const fileContent = await fs.promises.readFile(filePath, "utf-8");
+    const fileContent = await promises.readFile(filePath, "utf-8");
     const lines = fileContent.split("\n");
     return lines;
   } catch (err) {
