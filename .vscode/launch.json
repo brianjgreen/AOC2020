@@ -1,0 +1,22 @@
+{
+    "configurations": [
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:AOC2020}/swift/2015/01",
+            "name": "Debug 01 (swift/2015/01)",
+            "program": "${workspaceFolder:AOC2020}/swift/2015/01/.build/debug/01",
+            "preLaunchTask": "swift: Build Debug 01 (swift/2015/01)"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:AOC2020}/swift/2015/01",
+            "name": "Release 01 (swift/2015/01)",
+            "program": "${workspaceFolder:AOC2020}/swift/2015/01/.build/release/01",
+            "preLaunchTask": "swift: Build Release 01 (swift/2015/01)"
+        }
+    ]
+}
