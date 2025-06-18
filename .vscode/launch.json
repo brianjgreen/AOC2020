@@ -17,6 +17,24 @@
             "name": "Release 01 (swift/2015/01)",
             "program": "${workspaceFolder:AOC2020}/swift/2015/01/.build/release/01",
             "preLaunchTask": "swift: Build Release 01 (swift/2015/01)"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:AOC2020}/swift/2015/02",
+            "name": "Debug 02 (swift/2015/02)",
+            "program": "${workspaceFolder:AOC2020}/swift/2015/02/.build/debug/02",
+            "preLaunchTask": "swift: Build Debug 02 (swift/2015/02)"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:AOC2020}/swift/2015/02",
+            "name": "Release 02 (swift/2015/02)",
+            "program": "${workspaceFolder:AOC2020}/swift/2015/02/.build/release/02",
+            "preLaunchTask": "swift: Build Release 02 (swift/2015/02)"
         }
     ]
 }

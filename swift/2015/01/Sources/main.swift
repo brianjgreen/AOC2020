@@ -1,4 +1,4 @@
-// Advent of Code 2015 - Day 1 Part 1
+// Advent of Code 2015 - Day 1
 // 17 June 2025 Brian Green
 //
 // Problem:
