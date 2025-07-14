@@ -24,23 +24,24 @@ public class aoc01_part1 {
             e.printStackTrace();
         }
 
-        Scanner scanner = new Scanner(content);
-        List<Integer> list = new ArrayList<>();
-        while (scanner.hasNextInt()) {
-            list.add(scanner.nextInt());
-        }
-
-        int position = 1;
-        for (int x: list) {
-            List<Integer> y_list = list.subList(position, list.size());
-            for (int y: y_list) {
-                // System.out.println(x + "+" + y + "=" + (x + y));
-                if ((x + y) == 2020) {
-                    System.out.println("Found it! " + (x * y));
-                    System.exit(0);
-                }
+        try (Scanner scanner = new Scanner(content)) {
+            List<Integer> list = new ArrayList<>();
+            while (scanner.hasNextInt()) {
+                list.add(scanner.nextInt());
             }
-            position++;
+
+            int position = 1;
+            for (int x: list) {
+                List<Integer> y_list = list.subList(position, list.size());
+                for (int y: y_list) {
+                    // System.out.println(x + "+" + y + "=" + (x + y));
+                    if ((x + y) == 2020) {
+                        System.out.println("Found it! " + (x * y));
+                        System.exit(0);
+                    }
+                }
+                position++;
+            }
         }
     }
 }
