@@ -4,47 +4,67 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
+/**
+ * This class provides a solution to the Advent of Code 2020 Day 1 Part 2 problem.
+ * It reads a list of integers from a file, finds three numbers that sum to 2020, 
+ * and returns their product.
+ * 
+ * @author Brian Green
+ */
 public class aoc01_part2 {
-    public static void main( String[] args )
-    {
-        Path filePath = Paths.get("data", "brian_aoc01.dat");
-        String content = "1721 979 366 299 675 1456";
 
-        try
-        {
-            content = Files.readString(filePath);
-            // System.out.println(content);
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
+    private static final int TARGET_SUM = 2020;
 
-        try (Scanner scanner = new Scanner(content)) {
-            List<Integer> list = new ArrayList<>();
-            while (scanner.hasNextInt()) {
-                list.add(scanner.nextInt());
-            }
+    /**
+     * Reads a list of integers from a file.
+     * 
+     * @param filePath The path to the file to read.
+     * @return A list of integers read from the file.
+     * @throws IOException If an I/O error occurs while reading the file.
+     */
+    private static List<Integer> readIntegersFromFile(Path filePath) throws IOException {
+        return Files.lines(filePath)
+                .flatMap(line -> Arrays.stream(line.split("\\s+")))
+                .map(Integer::parseInt)
+                .toList();
+    }
 
-            int position = 1;
-            for (int x: list) {
-                List<Integer> y_list = list.subList(position, list.size());
-                List<Integer> z_list = list.subList(position + 1, list.size());
-                for (int y: y_list) {
-                    for (int z: z_list) {
-                        // System.out.println(x + "+" + y + "+" + z + "=" + (x + y));
-                        if ((x + y + z) == 2020) {
-                            System.out.println("Found it! " + (x * y * z));
-                            System.exit(0);
-                        }
-                    }
+    /**
+     * Finds three numbers in the given list that sum to the target sum and returns their product.
+     * 
+     * @param numbers The list of numbers to search.
+     * @return The product of the three numbers that sum to the target sum, or throws an exception if no such numbers are found.
+     */
+    private static int findProductOfThreeNumbersSummingToTarget(List<Integer> numbers) {
+        Set<Integer> numSet = new HashSet<>(numbers);
+        for (int i = 0; i < numbers.size(); i++) {
+            int x = numbers.get(i);
+            for (int j = i + 1; j < numbers.size(); j++) {
+                int y = numbers.get(j);
+                int z = TARGET_SUM - x - y;
+                if (numSet.contains(z) && numbers.indexOf(z) > j) {
+                    return x * y * z;
                 }
-                position++;
             }
+        }
+        throw new RuntimeException("No three numbers sum to " + TARGET_SUM);
+    }
+
+    /**
+     * The main entry point of the program.
+     * 
+     * @param args Command-line arguments (not used).
+     */
+    public static void main(String[] args) {
+        Path filePath = Paths.get("data", "day01.dat");
+        try {
+            List<Integer> numbers = readIntegersFromFile(filePath);
+            int product = findProductOfThreeNumbersSummingToTarget(numbers);
+            System.out.println("Found it! " + product);
+        } catch (IOException e) {
+            System.err.println("Error reading file: " + e.getMessage());
         }
     }
 }
