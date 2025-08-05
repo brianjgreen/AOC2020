@@ -1,1 +1,1 @@
-char* readFileToString(const char* filename);
+char *readFileToString(const char *filename);

@@ -5,15 +5,15 @@
 #define INITIAL_BUFFER_SIZE 1024
 
 // Function to read a file and append its contents to a string
-char *readFileToString(const char *filename)
-{
+char *readFileToString(const char *filename) {
 	FILE *file = fopen(filename, "r");
 	if (!file) {
-		fprintf(stderr, "Could not open file %s for reading.\n", filename);
+		fprintf(stderr, "Could not open file %s for reading.\n",
+		        filename);
 		return NULL;
 	}
 
-	//Initial buffer size
+	// Initial buffer size
 	size_t bufferSize = INITIAL_BUFFER_SIZE;
 	char *buffer = malloc(bufferSize);
 	if (!buffer) {
@@ -24,10 +24,10 @@ char *readFileToString(const char *filename)
 
 	buffer[0] = '\0'; // Initialize buffer as an empty string
 
-	char		chunk[1024];
+	char chunk[1024];
 	while (fgets(chunk, sizeof(chunk), file)) {
-		size_t		chunkLen = strlen(chunk);
-		size_t		bufferLen = strlen(buffer);
+		size_t chunkLen = strlen(chunk);
+		size_t bufferLen = strlen(buffer);
 
 		// Check if we need to resize the buffer
 		if (bufferLen + chunkLen + 1 > bufferSize) {
@@ -39,7 +39,8 @@ char *readFileToString(const char *filename)
 			if (!temp) {
 				free(buffer);
 				fclose(file);
-				fprintf(stderr, "Memory reallocation failed.\n");
+				fprintf(stderr,
+				        "Memory reallocation failed.\n");
 				return NULL;
 			}
 			buffer = temp;

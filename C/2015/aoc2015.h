@@ -1,1 +1,1 @@
-int day01();
+#include "day01.h"
