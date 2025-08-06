@@ -4,8 +4,10 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define DATA_FILE "day01.dat"
+
 int day01() {
-    const char *filename = "day01.dat";
+    const char *filename = DATA_FILE;
     char *fileContents = readFileToString(filename);
 
     if (fileContents) {
