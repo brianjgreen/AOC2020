@@ -30,7 +30,7 @@ int day04() {
     const char *six_zeros = "000000";
 
     if (fileContents) {
-        printf("%s\n", fileContents);
+        // printf("%s\n", fileContents);
         // printf("%d", INT_MAX);
 
         unsigned char md5_hash[16];
