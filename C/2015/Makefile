@@ -1,6 +1,7 @@
 # Define the compiler and flags
 CC = cc
 CFLAGS = -Wall -Wextra -g
+LDFLAGS = -lssl -lcrypto
 
 # Define the target executable
 TARGET = aoc2015
@@ -16,7 +17,7 @@ all: $(TARGET)
 
 # Link the object files to create the executable
 $(TARGET): $(OBJECTS)
-	$(CC) $(CFLAGS) -o $@ $^
+	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
 
 # Compile the source files to object files
 %.o: %.c
