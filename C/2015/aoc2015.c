@@ -8,5 +8,6 @@ int main() {
     day05();
     day06();
     day07();
+    day08();
     return 0;
 }
