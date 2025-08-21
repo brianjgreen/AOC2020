@@ -13,5 +13,6 @@ int main() {
     day10();
     day11();
     day12();
+    day13();
     return 0;
 }
