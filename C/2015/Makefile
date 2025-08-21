@@ -1,7 +1,7 @@
 # Define the compiler and flags
 CC = cc
 CFLAGS = -Wall -Wextra -g
-LDFLAGS = -lssl -lcrypto -lm
+LDFLAGS = -lssl -lcrypto -lm -lcjson
 
 # Define the target executable
 TARGET = aoc2015
