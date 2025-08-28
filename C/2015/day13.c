@@ -156,7 +156,7 @@ int day13() {
         }
         free(people);
 
-        printf("\n");
+        // printf("\n");
         for (happy_t *h = happy_head; h != NULL;) {
             happy_t *temp = h;
             // printf("%s %s %d\n", temp->point_a, temp->point_b,

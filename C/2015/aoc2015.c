@@ -14,5 +14,6 @@ int main() {
     day11();
     day12();
     day13();
+    day14();
     return 0;
 }
