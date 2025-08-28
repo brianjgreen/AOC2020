@@ -1,4 +1,3 @@
-#include "permutations.h"
 #include "readFileToString.h"
 #include <stdbool.h>
 #include <stdio.h>
@@ -7,7 +6,6 @@
 
 #define DATA_FILE "day14.dat"
 #define DEER_NAME_SIZE 16
-#define MAX_NUM_OF_PEOPLE 16
 
 typedef struct flight {
     char name[DEER_NAME_SIZE];
