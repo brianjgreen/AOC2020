@@ -19,5 +19,7 @@ int main() {
     day16();
     day17();
     day18();
+    //day19();
+    day20();
     return 0;
 }
