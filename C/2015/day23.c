@@ -129,26 +129,26 @@ int day23() {
 
             token = strtok_r(NULL, outer_delimiters, &outer_saveptr);
         }
-    }
 
-    instr_pointer = base;
-    while (instr_pointer->prev != NULL) {
-        instr_pointer = instr_pointer->prev;
-    }
+        instr_pointer = base;
+        while (instr_pointer->prev != NULL) {
+            instr_pointer = instr_pointer->prev;
+        }
 
-    printf("2015 Day 23 Part 1: %d\n", value_b(0));
+        printf("2015 Day 23 Part 1: %d\n", value_b(0));
 
-    instr_pointer = base;
-    while (instr_pointer->prev != NULL) {
-        instr_pointer = instr_pointer->prev;
-    }
-    printf("2015 Day 23 Part 2: %d\n", value_b(1));
+        instr_pointer = base;
+        while (instr_pointer->prev != NULL) {
+            instr_pointer = instr_pointer->prev;
+        }
+        printf("2015 Day 23 Part 2: %d\n", value_b(1));
 
-    instr_pointer = base;
-    while (instr_pointer->prev != NULL) {
-        instruction_t *temp = instr_pointer;
-        instr_pointer = instr_pointer->prev;
-        free(temp);
+        instr_pointer = base;
+        while (instr_pointer->prev != NULL) {
+            instruction_t *temp = instr_pointer;
+            instr_pointer = instr_pointer->prev;
+            free(temp);
+        }
     }
 
     free(fileContents);
