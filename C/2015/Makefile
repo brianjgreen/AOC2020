@@ -5,7 +5,7 @@ LIB_DIR = ../lib
 # Define the compiler and flags
 CC = cc
 CFLAGS = -Wall -Wextra -g -I$(LIB_DIR)
-LDFLAGS = -lssl -lcrypto -lm -lcjson
+LDFLAGS = -lm
 
 # Define the target executable
 TARGET = aoc2016

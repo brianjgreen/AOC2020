@@ -1,6 +1,12 @@
 # data files for AoC
 *.dat
 
+# C object files
+*.o
+
+# FreeBSD indent backup files
+*.BAK
+
 # Windows .EXE
 *.exe
 
