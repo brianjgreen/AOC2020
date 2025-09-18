@@ -8,7 +8,7 @@ CFLAGS = -Wall -Wextra -g -I$(LIB_DIR)
 LDFLAGS = -lm
 
 # Define the target executable
-TARGET = aoc2016
+TARGET = aoc2015
 
 # Source files
 SRC_FILES = $(wildcard $(SRC_DIR)/*.c)

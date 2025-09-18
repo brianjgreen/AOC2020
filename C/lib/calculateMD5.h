@@ -1,0 +1,1 @@
+void calculateMD5(const char *input, unsigned char *outputBuffer, char *outputHex);

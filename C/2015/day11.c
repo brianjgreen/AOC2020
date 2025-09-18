@@ -107,7 +107,7 @@ day11()
 	char	       *fileContents = readFileToString(filename);
 
 	if (fileContents) {
-		printf("%s\n", fileContents);
+		// printf("%s\n", fileContents);
 
 		find_valid_password(&fileContents);
 		printf("2015 Day 11 Part 1: %s\n", fileContents);
