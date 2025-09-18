@@ -60,8 +60,8 @@ day03()
 			token = strtok_r(NULL, outer_delimiters, &outer_saveptr);
 			i++;
 		}
-		printf("2016 Day03 Part 1: %d\n", total);
-		printf("2016 Day03 Part 2: %d\n", total_p2);
+		printf("2016 Day 03 Part 1: %d\n", total);
+		printf("2016 Day 03 Part 2: %d\n", total_p2);
 
 		free(fileContents);
 	}

@@ -134,7 +134,7 @@ day04()
 				}
 				*room = '\0';
 				if (strstr(room_name, "north") != NULL) {
-					printf("2016 Day04 Part 2: %s %d\n", room_name, sector_id);
+					printf("2016 Day 04 Part 2: %s %d\n", room_name, sector_id);
 				}
 				//printf("%s\n", room_name);
 			}
@@ -148,7 +148,7 @@ day04()
 			symb_head = NULL;
 			token = strtok_r(NULL, outer_delimiters, &outer_saveptr);
 		}
-		printf("2016 Day04 Part 1: %d\n", total_sectors);
+		printf("2016 Day 04 Part 1: %d\n", total_sectors);
 		free(fileContents);
 	}
 	return 0;

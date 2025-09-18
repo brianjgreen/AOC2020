@@ -118,8 +118,8 @@ day06()
 			pos_num--;
 		}
 
-		printf("2016 Day06 Part 1: %s\n", freq);
-		printf("2016 Day06 Part 2: %s\n", least);
+		printf("2016 Day 06 Part 1: %s\n", freq);
+		printf("2016 Day 06 Part 2: %s\n", least);
 
 		for (position_t * p = position_head; p != NULL;) {
 			position_t     *p_temp = p;
