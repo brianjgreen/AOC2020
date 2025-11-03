@@ -5,8 +5,9 @@ import sys
 roster = {}
 
 
+
 def get_roster(data):
-    global roster
+    roster = {}
     for deer in data:
         stats = deer.split()
         name = stats[0]
@@ -16,6 +17,7 @@ def get_roster(data):
         roster[name] = list(
             [speed for i in range(duration)] + [0 for i in range(cooldown)]
         )
+    return roster
 
 
 def parse_input(input_data):
@@ -27,9 +29,7 @@ def parse_input(input_data):
 
 
 def part1(data):
-    global roster
-    roster.clear()
-    get_roster(data)
+    roster = get_roster(data)
 
     log = {deer: 0 for deer in roster}
 
@@ -41,9 +41,7 @@ def part1(data):
 
 
 def part2(data):
-    global roster
-    roster.clear()
-    get_roster(data)
+    roster = get_roster(data)
 
     log = {deer: 0 for deer in roster}
     points = {deer: 0 for deer in roster}
