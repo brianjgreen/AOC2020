@@ -6,8 +6,9 @@
             "args": [],
             "cwd": "${workspaceFolder:AOC2020}/swift/aoc-2015",
             "name": "Debug aoc-2015 (swift/aoc-2015)",
-            "program": "${workspaceFolder:AOC2020}/swift/aoc-2015/.build/debug/aoc-2015",
-            "preLaunchTask": "swift: Build Debug aoc-2015 (swift/aoc-2015)"
+            "preLaunchTask": "swift: Build Debug aoc-2015 (swift/aoc-2015)",
+            "target": "aoc-2015",
+            "configuration": "debug"
         },
         {
             "type": "swift",
@@ -15,8 +16,9 @@
             "args": [],
             "cwd": "${workspaceFolder:AOC2020}/swift/aoc-2015",
             "name": "Release aoc-2015 (swift/aoc-2015)",
-            "program": "${workspaceFolder:AOC2020}/swift/aoc-2015/.build/release/aoc-2015",
-            "preLaunchTask": "swift: Build Release aoc-2015 (swift/aoc-2015)"
+            "preLaunchTask": "swift: Build Release aoc-2015 (swift/aoc-2015)",
+            "target": "aoc-2015",
+            "configuration": "release"
         }
     ]
 }

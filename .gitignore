@@ -16,6 +16,10 @@
 # Compiled class file
 *.class
 
+# C# bin and obj directories
+bin/
+obj/
+
 # Log file
 *.log
 
