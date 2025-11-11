@@ -12,10 +12,21 @@
 | 7. Open the current folder path (.) containing the solution using VS Code. | ```code .``` |
 
 ## Execution Example
-```dotnet run --project Day01```
+```
+cd 2015
+dotnet run --project Day01
+```
 
 ## Add A New Day Example
 ```
+cd 2015
 dotnet new console -o Day02
-dotnet sln add -o Day02
+dotnet sln add Day02
+```
+
+## Add a New Year Example
+```
+mkdir 2015
+cd 2015
+dotnet new sln
 ```

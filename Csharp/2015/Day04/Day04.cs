@@ -36,10 +36,9 @@ namespace Day04
 
         static string CalculateMD5(string input)
         {
-            using var md5 = MD5.Create();
             byte[] inputBytes = Encoding.ASCII.GetBytes(input);
-            byte[] hashBytes = md5.ComputeHash(inputBytes);
-            return BitConverter.ToString(hashBytes).Replace("-", "").ToLower();
+            byte[] hashBytes = MD5.HashData(inputBytes);
+            return Convert.ToHexStringLower(hashBytes);
         }
     }
 }

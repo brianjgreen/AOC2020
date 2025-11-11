@@ -19,7 +19,7 @@ namespace Day02
                 while ((line = reader.ReadLine()) != null)
                 {
                     string[] dimensions = line.Split('x');
-                    int[] dims = dimensions.Select(int.Parse).ToArray();
+                    int[] dims = [.. dimensions.Select(int.Parse)];
                     Array.Sort(dims);
 
                     int area = 2 * (dims[0] * dims[1] + dims[1] * dims[2] + dims[0] * dims[2]) + dims[0] * dims[1];
