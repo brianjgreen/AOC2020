@@ -27,13 +27,16 @@ As this repo evolves, trying to stabilie on a common and easy to use code struct
     │   │   ├── aoc2015.c
     │   │   ├── aoc2015.h
     │   │   ├── day01.c
-    │   │   ├── day01.c
+    │   │   ├── day01.h
     │   │   └── ...
     │   │
     │   ├── 2016/
     │   ├── 2017/
     │   └── {year}/
-    │        └── dayXX.dat
+    │       ├── aoc{year}.c
+    │       ├── aoc{year}.h
+    │       ├── dayXX.c
+    │       └── dayXX.h
     ├── python/
     │   ├── 2015/
     │   │   ├── day01.py
@@ -46,23 +49,14 @@ As this repo evolves, trying to stabilie on a common and easy to use code struct
     │        └── dayXX.py
     ├── Csharp/
     │   ├── 2015/
-    │   │   ├── 2015.slnx
-    │   │   └── Day01/
-    │   │       ├── Day01.cs
-    │   │       └── Day01.csproj
+    │   │   ├── Day01.cs
+    │   │   ├── Day02.cs
+    │   │   └── ...
     │   │
     │   └── {year}/
-    │        └── DayXX/
+    │       └── DayXX.cs
     └── {programming language}/
         ├── {year}/
-        │   ├── {day.XX}}
+        │   ├── {dayXX.YY}
         │   ├── ...
-        │   ├── day01.c
-        │   ├── day01.c
-        │   └── d
-        │
-        ├── 2016/
-        ├── 2017/
-        └── {year}/
-            └── dayXX.dat
 ```

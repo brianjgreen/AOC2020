@@ -20,6 +20,9 @@
 bin/
 obj/
 
+# Swift .build directory
+.build/
+
 # Log file
 *.log
 
