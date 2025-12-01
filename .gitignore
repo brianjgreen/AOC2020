@@ -23,6 +23,9 @@ obj/
 # Swift .build directory
 .build/
 
+# MacOS Nonsense
+.DS_Store
+
 # Log file
 *.log
 
