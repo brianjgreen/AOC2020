@@ -3,7 +3,6 @@ using System.IO;
 using System.Linq;
 using System.Net;
 
-
 namespace Day01
 {
     class Program
@@ -16,15 +15,15 @@ namespace Day01
             int expanded_calibration_sum = 0;
             var replacements = new Dictionary<string, string>
             {
-                {"one", "1"},
-                {"two", "2"},
-                {"three", "3"},
-                {"four", "4"},
-                {"five", "5"},
-                {"six", "6"},
-                {"seven", "7"},
-                {"eight", "8"},
-                {"nine", "9"},
+                { "one", "1" },
+                { "two", "2" },
+                { "three", "3" },
+                { "four", "4" },
+                { "five", "5" },
+                { "six", "6" },
+                { "seven", "7" },
+                { "eight", "8" },
+                { "nine", "9" },
             };
 
             using (StreamReader reader = new(filePath))
@@ -39,7 +38,10 @@ namespace Day01
 
                     foreach (var replacement in replacements)
                     {
-                        line = line.Replace(replacement.Key, replacement.Key + replacement.Key.LastOrDefault());
+                        line = line.Replace(
+                            replacement.Key,
+                            replacement.Key + replacement.Key.LastOrDefault()
+                        );
                     }
                     foreach (var replacement in replacements)
                     {
@@ -49,7 +51,6 @@ namespace Day01
                     lastDigit = line.LastOrDefault(char.IsDigit);
 
                     expanded_calibration_sum += ((firstDigit - '0') * 10) + (lastDigit - '0');
-
                 }
             }
 

@@ -15,7 +15,7 @@ namespace Day01
             int num_sliding_increses = 0;
             int prev_measure = 0;
             List<int> values = [];
-            
+
             using (StreamReader reader = new(filePath))
             {
                 string? line;
@@ -33,12 +33,15 @@ namespace Day01
 
             foreach (int i in Enumerable.Range(0, values.Count - 3))
             {
-                if ((values[i + 1] + values[i + 2] + values[i + 3]) > (values[i] + values[i + 1] + values[i + 2]))
+                if (
+                    (values[i + 1] + values[i + 2] + values[i + 3])
+                    > (values[i] + values[i + 1] + values[i + 2])
+                )
                 {
                     num_sliding_increses++;
                 }
             }
-            
+
             Console.WriteLine($"2021 Day 01 Part 1: {num_increases}");
             Console.WriteLine($"2021 Day 01 Part 2: {num_sliding_increses}");
         }

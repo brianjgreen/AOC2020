@@ -4,7 +4,6 @@ using System.Linq;
 using System.Net;
 using System.Text.RegularExpressions;
 
-
 namespace Day02
 {
     class Program
@@ -18,7 +17,7 @@ namespace Day02
             bool increasing = false;
             bool decreasing = false;
             bool safe_level = true;
-                    
+
             foreach (var l in levels)
             {
                 if (first_val)
@@ -49,7 +48,7 @@ namespace Day02
                     safe_level = false;
                     break;
                 }
-                        
+
                 prev_val = l;
             }
             return safe_level;
@@ -69,9 +68,7 @@ namespace Day02
                 {
                     List<int> levels = [];
 
-                    levels = Regex.Matches(line, @"\d+")
-                                .Select(m => int.Parse(m.Value))
-                                .ToList();
+                    levels = Regex.Matches(line, @"\d+").Select(m => int.Parse(m.Value)).ToList();
 
                     if (Are_levels_safe(levels))
                     {

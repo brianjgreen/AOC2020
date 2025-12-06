@@ -13,7 +13,7 @@ dotnet tool install -g csharpier
 ```
 ### Format Code
 ```
-/Users/briangreen/.dotnet/tools/csharpier Csharp/2025/Day01.cs
+/Users/briangreen/.dotnet/tools/csharpier format Csharp/2025/Day01.cs
 ```
 
 ## Archive

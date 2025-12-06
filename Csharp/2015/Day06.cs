@@ -18,7 +18,10 @@ namespace Day06
             foreach (string line in lines)
             {
                 string[] parts = line.Split(' ');
-                int startX, startY, endX, endY;
+                int startX,
+                    startY,
+                    endX,
+                    endY;
                 string action;
 
                 if (parts[0] == "turn")
@@ -48,7 +51,15 @@ namespace Day06
             Console.WriteLine("2015 Day 06 Part 2: " + totalBrightness);
         }
 
-        private static void ProcessAction(bool[,] lights, int[,] lightsBright, string action, int startX, int startY, int endX, int endY)
+        private static void ProcessAction(
+            bool[,] lights,
+            int[,] lightsBright,
+            string action,
+            int startX,
+            int startY,
+            int endX,
+            int endY
+        )
         {
             for (int x = startX; x <= endX; x++)
             {

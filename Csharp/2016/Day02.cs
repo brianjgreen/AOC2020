@@ -4,7 +4,6 @@ using System.Linq;
 using System.Net;
 using System.Security.Cryptography.X509Certificates;
 
-
 namespace Day02
 {
     class Program
@@ -15,18 +14,18 @@ namespace Day02
 
             int[,] keypad = new int[,]
             {
-                {1, 2, 3},
-                {4, 5, 6},
-                {7, 8, 9}
+                { 1, 2, 3 },
+                { 4, 5, 6 },
+                { 7, 8, 9 },
             };
 
             char[,] keypad_diamond = new char[,]
             {
                 { '0', '0', '1', '0', '0' },
-                { '0', '2', '3', '4', '0' } ,
+                { '0', '2', '3', '4', '0' },
                 { '5', '6', '7', '8', '9' },
                 { '0', 'A', 'B', 'C', '0' },
-                { '0', '0', 'D', '0', '0' }
+                { '0', '0', 'D', '0', '0' },
             };
 
             int x = 1;
@@ -112,7 +111,7 @@ namespace Day02
                             dy = max_dy;
                         }
 
-                        if (keypad_diamond[dy,dx] == '0')
+                        if (keypad_diamond[dy, dx] == '0')
                         {
                             dx += undo_dx;
                             dy += undo_dy;

@@ -14,9 +14,12 @@ namespace Day03
             var houses = new Dictionary<(int, int), int>();
             var roboHouses = new Dictionary<(int, int), int>();
 
-            int oneX = 0, oneY = 0;
-            int santaX = 0, santaY = 0;
-            int roboX = 0, roboY = 0;
+            int oneX = 0,
+                oneY = 0;
+            int santaX = 0,
+                santaY = 0;
+            int roboX = 0,
+                roboY = 0;
 
             houses[(0, 0)] = 1;
             roboHouses[(0, 0)] = 1;
@@ -24,14 +27,23 @@ namespace Day03
             bool isSanta = true;
             foreach (char c in fileContents)
             {
-                int x = 0, y = 0;
+                int x = 0,
+                    y = 0;
 
                 switch (c)
                 {
-                    case '>': x++; break;
-                    case '<': x--; break;
-                    case '^': y++; break;
-                    case 'v': y--; break;
+                    case '>':
+                        x++;
+                        break;
+                    case '<':
+                        x--;
+                        break;
+                    case '^':
+                        y++;
+                        break;
+                    case 'v':
+                        y--;
+                        break;
                 }
 
                 oneX += x;
@@ -42,7 +54,7 @@ namespace Day03
                 }
                 else
                 {
-                    houses[(oneX, oneY)] = 1;   
+                    houses[(oneX, oneY)] = 1;
                 }
 
                 if (isSanta)

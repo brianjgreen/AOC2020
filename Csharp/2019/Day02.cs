@@ -4,7 +4,6 @@ using System.Linq;
 using System.Net;
 using System.Text.RegularExpressions;
 
-
 namespace Day02
 {
     class Program
@@ -20,9 +19,10 @@ namespace Day02
                 string? line;
                 while ((line = reader.ReadLine()) != null)
                 {
-                    locations = Regex.Matches(line, @"\d+")
-                                    .Select(m => int.Parse(m.Value))
-                                    .ToList();
+                    locations = Regex
+                        .Matches(line, @"\d+")
+                        .Select(m => int.Parse(m.Value))
+                        .ToList();
                 }
             }
 
@@ -68,16 +68,18 @@ namespace Day02
 
             while (active)
             {
-                switch(locations[ip])
+                switch (locations[ip])
                 {
                     case 99:
                         active = false;
                         break;
                     case 1:
-                        locations[locations [ip + 3]] = locations[locations[ip + 1]] + locations[locations[ip + 2]];
+                        locations[locations[ip + 3]] =
+                            locations[locations[ip + 1]] + locations[locations[ip + 2]];
                         break;
                     case 2:
-                        locations[locations [ip + 3]] = locations[locations[ip + 1]] * locations[locations[ip + 2]];
+                        locations[locations[ip + 3]] =
+                            locations[locations[ip + 1]] * locations[locations[ip + 2]];
                         break;
                     default:
                         Console.WriteLine($"BAD INSTRUCTION ip={ip} val={locations[ip]}");

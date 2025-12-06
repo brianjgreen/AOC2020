@@ -1,8 +1,7 @@
 using System;
-using System.IO;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-
 
 namespace Day01
 {
@@ -51,7 +50,7 @@ namespace Day01
                     captcha_pt2 += numbers[n];
                 }
             }
-            
+
             Console.WriteLine($"2017 Day 01 Part 1: {captcha}");
             Console.WriteLine($"2017 Day 01 Part 2: {captcha_pt2}");
         }

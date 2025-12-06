@@ -14,7 +14,7 @@ namespace Day01
             int total_mass = 0;
             int mass = 0;
             int mass_overload = 0;
-            
+
             using (StreamReader reader = new(filePath))
             {
                 string? line;

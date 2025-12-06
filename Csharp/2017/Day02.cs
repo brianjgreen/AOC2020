@@ -4,7 +4,6 @@ using System.Linq;
 using System.Net;
 using System.Text.RegularExpressions;
 
-
 namespace Day02
 {
     class Program
@@ -21,9 +20,10 @@ namespace Day02
                 string? line;
                 while ((line = reader.ReadLine()) != null)
                 {
-                    List<int> numbers = Regex.Matches(line, @"\d+")
-                                            .Select(m => int.Parse(m.Value))
-                                            .ToList();
+                    List<int> numbers = Regex
+                        .Matches(line, @"\d+")
+                        .Select(m => int.Parse(m.Value))
+                        .ToList();
 
                     var sorted_vals = numbers.OrderBy(n => n).ToArray();
                     checksum += Math.Abs(sorted_vals.First() - sorted_vals.Last());

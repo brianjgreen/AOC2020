@@ -4,7 +4,6 @@ using System.Linq;
 using System.Net;
 using System.Text.RegularExpressions;
 
-
 namespace Day02
 {
     class Program
@@ -33,7 +32,7 @@ namespace Day02
                         valid_pass++;
                     }
 
-                    if (parts[2][min_num-1] == letter ^ parts[2][max_num-1] == letter)
+                    if (parts[2][min_num - 1] == letter ^ parts[2][max_num - 1] == letter)
                     {
                         xor_valid_pass++;
                     }

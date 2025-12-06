@@ -3,7 +3,6 @@ using System.IO;
 using System.Linq;
 using System.Net;
 
-
 namespace Day01
 {
     class Program

@@ -4,7 +4,6 @@ using System.Linq;
 using System.Net;
 using System.Text.RegularExpressions;
 
-
 namespace Day02
 {
     class Program
@@ -16,7 +15,7 @@ namespace Day02
             // Elf: A for Rock, B for Paper, and C for Scissors
             // You: X for Rock, Y for Paper, and Z for Scissors
             // The score for a single round is the score for the shape you selected
-            // (1 for Rock, 2 for Paper, and 3 for Scissors) 
+            // (1 for Rock, 2 for Paper, and 3 for Scissors)
             // plus the score for the outcome of the round
             // (0 if you lost, 3 if the round was a draw, and 6 if you won).
             int rock = 1;
@@ -35,7 +34,7 @@ namespace Day02
                 ["B Z"] = scissors + win,
                 ["C X"] = rock + win,
                 ["C Y"] = paper + loss,
-                ["C Z"] = scissors + draw
+                ["C Z"] = scissors + draw,
             };
 
             // X means you need to lose, Y means you need to end the round in a draw,
@@ -50,12 +49,12 @@ namespace Day02
                 ["B Z"] = win + scissors,
                 ["C X"] = loss + paper,
                 ["C Y"] = draw + scissors,
-                ["C Z"] = win + rock
+                ["C Z"] = win + rock,
             };
 
             int score = 0;
             int score2 = 0;
-            
+
             using (StreamReader reader = new(filePath))
             {
                 string? line;

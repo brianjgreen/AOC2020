@@ -4,7 +4,6 @@ using System.Linq;
 using System.Net;
 using System.Text.RegularExpressions;
 
-
 namespace Day02
 {
     class Program
@@ -13,10 +12,10 @@ namespace Day02
         {
             // Remove the "Game X:" prefix
             var gameData = inputString.Split(new[] { ": " }, StringSplitOptions.None)[1];
-        
+
             // Initialize a dictionary to store the maximum count for each color
             var colorMaxCount = new Dictionary<string, int>();
-        
+
             // Split the game data into sets
             var sets = gameData.Split(new[] { "; " }, StringSplitOptions.None);
             foreach (var gameSet in sets)
@@ -29,7 +28,7 @@ namespace Day02
                     var parts = colorCount.Split(' ');
                     var count = int.Parse(parts[0]);
                     var color = parts[1];
-                
+
                     // Update the maximum count for the color
                     if (colorMaxCount.ContainsKey(color))
                     {
@@ -41,7 +40,7 @@ namespace Day02
                     }
                 }
             }
-        
+
             return colorMaxCount;
         }
 
@@ -69,7 +68,11 @@ namespace Day02
                     }
                     power += product;
 
-                    if (result["red"] <= max_red && result["green"] <= max_green && result["blue"] <= max_blue)
+                    if (
+                        result["red"] <= max_red
+                        && result["green"] <= max_green
+                        && result["blue"] <= max_blue
+                    )
                     {
                         possible_games += game;
                     }

@@ -22,7 +22,9 @@ namespace Day02
                     int[] dims = [.. dimensions.Select(int.Parse)];
                     Array.Sort(dims);
 
-                    int area = 2 * (dims[0] * dims[1] + dims[1] * dims[2] + dims[0] * dims[2]) + dims[0] * dims[1];
+                    int area =
+                        2 * (dims[0] * dims[1] + dims[1] * dims[2] + dims[0] * dims[2])
+                        + dims[0] * dims[1];
                     int ribbon = 2 * (dims[0] + dims[1]) + dims[0] * dims[1] * dims[2];
 
                     totalArea += area;

@@ -4,7 +4,6 @@ using System.Linq;
 using System.Net;
 using System.Text.RegularExpressions;
 
-
 namespace Day02
 {
     class Program
@@ -26,7 +25,7 @@ namespace Day02
                     List<string> parts = line.Split(" ").ToList();
                     string direction = parts[0];
                     int steps = int.Parse(parts[1]);
-                    
+
                     switch (direction)
                     {
                         case "forward":

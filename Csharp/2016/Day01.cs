@@ -9,7 +9,7 @@ namespace Day01
         North,
         East,
         South,
-        West
+        West,
     }
 
     public struct CompassDirection(int x, int y, Direction left, Direction right)
@@ -37,8 +37,10 @@ namespace Day01
                 [Direction.West] = new CompassDirection(-1, 0, Direction.South, Direction.North),
             };
 
-            int x = 0, y = 0;
-            int dx = 0, dy = 0;
+            int x = 0,
+                y = 0;
+            int dx = 0,
+                dy = 0;
             bool visit_twice = false;
             Direction needle = Direction.North;
             var location = new Dictionary<(int, int), int>();

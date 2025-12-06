@@ -16,7 +16,7 @@ namespace Day01
             bool found_mass_overload = false;
             int mass_overload = 0;
             List<int> values = [];
-            
+
             using (StreamReader reader = new(filePath))
             {
                 string? line;
@@ -34,9 +34,8 @@ namespace Day01
                     }
 
                     values.Add(reading);
-
                 }
-                
+
                 foreach (int i in Enumerable.Range(0, values.Count - 1))
                 {
                     if (!found_mass_overload)
