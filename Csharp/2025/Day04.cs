@@ -23,7 +23,6 @@ namespace Day04
             string[] grid = rows.ToArray();
             int max_x = rows[0].Length;
             int max_y = rows.Count;
-            Console.WriteLine($"{max_x} {max_y}");
 
             for (int x = 0; x < max_x; x++)
             {
