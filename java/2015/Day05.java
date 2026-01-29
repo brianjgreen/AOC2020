@@ -96,17 +96,7 @@ public class Day05 {
             }
         }
         if (!hasPair) {
-            for (var i = 0; i < message.length() - 1; i++) {
-                var pair = message.substring(i, i + 2);
-                for (var j = i + 2; j < message.length() - 1; j++) {
-                    if (message.substring(j, j + 2).equals(pair)) {
-                        hasPair = true;
-                        break;
-                    }
-                }
-                if (hasPair) break;
-            }
-            if (!hasPair) return false;
+            return false;
         }
 
         // At least one letter which repeats with exactly one letter between them
