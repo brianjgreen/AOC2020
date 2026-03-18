@@ -3,9 +3,9 @@ SRC_DIR = .
 LIB_DIR = ../lib
 
 # Define the compiler and flags
-CC = cc
+CC = clang
 CFLAGS = -Wall -Wextra -g -I$(LIB_DIR)
-LDFLAGS = -lm
+LDFLAGS = -lm -lcrypto
 
 # Define the target executable
 TARGET = aoc2015

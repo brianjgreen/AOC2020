@@ -3,9 +3,9 @@ SRC_DIR = .
 LIB_DIR = ../lib
 
 # Define the compiler and flags
-CC = cc
+CC = clang
 CFLAGS = -Wall -Wextra -g -I$(LIB_DIR)
-LDFLAGS = -lm
+LDFLAGS = -lm -lssl -lcrypto
 
 # Define the target executable
 TARGET = aoc2016
@@ -19,7 +19,22 @@ SOURCES   = $(SRC_FILES) $(LIB_FILES)
 OBJECTS = $(SOURCES:.c=.o)
 
 # Default target
-all: $(TARGET)
+all: check-openssl $(TARGET)
+
+# Check for OpenSSL headers and libraries
+.PHONY: check-openssl
+check-openssl:
+	@echo "Checking for OpenSSL..."
+	@echo "#include <openssl/evp.h>" > /tmp/test_openssl.c
+	@echo "int main() { EVP_MD_CTX *ctx = EVP_MD_CTX_new(); EVP_MD_CTX_free(ctx); return 0; }" >> /tmp/test_openssl.c
+	@if $(CC) -o /tmp/test_openssl /tmp/test_openssl.c $(LDFLAGS) 2>/dev/null; then \
+		echo "OpenSSL found."; \
+		rm -f /tmp/test_openssl /tmp/test_openssl.c; \
+	else \
+		echo "OpenSSL not found. Please install OpenSSL development libraries."; \
+		rm -f /tmp/test_openssl /tmp/test_openssl.c; \
+		exit 1; \
+	fi
 
 # Link the object files to create the executable
 $(TARGET): $(OBJECTS)
@@ -34,4 +49,4 @@ clean:
 	rm -f $(OBJECTS) $(TARGET)
 
 # Phony targets
-.PHONY: all clean
+.PHONY: all clean check-openssl
