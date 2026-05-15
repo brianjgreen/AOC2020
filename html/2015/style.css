@@ -49,4 +49,4 @@ button:hover { filter: brightness(90%); }
     display: none;
 }
 .result-item { margin: 0.5rem 0; font-weight: bold; font-size: 1.2rem; }
-.label { color: #7f8c8d; font-weight: normal; font/size: 0.9rem; display: block; }
+.label { color: #7f8c8d; font-weight: normal; font-size: 0.9rem; display: block; }
