@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AoC 2015 - Day 2</title>
+    <style>
+        :root { --theme-color: #27ae60; --result-bg: #eafaf1; }
+    </style>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>AoC 2015 Day 2</h1>
+        <p>Paste your input data below:</p>
+        <textarea id="inputData" placeholder="2x3x4"></textarea>
+        <button onclick="runSolver(day2Logic, 'part1', 'part2')">Calculate</button>
+        <div id="resultsArea" class="results">
+            <div class="result-item"><span class="label">Part 1:</span> <span id="part1"></span></div>
+            <div class="result-item"><span class="label">Part 2:</span> <span id="part2"></span></div>
+        </div>
+    </div>
+
+    <script src="utils.js"></script>
+    <script>
+        function day2Logic(input) {
+            let g1 = 0; let g2 = 0;
+            input.split('\n').forEach(line => {
+                const m = line.match(/(\d+)x(\d+)x(\d+)/);
+                if (m) {
+                    const [_, l, w, h] = m.map(Number);
+                    const s1 = 2*l*w, s2 = 2*w*h, s3 = 2*h*l;
+                    g1 += s1 + s2 + s3 + (Math.min(s1, s2, s3) / 2);
+                    const p1 = (2*l)+(2*w), p2 = (2*w)+(2*h), p3 = (2*h)+(2*l);
+                    g2 += (l * w * h) + Math.min(p1, p2, p3);
+                }
+            });
+            return { p1: Math.floor(g1), p2: Math.floor(g2) };
+        }
+    </script>
+</body>
+</html>

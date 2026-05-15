@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AoC 2015 - Day 1</title>
+    <style>
+        :root { --theme-color: #e67e22; --result-bg: #fdf2e9; }
+    </style>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>AoC 2015 Day 1</h1>
+        <p>Paste your input string below:</p>
+        <textarea id="inputData" placeholder="(())"></textarea>
+        <button onclick="runSolver(day1Logic, 'part1', 'part2')">Calculate</button>
+        <div id="resultsArea" class="results">
+            <div class="result-item"><span class="label">Part 1:</span> <span id="part1"></span></div>
+            <div class="result-item"><span class="label">Part 2:</span> <span id="part2"></span></div>
+        </div>
+    </div>
+
+    <script src="utils.js"></script>
+    <script>
+        function day1Logic(input) {
+            let floor = 0;
+            let pos = -1;
+            for (let i = 0; i < input.length; i++) {
+                if (input[i] === '(') floor++;
+                else if (input[i] === ')') floor--;
+                if (floor === -1 && pos === -1) pos = i + 1;
+            }
+            return { p1: floor, p2: pos === -1 ? "Not reached" : pos };
+        }
+    </script>
+</body>
+</html>
