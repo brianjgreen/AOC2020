@@ -1,12 +1,8 @@
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.NoSuchFileException;
-import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.List;
-import java.util.regex.Pattern;
+import module java.base;
 
 public class Day02 {
+    private static final Pattern PATTERN = Pattern.compile("(\\d+)x(\\d+)x(\\d+)");
+
     public static void main(String[] args) {
         var input = readInput("../../data/2015/day02.dat");
         if (input.isEmpty()) {
@@ -15,13 +11,8 @@ public class Day02 {
 
         var data = input.lines().toList();
 
-        // Solve part 1
-        var result1 = solvePart1(data);
-        System.out.println("Part 1: " + result1);
-
-        // Solve part 2
-        var result2 = solvePart2(data);
-        System.out.println("Part 2: " + result2);
+        System.out.println("Part 1: " + solvePart1(data));
+        System.out.println("Part 2: " + solvePart2(data));
     }
 
     private static String readInput(String filePath) {
@@ -30,53 +21,55 @@ public class Day02 {
         } catch (NoSuchFileException e) {
             System.out.println("Data file missing: " + filePath);
         } catch (IOException ex) {
-            // Consider logging the exception
         }
         return "";
     }
 
-    private static int solvePart1(List<String> input) {
-        var grandTotal = 0;
-        var pattern = Pattern.compile("(\\d+)x(\\d+)x(\\d+)");
-        for (var pkg : input) {
-            var matcher = pattern.matcher(pkg);
-            if (matcher.matches()) {
-                var length = Integer.parseInt(matcher.group(1));
-                var width = Integer.parseInt(matcher.group(2));
-                var height = Integer.parseInt(matcher.group(3));
-                var surfaces = new int[] {
-                    length * width,
-                    width * height,
-                    height * length
-                };
-                var sumSurfaces = surfaces[0] + surfaces[1] + surfaces[2];
-                var minSurface = Arrays.stream(surfaces).min().getAsInt();
-                var total = 2 * sumSurfaces + minSurface;
-                grandTotal += total;
-            }
+    private record Dimensions(int length, int width, int height) {
+        static Dimensions parse(String line) {
+            var matcher = PATTERN.matcher(line);
+            return matcher.matches()
+                ? new Dimensions(
+                    Integer.parseInt(matcher.group(1)),
+                    Integer.parseInt(matcher.group(2)),
+                    Integer.parseInt(matcher.group(3)))
+                : null;
         }
-        return grandTotal;
+
+        int surfaceArea() {
+            return 2 * (length * width + width * height + height * length);
+        }
+
+        int smallestSide() {
+            var dims = new int[] { length, width, height };
+            Arrays.sort(dims);
+            return dims[0] * dims[1];
+        }
+
+        int volume() {
+            return length * width * height;
+        }
+
+        int smallestPerimeter() {
+            var dims = new int[] { length, width, height };
+            Arrays.sort(dims);
+            return 2 * (dims[0] + dims[1]);
+        }
+    }
+
+    private static int solvePart1(List<String> input) {
+        return input.stream()
+            .map(Dimensions::parse)
+            .filter(Objects::nonNull)
+            .mapToInt(d -> d.surfaceArea() + d.smallestSide())
+            .sum();
     }
 
     private static int solvePart2(List<String> input) {
-        var grandTotal = 0;
-        var pattern = Pattern.compile("(\\d+)x(\\d+)x(\\d+)");
-        for (var pkg : input) {
-            var matcher = pattern.matcher(pkg);
-            if (matcher.matches()) {
-                var length = Integer.parseInt(matcher.group(1));
-                var width  = Integer.parseInt(matcher.group(2));
-                var height = Integer.parseInt(matcher.group(3));
-
-                // Compute perimeters of smallest faces
-                var dims = new int[] { length, width, height };
-                Arrays.sort(dims);
-                var perimeter = 2 * (dims[0] + dims[1]);
-                var bow = length * width * height;
-                var total = perimeter + bow;
-                grandTotal += total;
-            }
-        }
-        return grandTotal;
+        return input.stream()
+            .map(Dimensions::parse)
+            .filter(Objects::nonNull)
+            .mapToInt(d -> d.smallestPerimeter() + d.volume())
+            .sum();
     }
 }

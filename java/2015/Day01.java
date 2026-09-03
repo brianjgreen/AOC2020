@@ -1,7 +1,4 @@
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.NoSuchFileException;
-import java.nio.file.Paths;
+import module java.base;
 
 public class Day01 {
     public static void main(String[] args) {
@@ -10,13 +7,8 @@ public class Day01 {
             return;
         }
 
-        // Solve part 1
-        var result1 = solvePart1(input);
-        System.out.println("Part 1: " + result1);
-
-        // Solve part 2
-        var result2 = solvePart2(input);
-        System.out.println("Part 2: " + result2);
+        System.out.println("Part 1: " + solvePart1(input));
+        System.out.println("Part 2: " + solvePart2(input));
     }
 
     private static String readInput(String filePath) {
@@ -25,17 +17,12 @@ public class Day01 {
         } catch (NoSuchFileException e) {
             System.out.println("Data file missing: " + filePath);
         } catch (IOException ex) {
-            // Consider logging the exception
         }
         return "";
     }
 
     private static int solvePart1(String input) {
-        var floor = 0;
-        for (var c : input.toCharArray()) {
-            floor += (c == '(') ? 1 : -1;
-        }
-        return floor;
+        return input.chars().map(c -> c == '(' ? 1 : -1).sum();
     }
 
     private static int solvePart2(String input) {
